@@ -3,11 +3,13 @@
 :root {
     --font-family: 'Geist', sans-serif;
 
-    --font-size-m: 16px;
-    --font-line-m: 24px;
+    --font-size-m: 14px;
+    --font-line-m: 22px;
     --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family);
 
-    --font-size-l: 24px;
-    --font-line-l: 32px;
+    --font-size-l: 16px;
+    --font-line-l: 24px;
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family);
+
+    --navbar-height: 50px;
 }
