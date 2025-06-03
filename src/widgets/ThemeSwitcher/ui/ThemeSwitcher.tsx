@@ -8,18 +8,21 @@ import { Theme } from '@/shared/config/theme/ThemeContext';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 import SunIcon from '@/shared/assets/sun.svg';
 import MoonIcon from '@/shared/assets/moon.svg';
+import { useTranslation } from 'react-i18next';
 
 interface ThemeSwitcherProps {
     className?: string
 }
 
 export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
-    const { theme, switchTheme } = useTheme()
+    const { theme, switchTheme } = useTheme();
+    const {t} = useTranslation('navbar');
+
     return (
         <Button
             onClick={switchTheme}
             className={classNames(cls.themeSwitcher, {}, [className])}
-            title='Переключение темы между светлой и темной'
+            title={t('toggle_theme')}
             theme={ThemeButton.GHOST_ICON}
         >
             {theme === Theme.LIGHT ? (

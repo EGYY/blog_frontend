@@ -1,5 +1,6 @@
-import { classNames } from "@/shared/lib/classNames/classNames";
 import { ButtonHTMLAttributes, FC } from "react"
+import { classNames } from "@/shared/lib/classNames/classNames";
+import SpinIcon from '@/shared/assets/spin.svg';
 import cls from './Button.module.scss';
 
 export enum ThemeButton {
@@ -12,16 +13,24 @@ export enum ThemeButton {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ThemeButton;
+    loading?: boolean;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
-    const { children, className, theme = ThemeButton.DEFUALT, ...otherProps } = props;
+    const {
+        children,
+        disabled,
+        loading,
+        className,
+        theme = ThemeButton.DEFUALT,
+        ...otherProps
+    } = props;
     return (
         <button
-            className={classNames(cls.button, {}, [className, cls[theme]])}
+            className={classNames(cls.button, { [cls.disabled]: disabled || loading, [cls.loading]: loading }, [className, cls[theme]])}
             {...otherProps}
         >
-            {children}
+            {loading && <SpinIcon className={cls.spin} width={16} height={16} />}{children}
         </button>
     )
 }

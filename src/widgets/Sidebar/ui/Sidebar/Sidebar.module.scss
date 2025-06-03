@@ -1,0 +1,18 @@
+.sidebar {
+    height: 100vh;
+    width: var(--sidebar-width);
+    background-color: var(--navbar-bg);
+    position: relative;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    padding: 20px 10px;
+}
+
+.collapsed {
+    width: var(--sidebar-width-collapsed);
+}
+
+.toggleSidebar {
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}

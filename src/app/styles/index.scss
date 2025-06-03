@@ -5,7 +5,28 @@
 
 .app {
     font: var(--font-m);
-    background: var(--bg-color);
+    background: var(--navbar-bg);
     color: var(--primary-color);
     min-height: 100vh;
+}
+
+.page {
+    display: flex;
+}
+
+main {
+    flex-grow: 1;
+    margin: 10px 10px 10px 0px;
+    background-color: var(--bg-color);
+    border-radius: calc(.625rem + 4px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 0 #000000, 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+}
+
+.content {
+    padding: 20px;
+}
+
+.app.dark main {
+    border: none;
 }

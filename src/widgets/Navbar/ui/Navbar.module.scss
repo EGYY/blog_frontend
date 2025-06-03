@@ -1,10 +1,20 @@
 .navbar {
     width: 100%;
     height: var(--navbar-height);
-    background-color: var(--navbar-bg);
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 20px;
     padding: 0 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.links {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.switchers {
+    display: flex;
+    gap: 5px;
 }

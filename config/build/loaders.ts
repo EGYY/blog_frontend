@@ -3,7 +3,6 @@ import webpack from "webpack";
 import { BuildOptions } from "./types/config.types";
 
 export function loaders(options: BuildOptions): webpack.RuleSetRule[] {
-
     const fileLoader = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
@@ -24,6 +23,17 @@ export function loaders(options: BuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     };
 
+    const babelLoader = {
+        test: /\.(js|jsx|tsx|ts)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env'],
+            }
+        }
+    }
+
     const styleLoader = {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -41,5 +51,11 @@ export function loaders(options: BuildOptions): webpack.RuleSetRule[] {
         ],
     };
 
-    return [tsLoader, styleLoader, fileLoader, svgLoader]
+    return [
+        babelLoader,
+        tsLoader,
+        styleLoader,
+        fileLoader,
+        svgLoader
+    ]
 }

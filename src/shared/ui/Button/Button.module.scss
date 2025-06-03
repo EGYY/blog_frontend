@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 5px;
     padding-block: calc(.25rem * 2);
     padding-inline: calc(.25rem * 4);
     cursor: pointer;
@@ -45,5 +46,24 @@
         &:hover {
             background-color: var(--button-hover-color);
         }
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &.loading>svg.spin {
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
