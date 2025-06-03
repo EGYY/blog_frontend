@@ -3,5 +3,6 @@
     "about": "О нас",
     "toggle_theme": "Переключение темы между светлой и темной",
     "language": "RU",
-    "language_title": "Переключение языка"
+    "language_title": "Переключение языка",
+    "toggle_sidebar_title": "Свернуть/Развернуть боковую панель"
 }

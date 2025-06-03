@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './Sidebar.module.scss';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
@@ -11,22 +12,23 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
-    const [collapsed, setCollapsed] = useState(false);
+  const { t } = useTranslation('navbar');
+  const [collapsed, setCollapsed] = useState(false);
 
-    const toggleSidebar = () => {
-        setCollapsed(prev => !prev);
-    }
+  const toggleSidebar = () => {
+    setCollapsed((prev) => !prev);
+  };
 
-    return (
-        <div className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
-            <Button
-                className={cls.toggleSidebar}
-                onClick={toggleSidebar}
-                theme={ThemeButton.GHOST_ICON}
-                title={"Свернуть/Развернуть боковую панель"}
-            >
-                <SidebarIcon width={24} height={24} />
-            </Button>
-        </div>
-    );
+  return (
+    <div className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
+      <Button
+        className={cls.toggleSidebar}
+        onClick={toggleSidebar}
+        theme={ThemeButton.GHOST_ICON}
+        title={t('toggle_sidebar_title')}
+      >
+        <SidebarIcon width={24} height={24} />
+      </Button>
+    </div>
+  );
 };

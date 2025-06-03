@@ -6,15 +6,15 @@ import { Sidebar } from '@/widgets/Sidebar';
 import './styles/index.scss';
 
 export const App = () => {
-    const { theme } = useTheme();
-    return (
-        <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback="">
-                <div className='page'>
-                    <Sidebar />
-                    <Router />
-                </div>
-            </Suspense>
+  const { theme } = useTheme();
+  return (
+    <div className={classNames('app', {}, [theme])}>
+      <Suspense fallback="">
+        <div className="page">
+          <Sidebar />
+          <Router />
         </div>
-    )
-}
+      </Suspense>
+    </div>
+  );
+};

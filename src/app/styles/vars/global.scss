@@ -1,17 +1,14 @@
-@import url('./fonts.scss');
+@import url("./fonts.scss");
 
 :root {
-    --font-family: 'Geist', sans-serif;
-
-    --font-size-m: 14px;
-    --font-line-m: 22px;
-    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family);
-
-    --font-size-l: 16px;
-    --font-line-l: 24px;
-    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family);
-
-    --navbar-height: 50px;
-    --sidebar-width: 288px;
-    --sidebar-width-collapsed: 60px;
+  --font-family: "Geist", sans-serif;
+  --font-size-m: 14px;
+  --font-line-m: 22px;
+  --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family);
+  --font-size-l: 16px;
+  --font-line-l: 24px;
+  --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family);
+  --navbar-height: 50px;
+  --sidebar-width: 288px;
+  --sidebar-width-collapsed: 60px;
 }

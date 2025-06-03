@@ -1,69 +1,68 @@
 .button {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    padding-block: calc(.25rem * 2);
-    padding-inline: calc(.25rem * 4);
-    cursor: pointer;
-    border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--bg-color);
+  background-color: var(--primary-color);
+  cursor: pointer;
+  gap: 5px;
+  padding-block: calc(0.25rem * 2);
+  padding-inline: calc(0.25rem * 4);
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &.ghostIcon {
+    padding: 5px;
+  }
+
+  &.ghost,
+  &.ghostIcon {
     outline: none;
-    font-weight: 500;
+    color: var(--primary-color);
+    background-color: transparent;
 
     &:hover {
-        opacity: .9;
+      background-color: var(--button-hover-color);
     }
+  }
 
-    &.ghost,
-    &.ghostIcon {
-        background-color: transparent;
-        outline: none;
-        color: var(--primary-color);
+  &.secondary {
+    color: var(--primary-color);
+    background-color: var(--button-secondary-bg);
+  }
 
-        &:hover {
-            background-color: var(--button-hover-color);
-        }
+  &.outline {
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    background-color: var(--button-outline-bg);
 
+    &:hover {
+      background-color: var(--button-hover-color);
     }
+  }
 
-    &.ghostIcon {
-        padding: 5px;
-    }
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
-    &.secondary {
-        background-color: var(--button-secondary-bg);
-        color: var(--primary-color);
-    }
-
-    &.outline {
-        background-color: var(--button-outline-bg);
-        border: 1px solid var(--border-color);
-        color: var(--primary-color);
-
-        &:hover {
-            background-color: var(--button-hover-color);
-        }
-    }
-
-    &.disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
-
-    &.loading>svg.spin {
-        animation: spin 1s linear infinite;
-    }
+  &.loading > svg.spin {
+    animation: spin 1s linear infinite;
+  }
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }

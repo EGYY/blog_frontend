@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, FC } from "react"
-import { classNames } from "@/shared/lib/classNames/classNames";
+import { ButtonHTMLAttributes, FC } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import SpinIcon from '@/shared/assets/spin.svg';
 import cls from './Button.module.scss';
 
@@ -17,20 +17,26 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: FC<ButtonProps> = (props) => {
-    const {
-        children,
-        disabled,
-        loading,
-        className,
-        theme = ThemeButton.DEFUALT,
-        ...otherProps
-    } = props;
-    return (
-        <button
-            className={classNames(cls.button, { [cls.disabled]: disabled || loading, [cls.loading]: loading }, [className, cls[theme]])}
-            {...otherProps}
-        >
-            {loading && <SpinIcon className={cls.spin} width={16} height={16} />}{children}
-        </button>
-    )
-}
+  const {
+    children,
+    disabled,
+    loading,
+    className,
+    theme = ThemeButton.DEFUALT,
+    ...otherProps
+  } = props;
+  return (
+    <button
+      type="button"
+      className={classNames(
+        cls.button,
+        { [cls.disabled]: disabled || loading, [cls.loading]: loading },
+        [className, cls[theme]],
+      )}
+      {...otherProps}
+    >
+      {loading && <SpinIcon className={cls.spin} width={16} height={16} />}
+      {children}
+    </button>
+  );
+};
