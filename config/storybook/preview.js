@@ -3,7 +3,6 @@ import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
 import { RouteDecorator } from '../../src/shared/config/storybook/RouteDecorator';
 import { I18nDecorator } from '../../src/shared/config/storybook/i18nDecorator';
-import { Theme } from '../../src/shared/config/theme/ThemeContext';
 import i18n from '../../src/shared/config/i18n/i18n';
 
 export const parameters = {
