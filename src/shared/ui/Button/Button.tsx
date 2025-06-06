@@ -33,9 +33,11 @@ export const Button: FC<ButtonProps> = (props) => {
         { [cls.disabled]: disabled || loading, [cls.loading]: loading },
         [className, cls[theme]],
       )}
+      disabled={disabled}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...otherProps}
     >
-      {loading && <SpinIcon className={cls.spin} width={16} height={16} />}
+      {loading && <SpinIcon className="spin" width={16} height={16} />}
       {children}
     </button>
   );

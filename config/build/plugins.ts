@@ -2,10 +2,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config.types';
 
 export function plugins(options: BuildOptions): webpack.WebpackPluginInstance[] {
-  const { paths } = options;
+  const { paths, analyze } = options;
   return [
     new HtmlWebpackPlugin({
       template: paths.html,
@@ -20,5 +21,8 @@ export function plugins(options: BuildOptions): webpack.WebpackPluginInstance[] 
     }),
     new ReactRefreshWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: analyze ? 'server' : 'disabled',
+    }),
   ];
 }

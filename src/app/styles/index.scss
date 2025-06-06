@@ -2,6 +2,7 @@
 @import url("./vars/global.scss");
 @import url("./themes/dark.scss");
 @import url("./themes/light.scss");
+@import url("./vars/animations.scss");
 
 .app {
   min-height: 100vh;
@@ -25,8 +26,13 @@ main {
 
 .content {
   padding: 20px;
+  height: calc(100% - var(--navbar-height));
 }
 
 .app.dark main {
   border: none;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
 }

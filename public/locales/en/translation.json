@@ -1,4 +1,10 @@
 {
     "main": "Home",
-    "about": "About"
+    "about": "About",
+    "not_found_page": "404 Page Not Found",
+    "not_found_page_description": "Sorry, we couldn't find the page you're looking for.",
+    "not_found_page_button": "Return to website",
+    "error_page": "Oops, something went wrong!",
+    "error_page_description": "We're sorry, but an unexpected error has occurred. Please try refreshing the page.",
+    "error_page_button": "Reload Page"
 }
