@@ -20,13 +20,12 @@ export function plugins(options: BuildOptions): webpack.WebpackPluginInstance[] 
       __IS_DEV__: JSON.stringify(options.isDev),
     }),
     new ReactRefreshWebpackPlugin(),
-
-  ]
+  ];
   if (options.isDev) {
-    plugins.push(new webpack.HotModuleReplacementPlugin())
+    plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(new BundleAnalyzerPlugin({
       analyzerMode: analyze ? 'server' : 'disabled',
-    }))
+    }));
   }
   return plugins;
 }
