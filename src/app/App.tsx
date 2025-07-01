@@ -1,14 +1,19 @@
 import { Suspense, useEffect } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { useTheme } from '@/shared/config/theme/useTheme';
 import { Router } from './providers/router';
 import { Sidebar } from '@/widgets/Sidebar';
+import { useTheme } from '@/shared/config/theme/useTheme';
 
 export const App = () => {
   const { theme } = useTheme();
 
+  useEffect(() => {
+    document.body.className = theme;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className={classNames('app', {}, [theme])}>
+    <div id="app" className={classNames('app')}>
       <Suspense fallback="">
         <div className="page">
           <Sidebar />

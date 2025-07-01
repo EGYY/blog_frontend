@@ -4,7 +4,7 @@
 @import url("./themes/light.scss");
 @import url("./vars/animations.scss");
 
-.app {
+body {
   min-height: 100vh;
   font: var(--font-m);
   color: var(--primary-color);
@@ -29,7 +29,7 @@ main {
   height: calc(100% - var(--navbar-height));
 }
 
-.app.dark main {
+body.dark main {
   border: none;
 }
 

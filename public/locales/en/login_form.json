@@ -1,0 +1,7 @@
+{
+    "title": "Login to your account",
+    "description": "Enter your email below to login to your account",
+    "email_input": "Email",
+    "password_input": "Password",
+    "login_btn": "Login"
+}

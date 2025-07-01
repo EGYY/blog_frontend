@@ -1,4 +1,4 @@
-.app.dark {
+body.dark {
   --bg-color: #09090b;
   --primary-color: #fafafa;
   --secondary-color: #a1a1aa;
@@ -7,4 +7,7 @@
   --button-secondary-bg: #262626;
   --border-color: #ffffff26;
   --button-outline-bg: #151515;
+  --modal-bg: #161616;
+  --input-bg: #212121;
+  --input-border: #737373;
 }

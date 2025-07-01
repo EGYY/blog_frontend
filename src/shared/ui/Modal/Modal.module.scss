@@ -1,0 +1,50 @@
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 50%);
+  animation: fade-in 0.2s ease-out;
+  backdrop-filter: blur(4px);
+  inset: 0;
+}
+
+.content {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 10%);
+  background: var(--modal-bg);
+  animation: slide-up 0.2s ease-out;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

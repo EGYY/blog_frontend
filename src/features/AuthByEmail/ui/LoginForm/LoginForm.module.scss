@@ -1,0 +1,28 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.25rem * 6);
+  padding-block: calc((0.25rem) * 6);
+  padding-inline: calc(0.25rem * 6);
+}
+
+.loginFormContent {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.25rem * 6);
+}
+
+.loginFormHeader {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.25rem * 1.5);
+
+  .loginFormHeaderTitle {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .loginFormHeaderDescription {
+    color: var(--secondary-color);
+  }
+}

@@ -16,7 +16,7 @@ interface ThemeSwitcherProps {
 
 export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
   const { theme, switchTheme } = useTheme();
-  const { t } = useTranslation('navbar');
+  const { t } = useTranslation('sidebar');
 
   return (
     <Button

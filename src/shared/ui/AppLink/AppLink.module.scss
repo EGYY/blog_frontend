@@ -7,3 +7,16 @@
     text-decoration: underline;
   }
 }
+
+.link.button {
+  border-radius: 8px;
+  color: var(--primary-color);
+  background-color: transparent;
+  padding-block: calc(0.25rem * 2);
+  padding-inline: calc(0.25rem * 4);
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--button-hover-color);
+  }
+}

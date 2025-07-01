@@ -1,4 +1,4 @@
-.app.light {
+body.light {
   --bg-color: #fff;
   --primary-color: #09090b;
   --secondary-color: #71717a;
@@ -8,4 +8,7 @@
   --button-secondary-color: #09090b;
   --border-color: #e5e5e5;
   --button-outline-bg: #fff;
+  --modal-bg: #fff;
+  --input-bg: #fff;
+  --input-border: #d1d5db;
 }

@@ -9,7 +9,7 @@ interface LanguageSwitcherProps {
 }
 
 export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className }) => {
-  const { t, i18n } = useTranslation('navbar');
+  const { t, i18n } = useTranslation('sidebar');
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');

@@ -1,0 +1,8 @@
+{
+    "main": "Home",
+    "about": "About",
+    "toggle_theme": "Switching the theme between light and dark",
+    "language": "EN",
+    "language_title": "Language switching",
+    "toggle_sidebar_title": "Collapse/Expand the Sidebar"
+}
