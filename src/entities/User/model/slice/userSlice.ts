@@ -22,10 +22,10 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getProfileData.fulfilled, (state, action) => {
-        const accessToken = Cookies.get('accessTokne');
+        const accessToken = Cookies.get('accessToken');
         state.userData = { user: action.payload, accessToken };
       })
-      .addCase(getProfileData.rejected, (state, action) => {
+      .addCase(getProfileData.rejected, (state) => {
         state.userData = null;
       });
   },
