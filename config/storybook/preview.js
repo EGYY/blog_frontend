@@ -3,7 +3,9 @@ import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
 import { RouteDecorator } from '../../src/shared/config/storybook/RouteDecorator';
 import { I18nDecorator } from '../../src/shared/config/storybook/i18nDecorator';
+import { StoreDecorator } from '../../src/shared/config/storybook/StoreDecorator';
 import i18n from '../../src/shared/config/i18n/i18n';
+import { testUserData } from '../../src/entities/User/model/const/userConsts';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -55,3 +57,7 @@ addDecorator(StyleDecorator);
 addDecorator(ThemeDecorator);
 addDecorator(RouteDecorator);
 addDecorator(I18nDecorator);
+addDecorator(StoreDecorator({
+  login: { loading: false, error: null },
+  user: testUserData,
+}));

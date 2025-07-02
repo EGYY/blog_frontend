@@ -1,0 +1,51 @@
+.accountMenuTrigger {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  gap: 5px;
+
+  img {
+    border-radius: 0.625rem;
+    width: calc(0.25rem * 8);
+    height: calc(0.25rem * 8);
+    object-fit: cover;
+  }
+
+  .accountMenuTriggerInfo {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    text-align: start;
+
+    b,
+    span {
+      overflow: hidden;
+      max-width: 130px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.separator {
+  margin: 3px 0;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.menuItems {
+  padding: 0 5px;
+
+  button {
+    justify-content: flex-start;
+    border-radius: calc(0.625rem - 4px);
+    width: 100%;
+    padding-block: calc(0.25rem * 1.5);
+    padding-inline: calc(0.25rem * 2);
+
+    svg {
+      width: calc(0.25rem * 4);
+      height: calc(0.25rem * 4);
+    }
+  }
+}

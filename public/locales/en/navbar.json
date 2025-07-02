@@ -1,4 +1,5 @@
 {
     "authorization": "Authorization/Registration",
-    "login": "Login"
+    "login": "Login",
+    "logout": "Log out"
 }

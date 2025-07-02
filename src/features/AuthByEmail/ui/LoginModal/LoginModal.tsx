@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { Modal } from '@/shared/ui/Modal/Modal';
-import { LoginForm } from '../LoginForm/LoginForm';
+import SpinIcon from '@/shared/assets/spin.svg';
+import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 
 interface LoginModalProps {
     className?: string;
@@ -12,7 +13,17 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
   const { open } = props;
   return (
     <Modal {...props}>
-      <LoginForm openModal={open} />
+      <Suspense fallback={(
+        <div style={{
+          width: '100%', height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}
+        >
+          <SpinIcon className="spin" width={24} height={24} />
+        </div>
+)}
+      >
+        <LoginFormAsync openModal={open} />
+      </Suspense>
     </Modal>
   );
 };

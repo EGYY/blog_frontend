@@ -11,7 +11,13 @@ export interface componentRenderOptions {
 export const componentRender = (component: ReactNode, options: componentRenderOptions = {}) => {
   const { route = '/' } = options;
   return render(
-    <MemoryRouter initialEntries={[route]}>
+    <MemoryRouter
+      initialEntries={[route]}
+      future={{
+        v7_relativeSplatPath: false,
+        v7_startTransition: false,
+      }}
+    >
       <I18nextProvider i18n={i18nFotTests}>
         {component}
       </I18nextProvider>

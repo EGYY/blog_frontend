@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { LoginForm } from '../LoginForm';
+import LoginForm from '../LoginForm';
 
 export default {
   title: 'features/LoginForm',

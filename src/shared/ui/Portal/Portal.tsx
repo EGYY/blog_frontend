@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 type PortalProps = { children: ReactNode, root?: HTMLElement };
 
-export function Portal({ children, root = document.getElementById('app') }: PortalProps) {
+export function Portal({ children, root = document.getElementById('app') || document.getElementById('root') }: PortalProps) {
   const el = document.createElement('div');
 
   useEffect(() => {
