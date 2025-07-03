@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -10,10 +10,10 @@ interface PageLoaderProps {
     className?: string
 }
 
-export const PageLoader: FC<PageLoaderProps> = ({ className }) => {
+export const PageLoader: FC<PageLoaderProps> = memo(({ className }) => {
   return (
     <div className={classNames(`${cls.pageLoader} content`, {}, [className])}>
       <SpinIcon className="spin" width={48} height={48} />
     </div>
   );
-};
+});

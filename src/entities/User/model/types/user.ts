@@ -9,7 +9,7 @@ export interface User {
 
 export interface UserServerResponse {
     user: User
-    accessToken: string
+    accessToken?: string
 }
 
 export interface UserSchema {

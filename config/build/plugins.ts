@@ -18,6 +18,7 @@ export function plugins(options: BuildOptions): webpack.WebpackPluginInstance[] 
     }),
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(options.isDev),
+      __SERVER_URL__: JSON.stringify(options.serverUrl),
     }),
     new ReactRefreshWebpackPlugin(),
   ];

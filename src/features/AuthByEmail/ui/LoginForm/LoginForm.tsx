@@ -1,30 +1,32 @@
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
 import {
-  FC, memo, useEffect, useRef,
+  FC, memo, useCallback, useEffect, useRef,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './LoginForm.module.scss';
 import { Input } from '@/shared/ui/Input/Input';
 import { Button } from '@/shared/ui/Button/Button';
-import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { loginReducer } from '../../model/slice/loginSlice';
 import { getError } from '../../model/selectors/getError/getError';
 import { getLoading } from '../../model/selectors/getLoading/getLoading';
 import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface LoginFormProps {
-  openModal?: boolean
+  openModal?: boolean,
+  onCloseModal?: () => void,
 }
 
 const initialReducers: ReducersList = {
   login: loginReducer,
 };
 
-const LoginForm: FC<LoginFormProps> = memo(({ openModal = false }) => {
+const LoginForm: FC<LoginFormProps> = memo(({ openModal = false, onCloseModal }) => {
   const { t } = useTranslation('login_form');
   const inputEmailRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const error = useSelector(getError);
   const loading = useSelector(getLoading);
 
@@ -36,20 +38,16 @@ const LoginForm: FC<LoginFormProps> = memo(({ openModal = false }) => {
     }
   }, [openModal]);
 
-  const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitForm = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(loginActions.setLoading(true));
-    try {
-      const formData = new FormData(event.currentTarget);
-      const email = formData.get('email') as string;
-      const password = formData.get('password') as string;
-      dispatch(loginByEmail({ email, password }));
-    } catch (e) {
-      dispatch(loginActions.setError(e.message));
-    } finally {
-      dispatch(loginActions.setLoading(false));
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const result = await dispatch(loginByEmail({ email, password }));
+    if (result.meta.requestStatus === 'fulfilled') {
+      onCloseModal?.();
     }
-  };
+  }, [dispatch, onCloseModal]);
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
@@ -79,7 +77,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ openModal = false }) => {
             required
             autoComplete="password"
           />
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {error && <p style={{ color: '#e7000b' }}>{error}</p>}
           <Button loading={loading} type="submit">{t('login_btn')}</Button>
         </div>
       </form>

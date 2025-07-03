@@ -29,7 +29,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
   });
   config!.module!.rules.push(cssLoader(true));
   config.plugins?.push(new webpack.DefinePlugin({
-    __IS_DEV__: true,
+    __IS_DEV__: JSON.stringify(true),
+    __SERVER_URL__: JSON.stringify(''),
   }));
 
   return config;

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './LanguageSwitcher.module.scss';
@@ -8,7 +8,7 @@ interface LanguageSwitcherProps {
     className?: string
 }
 
-export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className }) => {
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className }) => {
   const { t, i18n } = useTranslation('sidebar');
 
   const toggleLanguage = () => {
@@ -24,4 +24,4 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ className }) => {
       {t('language')}
     </Button>
   );
-};
+});

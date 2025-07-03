@@ -1,24 +1,45 @@
-// import { testUserData } from '../const/userConsts';
-// import { UserSchema } from '../types/user';
-// import { userActions, userReducer } from './userSlice';
+import { userReducer, userActions } from './userSlice';
+import { getProfileData } from '../services/getProfileData';
+import { UserSchema } from '../types/user';
+import { testUserData } from '../const/userConsts';
 
 describe('userSlice', () => {
-  test('test', () => {
-    expect(1).toBe(1);
+  const initialState: UserSchema = {
+    userData: undefined,
+  };
+
+  it('setAuthData', () => {
+    const nextState = userReducer(initialState, userActions.setAuthData(testUserData));
+    expect(nextState.userData).toEqual(testUserData);
   });
-  // test('setAuthData', () => {
-  //   const state: UserSchema = {
-  //     userData: null,
-  //   };
-  //   expect(userReducer(state, userActions.setAuthData(testUserData))).toEqual({ userData: testUserData });
-  // });
-  // test('logout', () => {
-  //   const state: UserSchema = {
-  //     userData: testUserData,
-  //   };
-  //   expect(userReducer(state, userActions.logout())).toEqual({ userData: null });
-  // });
-  // test('with empty state', () => {
-  //   expect(userReducer(undefined, userActions.logout())).toEqual({ userData: null });
-  // });
+
+  it('logout', () => {
+    const stateWithUser: UserSchema = {
+      userData: testUserData,
+    };
+    const nextState = userReducer(stateWithUser, userActions.logout());
+    expect(nextState.userData).toBeUndefined();
+  });
+
+  it('getProfileData.fulfilled', () => {
+    const action = {
+      type: getProfileData.fulfilled.type,
+      payload: testUserData.user,
+    };
+
+    const nextState = userReducer(initialState, action);
+    expect(nextState.userData).toEqual({
+      user: testUserData.user,
+    });
+  });
+
+  it('getProfileData.rejected', () => {
+    const stateWithUser: UserSchema = {
+      userData: testUserData,
+    };
+
+    const action = { type: getProfileData.rejected.type };
+    const nextState = userReducer(stateWithUser, action);
+    expect(nextState.userData).toBeUndefined();
+  });
 });

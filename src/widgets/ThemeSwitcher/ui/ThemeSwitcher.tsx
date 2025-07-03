@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -14,7 +14,7 @@ interface ThemeSwitcherProps {
     className?: string
 }
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
   const { theme, switchTheme } = useTheme();
   const { t } = useTranslation('sidebar');
 
@@ -32,4 +32,4 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
       )}
     </Button>
   );
-};
+});

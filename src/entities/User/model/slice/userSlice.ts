@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Cookies from 'js-cookie';
 import { getProfileData } from '../services/getProfileData';
 import { UserSchema, UserServerResponse } from '../types/user';
 
 const initialState: UserSchema = {
-  userData: null,
+  userData: undefined,
 };
 
 export const userSlice = createSlice({
@@ -15,18 +14,16 @@ export const userSlice = createSlice({
       state.userData = payload;
     },
     logout: (state) => {
-      state.userData = null;
-      Cookies.remove('accessToken');
+      state.userData = undefined;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getProfileData.fulfilled, (state, action) => {
-        const accessToken = Cookies.get('accessToken');
-        state.userData = { user: action.payload, accessToken };
+        state.userData = { user: action.payload };
       })
       .addCase(getProfileData.rejected, (state) => {
-        state.userData = null;
+        state.userData = undefined;
       });
   },
 });

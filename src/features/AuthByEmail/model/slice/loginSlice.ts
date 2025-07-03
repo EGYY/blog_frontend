@@ -4,7 +4,7 @@ import { LoginSchema } from '../types/LoginSchema';
 
 const initialState: LoginSchema = {
   loading: false,
-  error: null,
+  error: undefined,
 };
 
 export const loginSlice = createSlice({
@@ -14,14 +14,14 @@ export const loginSlice = createSlice({
     setLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.loading = payload;
     },
-    setError: (state, { payload }: PayloadAction<string | null>) => {
+    setError: (state, { payload }: PayloadAction<string | undefined>) => {
       state.error = payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginByEmail.pending, (state) => {
-        state.error = null;
+        state.error = undefined;
         state.loading = true;
       })
       .addCase(loginByEmail.fulfilled, (state) => {

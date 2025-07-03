@@ -1,27 +1,15 @@
 import axios, { CreateAxiosDefaults } from 'axios';
 import Cookies from 'js-cookie';
 import { UserServerResponse } from '@/entities/User';
-
-export const SERVER_URL = 'http://localhost:5000';
+import { errorCatch } from '@/shared/lib/api/helper';
 
 const options: CreateAxiosDefaults = {
-  baseURL: SERVER_URL,
+  baseURL: __SERVER_URL__,
   withCredentials: true,
 };
 
 const axiosClassic = axios.create(options);
 const axiosWithAuth = axios.create(options);
-
-const errorCatch = (error: any): string => {
-  const message = error?.response?.data?.message;
-
-  // eslint-disable-next-line no-nested-ternary
-  return message
-    ? typeof error.response.data.message === 'object'
-      ? message[0]
-      : message
-    : error.message;
-};
 
 const getNewTokens = async () => {
   const response = await axiosClassic<UserServerResponse>({
