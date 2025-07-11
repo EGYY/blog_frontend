@@ -9,6 +9,7 @@ import { Theme } from '@/shared/config/theme/ThemeContext';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 import SunIcon from '@/shared/assets/sun.svg';
 import MoonIcon from '@/shared/assets/moon.svg';
+import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
 interface ThemeSwitcherProps {
     className?: string
@@ -19,17 +20,19 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
   const { t } = useTranslation('sidebar');
 
   return (
-    <Button
-      onClick={switchTheme}
-      className={classNames(cls.themeSwitcher, {}, [className])}
-      title={t('toggle_theme')}
-      theme={ThemeButton.GHOST_ICON}
-    >
-      {theme === Theme.LIGHT ? (
-        <SunIcon />
-      ) : (
-        <MoonIcon />
-      )}
-    </Button>
+    <Tooltip content={t('toggle_theme')} preferredPlacement="right">
+      <Button
+        onClick={switchTheme}
+        className={classNames(cls.themeSwitcher, {}, [className])}
+        theme={ThemeButton.GHOST_ICON}
+      >
+        {theme === Theme.LIGHT ? (
+          <SunIcon />
+        ) : (
+          <MoonIcon />
+        )}
+      </Button>
+    </Tooltip>
+
   );
 });

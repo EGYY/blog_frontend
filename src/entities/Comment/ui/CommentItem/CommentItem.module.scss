@@ -1,0 +1,29 @@
+.comment {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  gap: 10px;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .commentInfo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span {
+      font-size: 0.75rem;
+      color: var(--secondary-color);
+    }
+  }
+
+  .commentText {
+    font-size: 0.875rem;
+    white-space: pre-line;
+    color: var(--primary-color);
+  }
+}

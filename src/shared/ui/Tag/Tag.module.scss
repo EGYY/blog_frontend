@@ -1,0 +1,37 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  font-size: 0.775rem;
+  line-height: 1;
+  transition: background-color 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.default {
+  color: var(--tag-default-color);
+  background-color: var(--tag-default-bg);
+}
+
+.success {
+  color: var(--tag-success-color);
+  background-color: var(--tag-success-bg);
+}
+
+.warning {
+  color: var(--tag-warning-color);
+  background-color: var(--tag-warning-bg);
+}
+
+.error {
+  color: var(--tag-error-color);
+  background-color: var(--tag-error-bg);
+}
+
+.info {
+  color: var(--tag-info-color);
+  background-color: var(--tag-info-bg);
+}

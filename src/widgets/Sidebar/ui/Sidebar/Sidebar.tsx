@@ -8,6 +8,7 @@ import { LanguageSwitcher } from '@/widgets/LanguageSwitcher';
 import { ThemeSwitcher } from '@/widgets/ThemeSwitcher';
 import { SidebarLinks } from '../../model/const/sidebar';
 import { SidebarItem } from './SidebarItem';
+import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
 interface SidebarProps {
     className?: string
@@ -26,18 +27,19 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
 
   return (
     <div data-testid="sidebar" className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
-      <Button
-        data-testid="toggle-sidebar"
-        className={cls.toggleSidebar}
-        onClick={toggleSidebar}
-        theme={ThemeButton.GHOST_ICON}
-        title={t('toggle_sidebar_title')}
-      >
-        <SidebarIcon width={24} height={24} />
-      </Button>
+      <Tooltip className={cls.toggleSidebar} content={t('toggle_sidebar_title')} preferredPlacement="right">
+        <Button
+          data-testid="toggle-sidebar"
+          onClick={toggleSidebar}
+          className={cls.toggleSidebar}
+          theme={ThemeButton.GHOST_ICON}
+        >
+          <SidebarIcon width={24} height={24} />
+        </Button>
+      </Tooltip>
       <div className={classNames(cls.links, { [cls.collapsed]: collapsed })}>
         {SidebarLinks.map((item) => (
-          <SidebarItem key={item.path} item={item} />
+          <SidebarItem key={item.path} item={item} collapsed={collapsed} />
         ))}
       </div>
       <div className={cls.switchers}>

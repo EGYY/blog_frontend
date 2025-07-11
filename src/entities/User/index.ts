@@ -1,3 +1,7 @@
+export { UserRole } from './model/types/user';
+export { getInitedUser } from './model/selectors/getInitedUser/getInitedUser';
+export { getErrorUser } from './model/selectors/getError/getErrorUser';
+export { getLoadingUser } from './model/selectors/getLoading/getLoadingUser';
 export { logout } from './model/services/logout';
 export { getProfileData } from './model/services/getProfileData';
 export { getAccessToken } from './model/selectors/getAccessToken/getAccessToken';

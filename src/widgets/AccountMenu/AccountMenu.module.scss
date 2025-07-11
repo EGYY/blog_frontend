@@ -5,7 +5,7 @@
   gap: 5px;
 
   img {
-    border-radius: 0.625rem;
+    border-radius: 50%;
     width: calc(0.25rem * 8);
     height: calc(0.25rem * 8);
     object-fit: cover;
@@ -23,6 +23,10 @@
       max-width: 130px;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    span {
+      color: var(--secondary-color);
     }
   }
 }
@@ -48,4 +52,8 @@
       height: calc(0.25rem * 4);
     }
   }
+}
+
+.mt {
+  margin-top: 10px;
 }

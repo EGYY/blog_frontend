@@ -1,0 +1,19 @@
+{
+    "profile_details": "Profile Details",
+    "profile": "Profile",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_bio": "Bio",
+    "form_submit": "Save Changes",
+    "upload_avatar": "Upload avatar",
+    "active since": "Active since",
+    "role": "Role",
+    "role_user": "User",
+    "role_admin": "Admin",
+    "subscribe": "Subscribe",
+    "total_articles": "Total Articles",
+    "total_comments": "Total Comments",
+    "total_likes": "Total Likes",
+    "last_articles": "Last Articles",
+    "edit": "Edit"
+}

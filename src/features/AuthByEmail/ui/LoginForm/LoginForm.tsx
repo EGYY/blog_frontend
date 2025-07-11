@@ -1,15 +1,14 @@
-/* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
 import {
   FC, memo, useCallback, useEffect, useRef,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import cls from './LoginForm.module.scss';
 import { Input } from '@/shared/ui/Input/Input';
 import { Button } from '@/shared/ui/Button/Button';
 import { loginReducer } from '../../model/slice/loginSlice';
-import { getError } from '../../model/selectors/getError/getError';
-import { getLoading } from '../../model/selectors/getLoading/getLoading';
+import { getErrorAuthByEmail } from '../../model/selectors/getError/getErrorAuthByEmail';
+import { getLoadingAuthByEmail } from '../../model/selectors/getLoading/getLoadingAuthByEmail';
 import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -27,8 +26,8 @@ const LoginForm: FC<LoginFormProps> = memo(({ openModal = false, onCloseModal })
   const { t } = useTranslation('login_form');
   const inputEmailRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const error = useSelector(getError);
-  const loading = useSelector(getLoading);
+  const error = useSelector(getErrorAuthByEmail);
+  const loading = useSelector(getLoadingAuthByEmail);
 
   useEffect(() => {
     if (openModal && inputEmailRef.current) {

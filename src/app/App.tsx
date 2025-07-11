@@ -1,23 +1,34 @@
 import { Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Router } from './providers/router';
 import { Sidebar } from '@/widgets/Sidebar';
 import { useTheme } from '@/shared/config/theme/useTheme';
-import { getProfileData } from '@/entities/User';
+import { getInitedUser, getProfileData } from '@/entities/User';
+import { PageLoader } from '@/widgets/PageLoader';
 
 export const App = () => {
   const { theme } = useTheme();
   const dispatch = useDispatch();
+  const inited = useSelector(getInitedUser);
 
   useEffect(() => {
     document.body.className = theme;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
-    dispatch(getProfileData());
-  }, [dispatch]);
+    if (!inited) {
+      dispatch(getProfileData());
+    }
+  }, [dispatch, inited]);
+
+  if (!inited) {
+    return (
+      <div id="app" className={classNames('app center-page')}>
+        <PageLoader />
+      </div>
+    );
+  }
 
   return (
     <div id="app" className={classNames('app')}>

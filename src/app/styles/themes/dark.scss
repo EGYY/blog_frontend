@@ -10,4 +10,16 @@ body.dark {
   --modal-bg: #161616;
   --input-bg: #212121;
   --input-border: #737373;
+  --skeleton-bg: #374151;
+  --skeleton-shimmer: #4b5563;
+  --tag-default-bg: var(--button-secondary-bg);
+  --tag-default-color: var(--primary-color);
+  --tag-success-bg: #14532d;
+  --tag-success-color: #d1fae5;
+  --tag-warning-bg: #78350f;
+  --tag-warning-color: #fef9c3;
+  --tag-error-bg: #7f1d1d;
+  --tag-error-color: #fee2e2;
+  --tag-info-bg: #1e3a8a;
+  --tag-info-color: #dbeafe;
 }

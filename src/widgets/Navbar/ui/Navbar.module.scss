@@ -11,3 +11,15 @@
 .actionBtns {
   margin-left: auto;
 }
+
+.loadingProfile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.loadingProfileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

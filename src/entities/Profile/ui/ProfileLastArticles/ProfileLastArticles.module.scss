@@ -1,0 +1,53 @@
+.lastArticleWrapper {
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.lastArticleList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lastArticleItem {
+  display: flex;
+  border-radius: 6px;
+  padding: 10px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  gap: 10px;
+
+  svg {
+    stroke: var(--primary-color);
+  }
+
+  &:hover {
+    background-color: var(--tag-default-bg);
+    cursor: pointer;
+  }
+}
+
+.lastArticleItemInfo {
+  p {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+  }
+
+  span {
+    font-size: 0.75rem;
+    color: var(--secondary-color);
+  }
+}
+
+.profileCardStatItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  padding: calc(0.25rem * 2);
+  background-color: var(--tag-default-bg);
+}

@@ -1,0 +1,36 @@
+.profileCardStatList {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.profileCardStatItem > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profileCardStatItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  padding: calc(0.25rem * 2);
+  background-color: var(--tag-default-bg);
+}
+
+.profileCardStatItemStat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+  }
+
+  b {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+}

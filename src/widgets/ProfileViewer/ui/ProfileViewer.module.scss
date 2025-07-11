@@ -1,0 +1,21 @@
+.profileDetailPageWrapper {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.profileDetailPageHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profileActions {
+  button {
+    padding: 5px 10px;
+  }
+}
+
+.profileDetailPageContent {
+  display: flex;
+  gap: 20px;
+}

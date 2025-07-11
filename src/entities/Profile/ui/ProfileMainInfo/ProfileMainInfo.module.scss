@@ -1,0 +1,50 @@
+.profileCard {
+  button {
+    display: flex;
+    align-items: center;
+    margin-top: calc(0.25rem * 4);
+    padding: 5px 10px;
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    margin-top: calc(0.25rem * 4);
+    font-size: 1.125rem;
+    color: var(--primary-color);
+  }
+
+  p {
+    overflow: hidden;
+    max-width: 200px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    text-align: center;
+    text-overflow: ellipsis;
+    color: var(--secondary-color);
+  }
+}
+
+.profileCardInfoList {
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(0.25rem * 6);
+  gap: 10px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+
+    span:first-child {
+      color: var(--secondary-color);
+    }
+  }
+}

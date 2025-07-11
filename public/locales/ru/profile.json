@@ -1,0 +1,19 @@
+{
+    "profile_details": "Основная информация",
+    "profile": "Профиль",
+    "form_name": "Имя",
+    "form_email": "Почта",
+    "form_bio": "О себе",
+    "form_submit": "Сохранить",
+    "upload_avatar": "Загрузить аватар",
+    "active since": "Активен с",
+    "role": "Роль",
+    "role_user": "Пользователь",
+    "role_admin": "Админ",
+    "subscribe": "Подписаться",
+    "total_articles": "Всего статей",
+    "total_comments": "Всего комментариев",
+    "total_likes": "Всего лайков",
+    "last_articles": "Последние статьи",
+    "edit": "Редактировать"
+}

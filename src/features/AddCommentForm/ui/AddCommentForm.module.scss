@@ -1,0 +1,10 @@
+.addCommentFormWrapper {
+  display: flex;
+  flex-direction: column;
+  color: var(--primary-color);
+  gap: 10px;
+
+  button {
+    margin-left: auto;
+  }
+}

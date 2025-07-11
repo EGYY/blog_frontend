@@ -1,0 +1,112 @@
+.wrapper {
+  position: relative; // ✅ Нужно для абсолютного позиционирования dropdown
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.25rem;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--primary-color);
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--input-border);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--primary-color);
+  background-color: var(--input-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+
+  svg {
+    stroke: var(--secondary-color);
+  }
+
+  &:hover {
+    border-color: #a3a3a3;
+  }
+}
+
+.selectedText {
+  color: #111827;
+}
+
+.arrow {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.dropdownWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+  overflow-y: auto;
+  margin-top: 4px;
+  border: 1px solid var(--input-border);
+  border-radius: 0.5rem;
+  max-height: 250px;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 5%);
+  background-color: var(--input-bg);
+  opacity: 0;
+  transform: scaleY(0.95);
+  transform-origin: top;
+  transition: all 0.15s ease;
+  pointer-events: none;
+}
+
+.open {
+  opacity: 1;
+  transform: scaleY(1);
+  pointer-events: auto;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.groupLabel {
+  padding: 0.5rem 1rem 0.25rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: calc(0.625rem - 2px);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}
+
+.active {
+  font-weight: 500;
+  background-color: #f3f4f6;
+}
+
+.error {
+  border-color: #ef4444 !important;
+}
+
+.errorText {
+  font-size: 0.75rem;
+  color: #ef4444;
+}

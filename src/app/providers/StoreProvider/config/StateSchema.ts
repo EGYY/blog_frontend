@@ -5,10 +5,20 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { UserSchema } from '@/entities/User';
 import { LoginSchema } from '@/features/AuthByEmail';
+import { UpdateProfileSchema } from '@/features/EditableProfileCard';
+import { ArticleSchema } from '@/entities/Article';
+import { ArticleCommentsBlockSchema } from '@/widgets/ArticleCommentsBlock';
+import { AddCommentFormSchema } from '@/features/AddCommentForm';
+import { ProfileDetailSchema } from '@/widgets/ProfileViewer';
 
 export interface StateSchema {
     user: UserSchema,
-    login?: LoginSchema
+    login?: LoginSchema,
+    update_profile?: UpdateProfileSchema,
+    article?: ArticleSchema,
+    comment_form?: AddCommentFormSchema
+    article_comments_block?: ArticleCommentsBlockSchema,
+    profile_detail?: ProfileDetailSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

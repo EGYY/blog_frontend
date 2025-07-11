@@ -1,0 +1,30 @@
+.card {
+  position: absolute;
+  z-index: 9999;
+  border: 1px solid var(--input-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  min-width: 200px;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 10%),
+    0 4px 6px -2px rgb(0 0 0 / 5%);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background-color: var(--bg-color);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.triggerWrapper {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}

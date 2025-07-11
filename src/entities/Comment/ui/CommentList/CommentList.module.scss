@@ -1,0 +1,11 @@
+.commentList,
+.commentLoadingWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentListEmpty {
+  font-size: 0.875rem;
+  color: var(--secondary-color);
+}

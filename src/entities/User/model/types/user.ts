@@ -1,3 +1,8 @@
+export enum UserRole {
+    USER = 'USER',
+    ADMIN = 'ADMIN'
+}
+
 export interface User {
     id: string
     createdAt: string
@@ -5,6 +10,8 @@ export interface User {
     email: string
     name: string
     avatar: string
+    bio: string
+    role: UserRole
 }
 
 export interface UserServerResponse {
@@ -14,4 +21,7 @@ export interface UserServerResponse {
 
 export interface UserSchema {
     userData?: UserServerResponse
+    loading: boolean
+    inited: boolean
+    error?: string
 }

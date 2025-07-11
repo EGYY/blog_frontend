@@ -1,0 +1,85 @@
+$bg: var(--primary-color);
+$size: 5px;
+
+.tooltip {
+  position: fixed;
+  z-index: 9999;
+  max-width: 250px;
+  animation: fade-in-scale 0.2s ease forwards;
+  pointer-events: auto;
+
+  .content {
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--bg-color);
+    background-color: $bg;
+  }
+
+  .arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    &[data-placement="top"] {
+      left: 50%;
+      bottom: -$size;
+      border-top: $size solid $bg;
+      border-right: $size solid transparent;
+      border-left: $size solid transparent;
+      transform: translateX(-50%);
+    }
+
+    &[data-placement="bottom"] {
+      left: 50%;
+      top: -$size;
+      border-right: $size solid transparent;
+      border-bottom: $size solid $bg;
+      border-left: $size solid transparent;
+      transform: translateX(-50%);
+    }
+
+    &[data-placement="left"] {
+      right: -$size;
+      top: 50%;
+      border-top: $size solid transparent;
+      border-bottom: $size solid transparent;
+      border-left: $size solid $bg;
+      transform: translateY(-50%);
+    }
+
+    &[data-placement="right"] {
+      left: -$size;
+      top: 50%;
+      border-top: $size solid transparent;
+      border-right: $size solid $bg;
+      border-bottom: $size solid transparent;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.trigger {
+  display: inline-block;
+}
+
+.top .content,
+.bottom .content,
+.left .content,
+.right .content {
+  // optional shared styles
+}
