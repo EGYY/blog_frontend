@@ -10,12 +10,22 @@ import { ArticleSchema } from '@/entities/Article';
 import { ArticleCommentsBlockSchema } from '@/widgets/ArticleCommentsBlock';
 import { AddCommentFormSchema } from '@/features/AddCommentForm';
 import { ProfileDetailSchema } from '@/widgets/ProfileViewer';
+import { SaveScrollPostitionSchema } from '@/features/SaveScrollPostition';
+import { ArticlesFiltersSchema } from '@/features/ArticlesFilters';
+import { ArticlesCategoriesSchema } from '@/entities/ArticleCategory';
+import { ArticlesTagsSchema } from '@/entities/ArticleTag';
+import { ToastSchema } from '@/features/Toast';
 
 export interface StateSchema {
     user: UserSchema,
+    scroll: SaveScrollPostitionSchema,
+    toasts: ToastSchema,
     login?: LoginSchema,
     update_profile?: UpdateProfileSchema,
     article?: ArticleSchema,
+    articles_filters?: ArticlesFiltersSchema,
+    article_categories?: ArticlesCategoriesSchema,
+    article_tags?: ArticlesTagsSchema,
     comment_form?: AddCommentFormSchema
     article_comments_block?: ArticleCommentsBlockSchema,
     profile_detail?: ProfileDetailSchema

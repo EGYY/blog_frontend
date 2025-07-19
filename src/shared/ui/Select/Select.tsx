@@ -20,11 +20,12 @@ type SelectProps = {
   label?: string
   groups?: OptionGroup[]
   options?: Option[]
-  value?: string
-  onChange: (value: string) => void
+  value?: string | string[]
+  onChange: (value: string | string[]) => void
   placeholder?: string
   error?: string
   className?: string
+  multiple?: boolean
 }
 
 export const Select: React.FC<SelectProps> = memo(({
@@ -36,6 +37,7 @@ export const Select: React.FC<SelectProps> = memo(({
   placeholder = 'Выберите значение',
   error,
   className,
+  multiple = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredValue, setHoveredValue] = useState<string | null>(null);
@@ -46,10 +48,27 @@ export const Select: React.FC<SelectProps> = memo(({
     return options || [];
   }, [groups, options]);
 
-  const selectedOption = useMemo(
-    () => allOptions.find((opt) => opt.value === value),
-    [allOptions, value],
-  );
+  const isSelected = useCallback((val: string) => {
+    if (multiple && Array.isArray(value)) {
+      return value.includes(val);
+    }
+    return val === value;
+  }, [value, multiple]);
+
+  const selectedLabels = useMemo(() => {
+    if (multiple && Array.isArray(value)) {
+      const selected = allOptions.filter((opt) => value.includes(opt.value));
+      const labelParts = selected.slice(0, 2).map((opt) => opt.label);
+      const remaining = selected.length - labelParts.length;
+
+      return remaining > 0
+        ? `${labelParts.join(', ')} +${remaining}`
+        : labelParts.join(', ');
+    }
+
+    const selected = allOptions.find((opt) => opt.value === value);
+    return selected?.label || '';
+  }, [value, allOptions, multiple]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -61,26 +80,37 @@ export const Select: React.FC<SelectProps> = memo(({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleSelect = useCallback((val: string) => {
+    if (multiple) {
+      const current = Array.isArray(value) ? value : [];
+      if (current.includes(val)) {
+        onChange(current.filter((v) => v !== val));
+      } else {
+        onChange([...current, val]);
+      }
+    } else {
+      onChange(val);
+      setIsOpen(false);
+    }
+  }, [onChange, multiple, value]);
+
   const renderOption = useCallback((option: Option) => {
-    const isSelected = option.value === value;
-    const isHovered = hoveredValue === option.value;
+    const selected = isSelected(option.value);
+    const hovered = hoveredValue === option.value;
 
     return (
       <div
         key={option.value}
-        className={classNames(styles.option, { [styles.hovered]: isHovered })}
-        onClick={() => {
-          onChange(option.value);
-          setIsOpen(false);
-        }}
+        className={classNames(styles.option, { [styles.hovered]: hovered })}
+        onClick={() => handleSelect(option.value)}
         onMouseEnter={() => setHoveredValue(option.value)}
         onMouseLeave={() => setHoveredValue(null)}
       >
         <span>{option.label}</span>
-        {isSelected && <CheckIcon width={15} />}
+        {selected && <CheckIcon width={15} />}
       </div>
     );
-  }, [hoveredValue, onChange, value]);
+  }, [hoveredValue, handleSelect, isSelected]);
 
   return (
     <div className={classNames(styles.wrapper, {}, [className])} ref={ref}>
@@ -90,8 +120,8 @@ export const Select: React.FC<SelectProps> = memo(({
         className={`${styles.select} ${error ? styles.error : ''}`}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <span className={styles.selectedText}>
-          {selectedOption?.label || placeholder}
+        <span className={classNames(styles.selectedText, { [styles.selected]: Boolean(selectedLabels) })}>
+          {selectedLabels || placeholder}
         </span>
         <ChevronDownIcon width={20} />
       </div>

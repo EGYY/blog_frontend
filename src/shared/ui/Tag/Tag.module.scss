@@ -35,3 +35,8 @@
   color: var(--tag-info-color);
   background-color: var(--tag-info-bg);
 }
+
+.outline {
+  border: 1px solid var(--input-border);
+  color: var(--tag-default-color);
+}

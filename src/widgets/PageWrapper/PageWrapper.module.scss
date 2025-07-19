@@ -1,0 +1,10 @@
+.content {
+  overflow: auto;
+  padding: 20px;
+  height: calc(100vh - var(--navbar-height) - 30px);
+}
+
+.trigger {
+  margin: 10px;
+  height: 20px;
+}

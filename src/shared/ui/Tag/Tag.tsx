@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Tag.module.scss';
 
-type TagVariant = 'default' | 'success' | 'warning' | 'error' | 'info';
+type TagVariant = 'default' | 'success' | 'warning' | 'error' | 'info' | 'outline';
 
 interface TagProps {
   children: React.ReactNode;

@@ -1,7 +1,120 @@
-const ArticlesPage = () => {
-  return (
-    <div>123</div>
-  );
+import {
+  memo, useCallback, useEffect, useMemo,
+} from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import {
+  articleActions,
+  ArticleList,
+  articleReducer,
+  getArticlesList,
+  getArticlesListError,
+  getArticlesListLoading,
+  getArticlesListPage,
+  getArticlesListSelector,
+  getArticlesListTotal,
+  getArticlesView,
+  getInitedArticles,
+} from '@/entities/Article';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { ArticlesListHeader } from '@/widgets/ArticlesListHeader';
+import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
+import {
+  articlesFiltersActions, articlesFiltersReducer, getArticleFilterCurrentFilters, getArticleFilterFiltersReady,
+} from '@/features/ArticlesFilters';
+import { isEmptyObject } from '@/shared/lib/helpers/isEmptyObject/isEmptyObject';
+import { articleCategoryReducer } from '@/entities/ArticleCategory';
+import { articleTagReducer } from '@/entities/ArticleTag';
+import { objectToSearchParams } from '@/shared/lib/helpers/objectToSearchParams/objectToSearchParams';
+
+const initialReducers: ReducersList = {
+  article: articleReducer,
+  articles_filters: articlesFiltersReducer,
+  article_categories: articleCategoryReducer,
+  article_tags: articleTagReducer,
 };
+
+const ArticlesPage = memo(() => {
+  const dispatch = useAppDispatch();
+  const loading = useSelector(getArticlesListLoading);
+  const error = useSelector(getArticlesListError);
+  const articles = useSelector(getArticlesListSelector);
+  const view = useSelector(getArticlesView);
+  const page = useSelector(getArticlesListPage);
+  const total = useSelector(getArticlesListTotal);
+  const inited = useSelector(getInitedArticles);
+  const filtersReady = useSelector(getArticleFilterFiltersReady);
+  const currentFilters = useSelector(getArticleFilterCurrentFilters);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
+
+  useEffect(() => {
+    if (!inited && filtersReady) {
+      if (query.get('search')) {
+        dispatch(articlesFiltersActions.setSearch(query.get('search')!));
+      }
+
+      if (query.get('sortBy') || query.get('sort')) {
+        const sort = query.get('sort') || 'desc';
+        const sortBy = query.get('sortBy') || 'date';
+        if (sortBy === 'asc_date' || sortBy === 'date') {
+          dispatch(articlesFiltersActions.setSort(`${sort}_date` as any));
+        } else if (sortBy === 'views') {
+          dispatch(articlesFiltersActions.setSort('most_popular'));
+        }
+      }
+
+      if (query.get('tagIds')) {
+        dispatch(articlesFiltersActions.setTags(query.get('tagIds')?.split(',')!));
+      }
+
+      if (query.get('categoryIds')) {
+        dispatch(articlesFiltersActions.setCategories(query.get('categoryIds')?.split(',')!));
+      }
+      const filters = {
+        ...(query.get('search') && { search: query.get('search')! }),
+        ...(query.get('sortBy') && { sortBy: query.get('sortBy') }),
+        ...(query.get('sort') && { sort: query.get('sort') }),
+        ...(query.get('tagIds')) && { tagIds: query.get('tagIds')?.split(',')! },
+        ...(query.get('categoryIds')) && { categoryIds: query.get('categoryIds')?.split(',')! },
+      };
+      if (!isEmptyObject(filters)) {
+        dispatch(articlesFiltersActions.setCurrentFilters(filters));
+      }
+      dispatch(articleActions.setInitedArticles(true));
+    }
+  }, [dispatch, inited, query, filtersReady]);
+
+  useEffect(() => {
+    if (inited) {
+      if (!isEmptyObject(currentFilters)) {
+        const params = objectToSearchParams(currentFilters);
+        navigate({ search: params.toString() });
+      } else {
+        navigate({ search: '' });
+      }
+      dispatch(getArticlesList({ replace: true }));
+    }
+  }, [currentFilters, dispatch, inited, navigate]);
+
+  const onScrollEnd = useCallback(() => {
+    if (!loading && total > articles.length) {
+      dispatch(articleActions.setArticlesPage(page + 1));
+      dispatch(getArticlesList({ replace: false }));
+    }
+  }, [dispatch, loading, total, articles.length, page]);
+
+  return (
+    <DynamicModuleLoader reducers={initialReducers} removeAfterAnmount={false}>
+      <PageWrapper onScrollEnd={onScrollEnd} needAutoScroll>
+        <ArticlesListHeader />
+        <ArticleList loading={loading} articles={articles} error={error} view={view} />
+      </PageWrapper>
+    </DynamicModuleLoader>
+  );
+});
 
 export default ArticlesPage;

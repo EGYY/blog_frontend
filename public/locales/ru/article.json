@@ -1,4 +1,15 @@
 {
     "article_error_title": "Ошибка отображения статьи",
-    "article_navigate_btn": "Перейти ко списку всех статей"
+    "article_navigate_btn": "Перейти ко списку всех статей",
+    "read_more": "Читать далее",
+    "change_view": "Сменить вид",
+    "search_label": "Поиск",
+    "search_placeholder": "Поиск статьи",
+    "category_label": "Категория",
+    "select_placeholder": "Выберите значение",
+    "tag_label": "Тэг",
+    "sort_by_label": "Сортировать по",
+    "recent": "Недавние",
+    "old": "Старые",
+    "popular": "Самые популярные"
 }

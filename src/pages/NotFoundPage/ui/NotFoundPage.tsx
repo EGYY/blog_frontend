@@ -6,6 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './NotFoundPage.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
+import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 
 interface NotFoundPageProps {
     className?: string
@@ -15,12 +16,14 @@ export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className={classNames(cls.notFoundPage, {}, [className])}>
-      <h1>
-        {t('not_found_page')}
-      </h1>
-      <p>{t('not_found_page_description')}</p>
-      <Button onClick={() => navigate('/')}>{t('not_found_page_button')}</Button>
-    </div>
+    <PageWrapper>
+      <div className={classNames(cls.notFoundPage, {}, [className])}>
+        <h1>
+          {t('not_found_page')}
+        </h1>
+        <p>{t('not_found_page_description')}</p>
+        <Button onClick={() => navigate('/')}>{t('not_found_page_button')}</Button>
+      </div>
+    </PageWrapper>
   );
 };

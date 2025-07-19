@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Article,
+  articleReducer,
   getArticle, getArticleData, getArticleError, getArticleLoading,
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleReducer } from '@/entities/Article/model/slice/articleSlice';
 import { ArticleCommentsBlock } from '@/widgets/ArticleCommentsBlock';
+import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 
 const initialReducers: ReducersList = {
   article: articleReducer,
@@ -28,13 +29,15 @@ const ArticleDetailPage = () => {
   }, [dispatch, id]);
 
   return (
-    <DynamicModuleLoader reducers={initialReducers}>
-      <Article
-        article={article}
-        loadingArticle={loadingArticle}
-        errorArticle={errorArticle}
-      />
-      {id && <ArticleCommentsBlock articleId={id} />}
+    <DynamicModuleLoader reducers={initialReducers} removeAfterAnmount={false}>
+      <PageWrapper>
+        <Article
+          article={article}
+          loadingArticle={loadingArticle}
+          errorArticle={errorArticle}
+        />
+        {id && <ArticleCommentsBlock articleId={id} />}
+      </PageWrapper>
     </DynamicModuleLoader>
   );
 };

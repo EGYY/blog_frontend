@@ -26,7 +26,7 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   };
 
   return (
-    <div data-testid="sidebar" className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
+    <aside data-testid="sidebar" className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [className])}>
       <Tooltip className={cls.toggleSidebar} content={t('toggle_sidebar_title')} preferredPlacement="right">
         <Button
           data-testid="toggle-sidebar"
@@ -46,6 +46,6 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         <LanguageSwitcher />
         <ThemeSwitcher />
       </div>
-    </div>
+    </aside>
   );
 });

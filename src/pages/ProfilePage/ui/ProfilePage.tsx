@@ -10,6 +10,7 @@ import {
   EditableProfileCard, getErrorUpdateProfile, getLoadingUpdateProfile, updateProfileReducer,
 } from '@/features/EditableProfileCard';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 
 const initialReducers: ReducersList = {
   update_profile: updateProfileReducer,
@@ -31,7 +32,9 @@ const ProfilePage = () => {
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
-      <EditableProfileCard user={user} loading={loadingUpdateProfile} error={errorUpdateProfile} />
+      <PageWrapper>
+        <EditableProfileCard user={user} loading={loadingUpdateProfile} error={errorUpdateProfile} />
+      </PageWrapper>
     </DynamicModuleLoader>
   );
 };

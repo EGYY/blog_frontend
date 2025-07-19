@@ -6,15 +6,18 @@ import './shared/config/i18n/i18n';
 import './app/styles/index.scss';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
 import { StoreProvider } from './app/providers/StoreProvider';
+import { ToastProvider } from './app/providers/ToastProvieder';
 
 render(
   <BrowserRouter>
     <StoreProvider>
-      <ErrorBoundary>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </ErrorBoundary>
+      <ToastProvider>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </ErrorBoundary>
+      </ToastProvider>
     </StoreProvider>
   </BrowserRouter>,
   document.getElementById('root'),

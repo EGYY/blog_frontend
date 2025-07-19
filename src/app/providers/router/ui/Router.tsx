@@ -17,15 +17,9 @@ export const Router = () => {
               path={path}
               element={authOnly ? (
                 <ProtectedRoute>
-                  <div className="content">
-                    {element}
-                  </div>
+                  {element as JSX.Element}
                 </ProtectedRoute>
-              ) : (
-                <div className="content">
-                  {element}
-                </div>
-              )}
+              ) : element}
             />
           ))}
         </Routes>

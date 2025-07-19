@@ -35,7 +35,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
   if (loading) {
     return (
-      <div className={classNames(cls.navbar, {}, [className])}>
+      <nav className={classNames(cls.navbar, {}, [className])}>
         <div className={cls.actionBtns}>
           <div className={cls.loadingProfile}>
             <Skeleton circle height={40} />
@@ -45,24 +45,24 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     );
   }
 
   if (user) {
     return (
-      <div className={classNames(cls.navbar, {}, [className])}>
+      <nav className={classNames(cls.navbar, {}, [className])}>
         <div className={cls.actionBtns}>
           <Dropdown trigger={<AccountMenuTrigger />}>
             <AccountMenu />
           </Dropdown>
         </div>
-      </div>
+      </nav>
     );
   }
 
   return (
-    <div className={classNames(cls.navbar, {}, [className])}>
+    <nav className={classNames(cls.navbar, {}, [className])}>
       <div className={cls.actionBtns}>
         <Tooltip content={t('authorization')} preferredPlacement="left">
           <Button theme={ThemeButton.GHOST_ICON} onClick={onShowModal}>
@@ -72,6 +72,6 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
         </Tooltip>
       </div>
       <LoginModal open={openAuthModal} onClose={onCloseModal} />
-    </div>
+    </nav>
   );
 });

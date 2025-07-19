@@ -31,8 +31,27 @@ export interface Article {
     tags: Tag[]
 }
 
+export interface ArticlesServerResponse {
+    data: Article[],
+    total: number,
+    page: number,
+    limit: number,
+}
+
+export enum ArticleView {
+    GRID = 'grid',
+    LIST = 'list'
+}
+
 export interface ArticleSchema {
     article: Article | undefined
     loading: boolean
     error?: string
+    articles: Article[]
+    loadingArticles: boolean
+    errorArticles?: string
+    totalArticles: number,
+    pageArticles: number,
+    view: ArticleView,
+    _inited_articles: boolean
 }

@@ -1,5 +1,5 @@
 .wrapper {
-  position: relative; // ✅ Нужно для абсолютного позиционирования dropdown
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -19,9 +19,10 @@
   border: 1px solid var(--input-border);
   border-radius: 0.75rem;
   padding: 0.5rem 0.75rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
   font-size: 0.875rem;
   color: var(--primary-color);
-  background-color: var(--input-bg);
+  background-color: var(--button-outline-bg);
   transition: border-color 0.2s, box-shadow 0.2s;
   cursor: pointer;
 
@@ -35,7 +36,12 @@
 }
 
 .selectedText {
-  color: #111827;
+  color: var(--secondary-color);
+
+  &.selected {
+    white-space: nowrap;
+    color: var(--primary-color);
+  }
 }
 
 .arrow {
@@ -51,7 +57,7 @@
   z-index: 1000;
   overflow-y: auto;
   margin-top: 4px;
-  border: 1px solid var(--input-border);
+  border: 1px solid var(--select-border);
   border-radius: 0.5rem;
   max-height: 250px;
   box-shadow: 0 8px 16px rgb(0 0 0 / 5%);
@@ -93,13 +99,13 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #f3f4f6;
+    background-color: var(--select-hover-option);
   }
 }
 
 .active {
   font-weight: 500;
-  background-color: #f3f4f6;
+  background-color: var(--select-hover-option);
 }
 
 .error {

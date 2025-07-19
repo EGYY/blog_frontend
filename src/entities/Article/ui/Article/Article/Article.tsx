@@ -5,15 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './Article.module.scss';
-import { Article as ArticleType } from '../../model/types/article';
-import { ArticleLoading } from './ArticleLoading/ArticleLoading';
+import { Article as ArticleType } from '../../../model/types/article';
+import { ArticleLoading } from '../ArticleLoading/ArticleLoading';
 import { Avatar, AvatarSize } from '@/shared/ui/Avatar/Avatar';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 import CalendarIcon from '@/shared/assets/calendar.svg';
 import HeartIcon from '@/shared/assets/heart.svg';
 import EyeIcon from '@/shared/assets/eye.svg';
 import { Tag } from '@/shared/ui/Tag/Tag';
-import { ArticleError } from './ArticleError/ArticleError';
+import { ArticleError } from '../ArticleError/ArticleError';
 import { HoverCard } from '@/shared/ui/HoverCard/HoverCard';
 import { ProfileMainInfo } from '@/entities/Profile';
 
@@ -37,7 +37,7 @@ export const Article: FC<ArticleProps> = memo(({
   }
 
   return (
-    <div className={classNames(cls.articleWrapper, {}, [className])}>
+    <article className={classNames(cls.articleWrapper, {}, [className])}>
       <HoverCard
         trigger={(
           <Link to={`/profile/${article?.author.id}`} className={cls.articleAuthor}>
@@ -75,6 +75,6 @@ export const Article: FC<ArticleProps> = memo(({
         // eslint-disable-next-line react/no-danger
         article?.content && <div className={cls.articleHtml} dangerouslySetInnerHTML={{ __html: article?.content }} />
       }
-    </div>
+    </article>
   );
 });

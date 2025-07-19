@@ -1,4 +1,15 @@
 {
     "article_error_title": "Article display error",
-    "article_navigate_btn": "Go to the list of all articles"
+    "article_navigate_btn": "Go to the list of all articles",
+    "read_more": "Read more",
+    "change_view": "Change view",
+    "search_label": "Search",
+    "search_placeholder": "Search article",
+    "category_label": "Category",
+    "select_placeholder": "Select value",
+    "tag_label": "Tags",
+    "sort_by_label": "Sort by",
+    "recent": "Recent",
+    "old": "New",
+    "popular": "Most popular"
 }

@@ -1,0 +1,17 @@
+.articlesListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 10px;
+
+  @media screen and (max-width: 1100px) {
+    & {
+      flex-direction: column;
+    }
+  }
+}
+
+.articlesListSwitcher {
+  margin-top: 22px;
+}

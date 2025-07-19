@@ -1,11 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getArticleData } from '../services/getArticleData';
-import { Article, ArticleSchema } from '../types/article';
+import { getArticlesList } from '../services/getArticlesList';
+import { Article, ArticleSchema, ArticleView } from '../types/article';
 
 const initialState: ArticleSchema = {
   article: undefined,
   loading: false,
   error: undefined,
+  articles: [],
+  loadingArticles: false,
+  pageArticles: 1,
+  totalArticles: 0,
+  view: localStorage.getItem('viewCards') as ArticleView || ArticleView.GRID,
+  errorArticles: undefined,
+  _inited_articles: false,
 };
 
 export const articleSlice = createSlice({
@@ -21,6 +29,25 @@ export const articleSlice = createSlice({
     setError: (state, { payload }: PayloadAction<string>) => {
       state.error = payload;
     },
+    setArticles: (state, { payload }: PayloadAction<Article[]>) => {
+      state.articles = payload;
+    },
+    setLoadingArticles: (state, { payload }: PayloadAction<boolean>) => {
+      state.loadingArticles = payload;
+    },
+    setErrorArticles: (state, { payload }: PayloadAction<string>) => {
+      state.errorArticles = payload;
+    },
+    setViewArticles: (state, { payload }: PayloadAction<ArticleView>) => {
+      localStorage.setItem('viewCards', payload);
+      state.view = payload;
+    },
+    setArticlesPage: (state, { payload }: PayloadAction<number>) => {
+      state.pageArticles = payload;
+    },
+    setInitedArticles: (state, { payload }: PayloadAction<boolean>) => {
+      state._inited_articles = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,6 +62,27 @@ export const articleSlice = createSlice({
       })
       .addCase(getArticleData.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getArticlesList.pending, (state, action) => {
+        state.loadingArticles = true;
+        state.errorArticles = undefined;
+        if (action.meta.arg.replace) {
+          state.articles = [];
+          state.pageArticles = 1;
+        }
+      })
+      .addCase(getArticlesList.fulfilled, (state, action) => {
+        state.loadingArticles = false;
+        if (action.meta.arg.replace) {
+          state.articles = action.payload.data;
+        } else {
+          state.articles = [...state.articles, ...action.payload.data];
+        }
+        state.totalArticles = action.payload.total;
+      })
+      .addCase(getArticlesList.rejected, (state, action) => {
+        state.loadingArticles = false;
         state.error = action.payload;
       });
   },

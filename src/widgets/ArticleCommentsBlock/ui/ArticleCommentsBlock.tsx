@@ -26,7 +26,7 @@ interface ArticleCommentsBlockProps {
     className?: string
 }
 
-const ArticleCommentsBlock = (props: ArticleCommentsBlockProps) => {
+const ArticleCommentsBlock = memo((props: ArticleCommentsBlockProps) => {
   const { articleId, className } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -66,6 +66,6 @@ const ArticleCommentsBlock = (props: ArticleCommentsBlockProps) => {
       </div>
     </DynamicModuleLoader>
   );
-};
+});
 
 export default memo(ArticleCommentsBlock);

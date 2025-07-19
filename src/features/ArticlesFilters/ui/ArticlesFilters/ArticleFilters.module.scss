@@ -1,0 +1,41 @@
+.articleFilters {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+
+  @media screen and (max-width: 1100px) {
+    & {
+      flex-direction: column;
+    }
+  }
+}
+
+.articleFiltersSelectWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and (max-width: 1100px) {
+    & {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}
+
+.articleFilterSelect {
+  width: 200px;
+
+  @media screen and (max-width: 1100px) {
+    & {
+      width: 100%;
+    }
+  }
+}
+
+.articleFiltersSearch {
+  width: 100%;
+}

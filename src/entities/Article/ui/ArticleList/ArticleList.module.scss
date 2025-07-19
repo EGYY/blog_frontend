@@ -1,0 +1,36 @@
+.articlesListWrapper {
+  &.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: calc(0.25rem * 6);
+
+    @media screen and (max-width: 1300px) {
+      & {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media screen and (max-width: 1000px) {
+      & {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media screen and (max-width: 730px) {
+      & {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+  }
+
+  &.list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .articlesListItem:not(:last-child) {
+      border-bottom: 1px solid var(--input-border);
+      padding-bottom: 10px;
+    }
+  }
+}
