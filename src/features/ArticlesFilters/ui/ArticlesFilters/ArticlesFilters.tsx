@@ -7,12 +7,6 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import {
-  getArticleCategories, getArticleCategoriesSelector,
-} from '@/entities/ArticleCategory';
-import {
-  getArticleTags, getArticleTagsSelector,
-} from '@/entities/ArticleTag';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Input } from '@/shared/ui/Input/Input';
 import { Select } from '@/shared/ui/Select/Select';
@@ -27,36 +21,33 @@ import { getArticleFilterSort } from '../../model/selectors/getArticleFilterSort
 import { articlesFiltersActions } from '../../model/slice/articlesFiltersSlice';
 import cls from './ArticleFilters.module.scss';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
+import { useArticleTagsQuery } from '@/entities/ArticleTag';
 
 export const ArticlesFilters = memo(() => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation('article');
-  const categories = useSelector(getArticleCategoriesSelector);
-  const tags = useSelector(getArticleTagsSelector);
+  const { data: categories } = useArticleCategoriesQuery();
+  const { data: tags } = useArticleTagsQuery();
   const selectedCategories = useSelector(getArticleFilterSelectedCategories);
   const searchText = useSelector(getArticleFilterSearchText);
   const selectedTags = useSelector(getArticleFilterSelectedTags);
   const baseFilterValue = useSelector(getArticleFilterSort);
 
   useEffect(() => {
-    dispatch(getArticleCategories());
-    dispatch(getArticleTags());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (categories.length === 0 || tags.length === 0) return;
+    if (categories?.length === 0 || tags?.length === 0) return;
     dispatch(articlesFiltersActions.setFiltersReady(true));
-  }, [dispatch, categories.length, tags.length]);
+  }, [dispatch, categories?.length, tags?.length]);
 
   const filterCategories = useMemo(() => {
-    if (categories.length > 0) {
-      return categories.map((category) => ({ label: category.name, value: category.id }));
+    if (categories && categories?.length > 0) {
+      return categories?.map((category) => ({ label: category.name, value: category.id }));
     }
     return [];
   }, [categories]);
 
   const filterTags = useMemo(() => {
-    if (tags.length > 0) {
+    if (tags && tags.length > 0) {
       return tags.map((tag) => ({ label: tag.name, value: tag.id }));
     }
     return [];

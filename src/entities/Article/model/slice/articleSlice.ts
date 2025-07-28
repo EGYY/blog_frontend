@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getArticleData } from '../services/getArticleData';
+import { getArticleRecommedations } from '../services/getArticleRecommedations';
 import { getArticlesList } from '../services/getArticlesList';
 import { Article, ArticleSchema, ArticleView } from '../types/article';
 
@@ -7,6 +8,9 @@ const initialState: ArticleSchema = {
   article: undefined,
   loading: false,
   error: undefined,
+  recommedations: [],
+  recommedationsLoading: false,
+  recommendationsError: undefined,
   articles: [],
   loadingArticles: false,
   pageArticles: 1,
@@ -84,6 +88,19 @@ export const articleSlice = createSlice({
       .addCase(getArticlesList.rejected, (state, action) => {
         state.loadingArticles = false;
         state.error = action.payload;
+      })
+      .addCase(getArticleRecommedations.pending, (state) => {
+        state.recommedationsLoading = true;
+        state.recommendationsError = undefined;
+        state.recommedations = [];
+      })
+      .addCase(getArticleRecommedations.fulfilled, (state, action) => {
+        state.recommedationsLoading = false;
+        state.recommedations = action.payload;
+      })
+      .addCase(getArticleRecommedations.rejected, (state, action) => {
+        state.recommedationsLoading = false;
+        state.recommendationsError = action.payload;
       });
   },
 });

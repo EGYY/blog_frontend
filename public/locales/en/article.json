@@ -11,5 +11,14 @@
     "sort_by_label": "Sort by",
     "recent": "Recent",
     "old": "New",
-    "popular": "Most popular"
+    "popular": "Most popular",
+    "related_articles": "Related articles",
+    "data_empty": "The list of articles is empty. Try other search filters",
+    "title": "Article title",
+    "subtitle": "Subtitle",
+    "content": "Article content",
+    "upload_image": "Upload image",
+    "create": "Create article",
+    "update": "Update article",
+    "delete": "Delete article"
 }

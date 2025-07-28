@@ -28,6 +28,8 @@ export const ProfileMainInfo = memo((props: ProfileMainInfoProps) => {
           return t('role_user');
         case 'ADMIN':
           return t('role_admin');
+        case 'AUTHOR':
+          return t('role_author');
         default:
           return t('role_user');
       }

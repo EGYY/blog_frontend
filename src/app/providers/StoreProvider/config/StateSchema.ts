@@ -4,7 +4,7 @@ import {
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { UserSchema } from '@/entities/User';
-import { LoginSchema } from '@/features/AuthByEmail';
+import { AuthSchema } from '@/features/AuthByEmail';
 import { UpdateProfileSchema } from '@/features/EditableProfileCard';
 import { ArticleSchema } from '@/entities/Article';
 import { ArticleCommentsBlockSchema } from '@/widgets/ArticleCommentsBlock';
@@ -12,20 +12,22 @@ import { AddCommentFormSchema } from '@/features/AddCommentForm';
 import { ProfileDetailSchema } from '@/widgets/ProfileViewer';
 import { SaveScrollPostitionSchema } from '@/features/SaveScrollPostition';
 import { ArticlesFiltersSchema } from '@/features/ArticlesFilters';
-import { ArticlesCategoriesSchema } from '@/entities/ArticleCategory';
-import { ArticlesTagsSchema } from '@/entities/ArticleTag';
 import { ToastSchema } from '@/features/Toast';
+import { ArticleCreateUpdateSchema } from '@/widgets/ArticleCreateUpdate';
+import { MainPageSchema } from '@/pages/MainPage';
+import { rtkApi } from '@/shared/config/api/rtkApi';
 
 export interface StateSchema {
     user: UserSchema,
     scroll: SaveScrollPostitionSchema,
     toasts: ToastSchema,
-    login?: LoginSchema,
+    main_page?: MainPageSchema,
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
+    auth?: AuthSchema,
     update_profile?: UpdateProfileSchema,
     article?: ArticleSchema,
+    article_create_update?: ArticleCreateUpdateSchema,
     articles_filters?: ArticlesFiltersSchema,
-    article_categories?: ArticlesCategoriesSchema,
-    article_tags?: ArticlesTagsSchema,
     comment_form?: AddCommentFormSchema
     article_comments_block?: ArticleCommentsBlockSchema,
     profile_detail?: ProfileDetailSchema

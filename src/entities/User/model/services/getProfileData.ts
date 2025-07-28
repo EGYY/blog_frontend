@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosWithAuth } from '@/shared/config/api/api';
-import { User } from '@/entities/User';
+import { User } from '../types/user';
 
 export const getProfileData = createAsyncThunk<User, void, {rejectValue: string}>(
   'user/getProfileData',

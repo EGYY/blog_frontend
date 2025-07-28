@@ -1,6 +1,8 @@
 .profileCardStatList {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 20px;
+  padding: 10px;
   gap: 20px;
 }
 

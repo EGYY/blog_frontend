@@ -3,7 +3,7 @@ import { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../config/i18n/i18n';
 
-export const I18nDecorator = (story: () => Story, context: StoryContext) => {
+export const I18nDecorator = (StoryComponent: Story, context: StoryContext) => {
   const { globals } = context;
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const I18nDecorator = (story: () => Story, context: StoryContext) => {
   return (
     <Suspense fallback="">
       <I18nextProvider i18n={i18n}>
-        {story()}
+        <StoryComponent />
       </I18nextProvider>
     </Suspense>
   );

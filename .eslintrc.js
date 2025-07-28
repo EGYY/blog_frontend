@@ -24,7 +24,7 @@ module.exports = {
     '@typescript-eslint',
     'i18next',
     'react-hooks',
-    // 'unused-imports',
+    'egyy-plugin',
   ],
   rules: {
     'unused-imports/no-unused-imports': 'off',
@@ -34,6 +34,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.tsx'],
       },
     ],
+    'no-plusplus': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
@@ -72,6 +73,9 @@ module.exports = {
           'placeholder',
           'preferredPlacement',
           'side',
+          'defaultTabId',
+          'aria-label',
+          'theme',
         ],
       },
     ],
@@ -94,6 +98,9 @@ module.exports = {
     'arrow-body-style': 'off',
     'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     'react/no-unstable-nested-components': 'warn',
+    // Check fsd
+    'egyy-plugin/path-checker': ['error', { alias: '@' }],
+    'egyy-plugin/public-api-imports': ['error', { alias: '@' }],
   },
   globals: {
     __IS_DEV__: true,

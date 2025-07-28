@@ -1,6 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, {
   useState, useRef, useEffect, memo, useMemo, useCallback,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import ChevronDownIcon from '../../assets/chevron-down.svg';
 import CheckIcon from '../../assets/check.svg';
 import styles from './Select.module.scss';
@@ -39,6 +41,7 @@ export const Select: React.FC<SelectProps> = memo(({
   className,
   multiple = false,
 }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredValue, setHoveredValue] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
@@ -128,14 +131,22 @@ export const Select: React.FC<SelectProps> = memo(({
 
       <div className={`${styles.dropdownWrapper} ${isOpen ? styles.open : ''}`}>
         <div className={styles.dropdown}>
-          {groups
+          {groups && groups?.length > 0
             ? groups.map((group) => (
               <div key={group.label}>
                 <div className={styles.groupLabel}>{group.label}</div>
                 {group.options.map(renderOption)}
               </div>
             ))
-            : options?.map(renderOption)}
+            : options && options.length > 0 ? options?.map(renderOption) : (
+              (
+                <div
+                  className={classNames(styles.option)}
+                >
+                  <span>{t('empty_list')}</span>
+                </div>
+              )
+            )}
         </div>
       </div>
 

@@ -11,7 +11,7 @@ const options: CreateAxiosDefaults = {
 const axiosClassic = axios.create(options);
 const axiosWithAuth = axios.create(options);
 
-const getNewTokens = async () => {
+export const getNewTokens = async () => {
   const response = await axiosClassic<UserServerResponse>({
     url: '/auth/login/access-token',
     method: 'POST',
@@ -29,7 +29,11 @@ const getNewTokens = async () => {
 };
 
 axiosWithAuth.interceptors.request.use((config) => {
-  const accessToken = Cookies.get('accessToken') || null;
+  const accessToken = Cookies.get('accessToken');
+
+  if (!accessToken) {
+    return Promise.reject(new axios.Cancel('No access or refresh token'));
+  }
 
   if (config?.headers && accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
 

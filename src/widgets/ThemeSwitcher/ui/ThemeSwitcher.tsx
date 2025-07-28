@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ThemeSwitcher.module.scss';
 import { useTheme } from '@/shared/config/theme/useTheme';
 import { Theme } from '@/shared/config/theme/ThemeContext';
-import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import SunIcon from '@/shared/assets/sun.svg';
 import MoonIcon from '@/shared/assets/moon.svg';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
@@ -24,7 +24,7 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
       <Button
         onClick={switchTheme}
         className={classNames(cls.themeSwitcher, {}, [className])}
-        theme={ThemeButton.GHOST_ICON}
+        theme="ghostIcon"
       >
         {theme === Theme.LIGHT ? (
           <SunIcon />

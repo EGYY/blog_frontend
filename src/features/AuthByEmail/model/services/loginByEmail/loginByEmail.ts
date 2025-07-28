@@ -8,7 +8,7 @@ export const loginByEmail = createAsyncThunk<
   { email: string, password: string },
   { rejectValue: string, extra: ThunkExtraArg }
 >(
-  'login/loginByEmail',
+  'auth/loginByEmail',
   async (body, { rejectWithValue, dispatch, extra }) => {
     try {
       const response = await extra.api.post<UserServerResponse>('/auth/login', body);

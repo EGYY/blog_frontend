@@ -7,6 +7,7 @@ import { createReducerManager } from './reducerManager';
 import { axiosClassic, axiosWithAuth } from '@/shared/config/api/api';
 import { saveScrollPostitionReducer } from '@/features/SaveScrollPostition';
 import { toastReducer } from '@/features/Toast';
+import { rtkApi } from '@/shared/config/api/rtkApi';
 
 export const createReduxStore = (
   initialState?: StateSchema,
@@ -17,6 +18,8 @@ export const createReduxStore = (
     user: userReducer,
     scroll: saveScrollPostitionReducer,
     toasts: toastReducer,
+    [rtkApi.reducerPath]: rtkApi.reducer,
+
   };
 
   const reducerManager = createReducerManager(rootReducers);
@@ -32,7 +35,7 @@ export const createReduxStore = (
           apiAuth: axiosWithAuth,
         },
       },
-    }),
+    }).concat(rtkApi.middleware),
   });
 
   // @ts-ignore

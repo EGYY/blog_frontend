@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Button, ThemeButton } from '../Button';
+import { Button } from '../Button';
 
 export default {
   title: 'shared/Button',
@@ -14,43 +14,43 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: 'Text',
-  theme: ThemeButton.DEFUALT,
+  theme: 'default',
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
   children: 'Text',
-  theme: ThemeButton.GHOST,
+  theme: 'ghost',
 };
 
 export const GhostIcon = Template.bind({});
 GhostIcon.args = {
   children: '>',
-  theme: ThemeButton.GHOST_ICON,
+  theme: 'ghostIcon',
 };
 
 export const Outline = Template.bind({});
 Outline.args = {
   children: 'Text',
-  theme: ThemeButton.OUTLINE,
+  theme: 'outline',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'Text',
-  theme: ThemeButton.SECONDARY,
+  theme: 'secondary',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   children: 'Text',
-  theme: ThemeButton.DEFUALT,
+  theme: 'default',
   disabled: true,
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
   children: 'Text',
-  theme: ThemeButton.DEFUALT,
+  theme: 'default',
   loading: true,
 };

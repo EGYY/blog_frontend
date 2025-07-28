@@ -1,0 +1,39 @@
+.editorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+.editor {
+  margin-bottom: 10px;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 200px;
+  background-color: var(--navbar-bg);
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+.preview {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #f9f9f9;
+
+  pre {
+    margin: 0;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+}

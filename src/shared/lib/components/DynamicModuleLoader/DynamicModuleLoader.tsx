@@ -1,4 +1,6 @@
-import { FC, memo, useEffect } from 'react';
+import {
+  FC, memo, PropsWithChildren, useEffect,
+} from 'react';
 import { useDispatch, useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
 import { ReduxStoreManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
@@ -7,7 +9,7 @@ export type ReducersList = {
     [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 }
 
-interface DynamicModuleLoaderProps {
+interface DynamicModuleLoaderProps extends PropsWithChildren {
     reducers: ReducersList,
     removeAfterAnmount?: boolean,
 }

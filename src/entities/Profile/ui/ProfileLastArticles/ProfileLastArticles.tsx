@@ -8,6 +8,7 @@ import { Profile } from '../../model/types/profile';
 import cls from './ProfileLastArticles.module.scss';
 import BookIcon from '@/shared/assets/book-open.svg';
 import { RoutePath } from '@/shared/config/routes/routes';
+import { Tag } from '@/shared/ui/Tag/Tag';
 
 interface ProfileLastArticlesProps {
     className?: string
@@ -21,7 +22,7 @@ export const ProfileLastArticles = memo((props: ProfileLastArticlesProps) => {
     <Card className={classNames(cls.lastArticleWrapper, {}, [className])}>
       <h3>{t('last_articles')}</h3>
       <div className={cls.lastArticleList}>
-        {profile?.articles.map((article) => (
+        {profile?.articles && profile?.articles?.length > 0 ? profile?.articles.map((article) => (
           <Link key={article.id} to={`${RoutePath.article_detail}${article.id}`} className={cls.lastArticleItem}>
             <div className={cls.profileCardStatItemIcon}>
               <BookIcon width={20} />
@@ -31,7 +32,9 @@ export const ProfileLastArticles = memo((props: ProfileLastArticlesProps) => {
               <span>{timeAgo(article.createdAt)}</span>
             </div>
           </Link>
-        ))}
+        )) : (
+          <Tag>{t('no_articles')}</Tag>
+        )}
       </div>
     </Card>
   );

@@ -1,6 +1,6 @@
-/* eslint-disable react/no-danger */
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { HTMLAttributeAnchorTarget } from 'react';
 import cls from './ArticleListItem.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 import CalendarIcon from '@/shared/assets/calendar.svg';
@@ -8,22 +8,26 @@ import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 import { Tag } from '@/shared/ui/Tag/Tag';
 import { Card } from '@/shared/ui/Card/Card';
 import { RoutePath } from '@/shared/config/routes/routes';
-import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ArticleListItemProps {
     article: Article,
     view?: ArticleView,
     className?: string,
+    target?: HTMLAttributeAnchorTarget,
 }
 export const ArticleListItem = (props: ArticleListItemProps) => {
-  const { article, view = ArticleView.GRID, className } = props;
+  const {
+    article, view = ArticleView.GRID, className, target,
+  } = props;
   const { t } = useTranslation('article');
 
   if (view === ArticleView.LIST) {
     return (
       <Link
         to={`${RoutePath.article_detail}${article.id}`}
+        target={target}
         className={classNames(cls.articleListItem, {}, [className, cls[view]])}
       >
         <div className={classNames(cls.articleListItemPoster, {}, [cls[view]])}>
@@ -40,7 +44,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
               <CalendarIcon width={14} />
               {formatDate(article.createdAt)}
             </div>
-            <Button theme={ThemeButton.GHOST}>
+            <Button theme="ghost">
               {t('read_more')}
             </Button>
           </div>
@@ -50,7 +54,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
   }
 
   return (
-    <Link to={`${RoutePath.article_detail}${article.id}`}>
+    <Link to={`${RoutePath.article_detail}${article.id}`} target={target}>
       <Card className={classNames(cls.articleListItem, {}, [className, cls[view]])}>
         <div className={classNames(cls.articleListItemPoster, {}, [cls[view]])}>
           <img src={`${__SERVER_URL__}${article.poster}`} alt={article.title} />
@@ -66,13 +70,12 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
               <CalendarIcon width={14} />
               {formatDate(article.createdAt)}
             </div>
-            <Button theme={ThemeButton.GHOST}>
+            <Button theme="ghost">
               {t('read_more')}
             </Button>
           </div>
         </div>
       </Card>
     </Link>
-
   );
 };

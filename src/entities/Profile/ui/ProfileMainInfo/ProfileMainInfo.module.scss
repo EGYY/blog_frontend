@@ -1,4 +1,6 @@
 .profileCard {
+  min-width: 220px;
+
   button {
     display: flex;
     align-items: center;
@@ -42,6 +44,7 @@
     justify-content: space-between;
     font-size: 0.875rem;
     color: var(--primary-color);
+    gap: 20px;
 
     span:first-child {
       color: var(--secondary-color);

@@ -2,7 +2,7 @@ import { FC, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Sidebar.module.scss';
-import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import SidebarIcon from '@/shared/assets/sidebar.svg';
 import { LanguageSwitcher } from '@/widgets/LanguageSwitcher';
 import { ThemeSwitcher } from '@/widgets/ThemeSwitcher';
@@ -32,12 +32,12 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
           data-testid="toggle-sidebar"
           onClick={toggleSidebar}
           className={cls.toggleSidebar}
-          theme={ThemeButton.GHOST_ICON}
+          theme="ghostIcon"
         >
           <SidebarIcon width={24} height={24} />
         </Button>
       </Tooltip>
-      <div className={classNames(cls.links, { [cls.collapsed]: collapsed })}>
+      <div role="navigation" className={classNames(cls.links, { [cls.collapsed]: collapsed })}>
         {SidebarLinks.map((item) => (
           <SidebarItem key={item.path} item={item} collapsed={collapsed} />
         ))}

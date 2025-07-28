@@ -47,6 +47,9 @@ export interface ArticleSchema {
     article: Article | undefined
     loading: boolean
     error?: string
+    recommedations: Article[]
+    recommedationsLoading: boolean
+    recommendationsError?: string
     articles: Article[]
     loadingArticles: boolean
     errorArticles?: string

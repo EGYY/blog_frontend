@@ -1,8 +1,8 @@
-export { getLoadingAuthByEmail } from './model/selectors/getLoading/getLoadingAuthByEmail';
+export { getLoadingAuthByEmail } from './model/selectors/getLoadingAuthByEmail/getLoadingAuthByEmail';
 
-export { getErrorAuthByEmail } from './model/selectors/getError/getErrorAuthByEmail';
+export { getErrorAuthByEmail } from './model/selectors/getErrorAuthByEmail/getErrorAuthByEmail';
 
-export { loginActions } from './model/slice/loginSlice';
+export { authActions } from './model/slice/authSlice';
 
 export { LoginModal } from './ui/LoginModal/LoginModal';
-export type { LoginSchema } from './model/types/LoginSchema';
+export type { AuthSchema } from './model/types/AuthSchema';

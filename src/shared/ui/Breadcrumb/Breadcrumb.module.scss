@@ -1,0 +1,40 @@
+.breadcrumb {
+  width: 100%;
+  font-size: 0.875rem;
+  color: var(--input-border);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: color 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.current {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.separator {
+  margin: 0 0.5rem;
+  color: #9ca3af;
+  user-select: none;
+}

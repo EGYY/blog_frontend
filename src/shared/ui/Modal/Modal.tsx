@@ -1,53 +1,47 @@
-import { FC, useEffect } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Portal } from '../Portal/Portal';
 import cls from './Modal.module.scss';
-import { Button, ThemeButton } from '../Button/Button';
+import { Button } from '../Button/Button';
 import XIcon from '@/shared/assets/x.svg';
+import { Overlay } from '../Overlay/Overlay';
+import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 
-interface ModalProps {
+interface ModalProps extends PropsWithChildren {
     className?: string;
     open: boolean;
     onClose: () => void;
 }
-
 export const Modal: FC<ModalProps> = (props) => {
   const {
     className, children, open, onClose,
   } = props;
 
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (open) {
-      document.addEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'hidden';
-    }
-    return () => {
-      document.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'auto';
-    };
-  }, [open, onClose]);
+  const {
+    close,
+    isClosing,
+    isMounted,
+  } = useModal({ isOpen: open, onClose });
 
-  if (!open) return null;
+  if (!isMounted) return null;
+
   return (
     <Portal>
-      <div className={cls.overlay} onClick={onClose}>
+      <Overlay onClick={close}>
         <div
-          className={classNames(cls.content, {}, [className])}
+          className={classNames(cls.content, { [cls.closed]: isClosing, [cls.opened]: open }, [className])}
           onClick={(e) => e.stopPropagation()}
         >
           <Button
             className={cls.closeBtn}
-            theme={ThemeButton.GHOST_ICON}
-            onClick={onClose}
+            theme="ghostIcon"
+            onClick={close}
           >
             <XIcon width={20} />
           </Button>
           {children}
         </div>
-      </div>
+      </Overlay>
     </Portal>
   );
 };

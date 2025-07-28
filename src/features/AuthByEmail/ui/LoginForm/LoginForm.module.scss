@@ -26,3 +26,16 @@
     color: var(--secondary-color);
   }
 }
+
+.formAction {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--secondary-color);
+  transition: color 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+}

@@ -12,7 +12,7 @@ import { getProfileDetail } from '../model/selectors/getProfileDetail/getProfile
 import { getLoadingProfileDetail } from '../model/selectors/getLoadingProfileDetail/getLoadingProfileDetail';
 import { getErrorProfileDetail } from '../model/selectors/getErrorProfileDetail/getErrorProfileDetail';
 import { getProfileById } from '../model/services/getProfileById';
-import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import cls from './ProfileViewer.module.scss';
 import PenIcon from '@/shared/assets/square-pen.svg';
 import { Card } from '@/shared/ui/Card/Card';
@@ -23,7 +23,7 @@ const initialReducers: ReducersList = {
 };
 
 interface ProfileViewerProps {
-    id?: string
+  id?: string
 }
 
 export const ProfileViewer = memo((props: ProfileViewerProps) => {
@@ -67,12 +67,12 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
         <div className={cls.profileDetailPageHeader}>
           <h1>{t('profile')}</h1>
           {isAuthUserProfile && (
-          <div className={cls.profileActions}>
-            <Button theme={ThemeButton.OUTLINE} onClick={handleGoEditProfile}>
-              <PenIcon width={20} />
-              {t('edit')}
-            </Button>
-          </div>
+            <div className={cls.profileActions}>
+              <Button theme="outline" onClick={handleGoEditProfile}>
+                <PenIcon width={20} />
+                {t('edit')}
+              </Button>
+            </div>
           )}
         </div>
         <div className={cls.profileDetailPageContent}>
@@ -81,7 +81,9 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
           </Card>
           <div>
             <ProfileStatList profile={profile} />
-            <ProfileLastArticles profile={profile} />
+            {profile?.articles && profile?.articles.length > 0 && (
+              <ProfileLastArticles profile={profile} />
+            )}
           </div>
         </div>
       </div>

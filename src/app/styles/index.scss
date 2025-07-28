@@ -23,11 +23,11 @@ body {
 }
 
 main {
-  flex-grow: 1;
+  flex: 1 1 0;
   margin: 10px 10px 10px 0;
   border: 1px solid var(--border-color);
   border-radius: calc(0.625rem + 4px);
-  width: 100%;
+  width: calc(100% - var(--sidebar-width-collapsed));
   box-shadow: 0 0 #000, 0 0 #000, 0 0 #000, 0 0 #000, 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
   background-color: var(--bg-color);
 }

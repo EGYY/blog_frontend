@@ -10,10 +10,13 @@
     "role": "Role",
     "role_user": "User",
     "role_admin": "Admin",
+    "role_author": "Author",
     "subscribe": "Subscribe",
-    "total_articles": "Total Articles",
-    "total_comments": "Total Comments",
-    "total_likes": "Total Likes",
+    "total_articles": "Articles",
+    "total_comments": "Comments",
+    "total_likes": "Likes",
+    "total_followers": "Followers",
+    "total_following": "Following",
     "last_articles": "Last Articles",
     "edit": "Edit"
 }

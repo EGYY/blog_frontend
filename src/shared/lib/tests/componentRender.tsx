@@ -2,14 +2,22 @@ import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
+import { ReducersMapObject } from '@reduxjs/toolkit';
 import i18nFotTests from '@/shared/config/i18n/i18nForTests';
+import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
+import { Theme } from '@/shared/config/theme/ThemeContext';
 
 export interface componentRenderOptions {
     route?: string
+    initialState?: StateSchema
+    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
+    theme?: Theme
 }
 
 export const componentRender = (component: ReactNode, options: componentRenderOptions = {}) => {
-  const { route = '/' } = options;
+  const {
+    route = '/', initialState, asyncReducers, theme = Theme.LIGHT,
+  } = options;
   return render(
     <MemoryRouter
       initialEntries={[route]}
@@ -18,9 +26,13 @@ export const componentRender = (component: ReactNode, options: componentRenderOp
         v7_startTransition: false,
       }}
     >
-      <I18nextProvider i18n={i18nFotTests}>
-        {component}
-      </I18nextProvider>
+      <StoreProvider asyncReducers={asyncReducers} initialState={initialState}>
+        <I18nextProvider i18n={i18nFotTests}>
+          <div className={`app ${theme}`}>
+            {component}
+          </div>
+        </I18nextProvider>
+      </StoreProvider>
       ,
     </MemoryRouter>,
   );

@@ -6,6 +6,7 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ArticleDetailPage } from '@/pages/ArticleDetailPage';
 import { ProfileDetailPage } from '@/pages/ProfileDetailPage';
+import { ArticleCreateUpdatePage } from '@/pages/ArticleCreateUpdatePage';
 
 type AppRouteProps = RouteProps & {
   authOnly?: boolean
@@ -23,6 +24,16 @@ export const routeConfig: Record<Routes, AppRouteProps> = {
   [Routes.ARTICLE_DETAIL]: {
     path: `${RoutePath.article_detail}:id`,
     element: <ArticleDetailPage />,
+  },
+  [Routes.ARTICLE_CREATE]: {
+    path: `${RoutePath.article_create}`,
+    element: <ArticleCreateUpdatePage />,
+    authOnly: true,
+  },
+  [Routes.ARTICLE_UPDATE]: {
+    path: `${RoutePath.article_update}:id/edit`,
+    element: <ArticleCreateUpdatePage />,
+    authOnly: true,
   },
   [Routes.PROFILE_EDIT]: {
     path: RoutePath.profile_edit,

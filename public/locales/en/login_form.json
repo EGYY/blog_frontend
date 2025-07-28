@@ -1,7 +1,13 @@
 {
     "title": "Login to your account",
     "description": "Enter your email below to login to your account",
+    "description_reg": "Enter your email address below to log in to your account.",
+    "title_reg": "Register your account",
     "email_input": "Email",
+    "name_input": "Name",
     "password_input": "Password",
-    "login_btn": "Login"
+    "login_btn": "Login",
+    "reg_btn": "Register",
+    "already_have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?"
 }

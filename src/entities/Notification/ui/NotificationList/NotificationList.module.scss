@@ -1,0 +1,19 @@
+.notificationListWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+}
+
+.notificationList {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-top: 10px;
+  max-height: 250px;
+  gap: 20px;
+}

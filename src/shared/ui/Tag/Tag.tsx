@@ -7,11 +7,14 @@ interface TagProps {
   children: React.ReactNode;
   variant?: TagVariant;
   className?: string;
+  onClick?: () => void;
 }
 
-export const Tag: React.FC<TagProps> = ({ children, variant = 'default', className }) => {
+export const Tag: React.FC<TagProps> = ({
+  children, variant = 'default', className, onClick,
+}) => {
   return (
-    <span className={classNames(styles.tag, {}, [className, styles[variant]])}>
+    <span className={classNames(styles.tag, {}, [className, styles[variant]])} onClick={onClick}>
       {children}
     </span>
   );

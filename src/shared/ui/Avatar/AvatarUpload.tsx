@@ -8,21 +8,21 @@ import {
 } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './AvatarUpload.module.scss';
-import { Avatar, AvatarSize } from './Avatar';
 import UploadIcon from '../../assets/upload.svg';
+import { AvatarSize } from './Avatar';
 
 interface AvatarUploadProps extends ImgHTMLAttributes<HTMLImageElement> {
-    className?: string;
-    size?: AvatarSize;
-    onChangeImage?: (file: File) => void;
-  }
+  className?: string;
+  size?: AvatarSize;
+  onChangeImage?: (file: File) => void;
+}
 
 export const AvatarUpload = memo((props: AvatarUploadProps) => {
   const {
     src,
     className,
     alt,
-    size = AvatarSize.MD,
+    size = 'md',
     onChangeImage,
     ...otherProps
   } = props;

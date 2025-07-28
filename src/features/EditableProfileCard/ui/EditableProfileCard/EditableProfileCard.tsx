@@ -20,7 +20,7 @@ interface EditableProfileCardProps {
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
   const { t } = useTranslation('profile');
   const dispatch = useAppDispatch();
-  const { user, loading, error } = props;
+  const { user, loading = false, error } = props;
 
   const [userName, setUserName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);

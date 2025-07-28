@@ -25,5 +25,6 @@
     "comment_block_total": "Total",
     "comment_block_empty": "The list of comments is empty",
     "comment_form_send": "Send",
-    "comment_form_placeholder": "Write your comment..."
+    "comment_form_placeholder": "Write your comment...",
+    "empty_list": "List is empty"
 }

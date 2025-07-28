@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { articleActions, ArticleView, getArticlesView } from '@/entities/Article';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import GridIcon from '@/shared/assets/layout-grid.svg';
 import ListIcon from '@/shared/assets/layout-list.svg';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -27,7 +26,7 @@ export const ArticlesViewSwitcher = memo((props: ArticlesViewSwitcherProps) => {
     <Tooltip content={t('change_view')} className={className}>
       <Button
         onClick={onChangeView}
-        theme={ThemeButton.GHOST_ICON}
+        theme="ghostIcon"
       >
         {view === ArticleView.GRID ? <GridIcon width={20} /> : <ListIcon width={20} />}
       </Button>

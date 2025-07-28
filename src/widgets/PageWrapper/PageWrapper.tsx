@@ -1,5 +1,5 @@
 import {
-  FC, MutableRefObject, UIEvent, useEffect, useRef,
+  FC, MutableRefObject, PropsWithChildren, UIEvent, useEffect, useRef,
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { getScrollPositionByPath, saveScrollPostitionActions } from '@/features/
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 
-interface PageWrapperProps {
+interface PageWrapperProps extends PropsWithChildren {
     onScrollEnd?: () => void
     needAutoScroll?: boolean
 }

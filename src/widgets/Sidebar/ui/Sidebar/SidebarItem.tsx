@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useMemo } from 'react';
-import { AppLink, AppLinkType } from '@/shared/ui/AppLink/AppLink';
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { SidebarItemType } from '../../model/types/sidebar';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
@@ -15,7 +15,7 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
 
   const renderItem = useMemo(() => {
     const content = (
-      <AppLink type={AppLinkType.BUTTON} to={item.path}>
+      <AppLink type="button" to={item.path}>
         <item.icon />
         <p>{t(item.translate_key)}</p>
       </AppLink>

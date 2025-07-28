@@ -4,11 +4,7 @@ import {
 import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Avatar.module.scss';
 
-export enum AvatarSize {
-    SM = 'sm',
-    MD = 'md',
-    LG = 'lg'
-}
+export type AvatarSize = 'sm' | 'md' |'lg'
 
 interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string,
@@ -17,7 +13,7 @@ interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
 
 export const Avatar = memo((props: AvatarProps) => {
   const {
-    className, alt = 'avatar', size = AvatarSize.MD, ...otherProps
+    className, alt = 'avatar', size = 'md', ...otherProps
   } = props;
 
   const onErrorImage = useCallback((e: SyntheticEvent<HTMLImageElement, Event>) => {

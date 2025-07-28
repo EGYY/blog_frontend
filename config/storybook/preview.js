@@ -4,6 +4,7 @@ import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator
 import { RouteDecorator } from '../../src/shared/config/storybook/RouteDecorator';
 import { I18nDecorator } from '../../src/shared/config/storybook/i18nDecorator';
 import { StoreDecorator } from '../../src/shared/config/storybook/StoreDecorator';
+import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator';
 import i18n from '../../src/shared/config/i18n/i18n';
 import { testUserData } from '../../src/entities/User/model/const/userConsts';
 
@@ -61,3 +62,4 @@ addDecorator(StoreDecorator({
   login: { loading: false, error: null },
   user: testUserData,
 }));
+addDecorator(SuspenseDecorator);

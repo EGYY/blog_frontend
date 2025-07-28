@@ -1,0 +1,26 @@
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.carouselContainer {
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.carouselItem {
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.navButton {
+  z-index: 1;
+}

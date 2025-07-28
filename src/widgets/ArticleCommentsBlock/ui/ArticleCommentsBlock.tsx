@@ -7,7 +7,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { AddCommentForm, addCommentFormActions } from '@/features/AddCommentForm';
 import { CommentList } from '@/entities/Comment';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleCommentsBlockReducer } from '../model/slice/articleCommentsBlockSlice';
+import { articleCommentsBlockActions, articleCommentsBlockReducer } from '../model/slice/articleCommentsBlockSlice';
 import { getTotalArticleComments } from '../model/selectors/getTotalComments/getTotalArticleComments';
 import { getArticleCommentsLoading } from '../model/selectors/getArticleLoading/getArticleCommentsLoading';
 import { getArticleComments as getArticleCommentsSelector } from '../model/selectors/getArticleComments/getArticleComments';
@@ -16,14 +16,17 @@ import { getArticleFormError } from '../model/selectors/getArticleFormError/getA
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { addCommentToArticle } from '../model/services/addCommentToArticle';
 import { getArticleComments } from '../model/services/getArticleComments';
+import Pagination from '@/shared/ui/Pagination/Pagination';
+import { getArticleCommentsTotalPages } from '../model/selectors/getArticleCommentsTotalPages/getArticleCommentsTotalPages';
+import { getArticleCommentsPage } from '../model/selectors/getArticleCommentsPage/getArticleCommentsPage';
 
 const initialReducers: ReducersList = {
   article_comments_block: articleCommentsBlockReducer,
 };
 
 interface ArticleCommentsBlockProps {
-    articleId: string
-    className?: string
+  articleId: string
+  className?: string
 }
 
 const ArticleCommentsBlock = memo((props: ArticleCommentsBlockProps) => {
@@ -31,6 +34,8 @@ const ArticleCommentsBlock = memo((props: ArticleCommentsBlockProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const totalComments = useSelector(getTotalArticleComments);
+  const page = useSelector(getArticleCommentsPage);
+  const totalPages = useSelector(getArticleCommentsTotalPages);
   const comments = useSelector(getArticleCommentsSelector);
   const loadingComments = useSelector(getArticleCommentsLoading);
   const formLoading = useSelector(getArticleFormLoading);
@@ -44,6 +49,11 @@ const ArticleCommentsBlock = memo((props: ArticleCommentsBlockProps) => {
 
   const onSubmitCommentFormHandler = useCallback((content: string) => {
     dispatch(addCommentToArticle({ articleId, content })).then(() => dispatch(addCommentFormActions.setContent('')));
+  }, [articleId, dispatch]);
+
+  const handleChangePage = useCallback((newPage: number) => {
+    dispatch(articleCommentsBlockActions.setPage(newPage));
+    dispatch(getArticleComments(articleId));
   }, [articleId, dispatch]);
 
   return (
@@ -63,6 +73,16 @@ const ArticleCommentsBlock = memo((props: ArticleCommentsBlockProps) => {
           onSubmitForm={onSubmitCommentFormHandler}
         />
         <CommentList data={comments} loading={loadingComments} />
+        {comments.length > 0 && (
+          <Pagination
+            className={cls.pagination}
+            currentPage={page}
+            totalPages={totalPages}
+            maxVisible={5}
+            onPageChange={handleChangePage}
+          />
+        )}
+
       </div>
     </DynamicModuleLoader>
   );

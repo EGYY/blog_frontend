@@ -10,10 +10,13 @@
     "role": "Роль",
     "role_user": "Пользователь",
     "role_admin": "Админ",
+    "role_author": "Автор",
     "subscribe": "Подписаться",
-    "total_articles": "Всего статей",
-    "total_comments": "Всего комментариев",
-    "total_likes": "Всего лайков",
+    "total_articles": "Cтатей",
+    "total_comments": "Комментариев",
+    "total_likes": "Лайков",
+    "total_followers": "Подписчиков",
+    "total_following": "Подписок",
     "last_articles": "Последние статьи",
     "edit": "Редактировать"
 }

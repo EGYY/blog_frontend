@@ -3,8 +3,15 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Article,
+  ArticleRecommendations,
   articleReducer,
-  getArticle, getArticleData, getArticleError, getArticleLoading,
+  getArticle,
+  getArticleData,
+  getArticleError,
+  getArticleLoading,
+  getArticleRecommedations,
+  getArticleRecommendationsLoading,
+  getArticleRecommendationsSelector,
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -21,10 +28,12 @@ const ArticleDetailPage = () => {
   const article = useSelector(getArticle);
   const loadingArticle = useSelector(getArticleLoading);
   const errorArticle = useSelector(getArticleError);
+  const recommendations = useSelector(getArticleRecommendationsSelector);
 
   useEffect(() => {
     if (id) {
       dispatch(getArticleData(id));
+      dispatch(getArticleRecommedations(id));
     }
   }, [dispatch, id]);
 
@@ -36,6 +45,7 @@ const ArticleDetailPage = () => {
           loadingArticle={loadingArticle}
           errorArticle={errorArticle}
         />
+        {recommendations.length > 0 && <ArticleRecommendations data={recommendations} />}
         {id && <ArticleCommentsBlock articleId={id} />}
       </PageWrapper>
     </DynamicModuleLoader>

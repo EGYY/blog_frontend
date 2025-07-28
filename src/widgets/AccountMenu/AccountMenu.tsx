@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import styles from './AccountMenu.module.scss';
 import { getUser, logout } from '@/entities/User';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -35,14 +35,14 @@ export const AccountMenu = memo(() => {
         </div>
       </div>
       <div className={classNames(styles.menuItems, {}, [styles.mt])}>
-        <Button theme={ThemeButton.GHOST} onClick={handleGoToProfile}>
+        <Button theme="ghost" onClick={handleGoToProfile}>
           <UserIcon />
           {t('profile')}
         </Button>
       </div>
       <div className={styles.separator} />
       <div className={styles.menuItems}>
-        <Button theme={ThemeButton.GHOST} onClick={handleLogout}>
+        <Button theme="ghost" onClick={handleLogout}>
           <LogoutIcon />
           {t('logout')}
         </Button>

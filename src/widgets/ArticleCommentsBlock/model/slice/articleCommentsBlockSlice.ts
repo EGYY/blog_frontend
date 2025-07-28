@@ -30,6 +30,15 @@ export const articleCommentsBlockSlice = createSlice({
     setError: (state, { payload }: PayloadAction<string>) => {
       state.error = payload;
     },
+    setPage: (state, { payload }: PayloadAction<number>) => {
+      state.page = payload;
+    },
+    setTotal: (state, { payload }: PayloadAction<number>) => {
+      state.total = payload;
+    },
+    setTotalPages: (state, { payload }: PayloadAction<number>) => {
+      state.totalPages = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -43,7 +52,6 @@ export const articleCommentsBlockSlice = createSlice({
       .addCase(getArticleComments.fulfilled, (state, action) => {
         state.loading = false;
         state.comments = action.payload.data;
-        state.page = action.payload.page;
         state.total = action.payload.total;
         state.totalPages = action.payload.totalPages;
       })

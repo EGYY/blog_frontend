@@ -10,10 +10,12 @@
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
+        "isolatedModules": true,
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+        "types": ["node"]
     },
     "ts-node": {
         "compilerOptions": {

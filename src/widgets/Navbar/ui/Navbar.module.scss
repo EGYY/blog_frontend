@@ -9,7 +9,10 @@
 }
 
 .actionBtns {
+  display: flex;
+  align-items: center;
   margin-left: auto;
+  gap: 10px;
 }
 
 .loadingProfile {

@@ -1,12 +1,9 @@
 import { Story } from '@storybook/react';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 import '@/app/styles/index.scss';
-import { loginReducer } from '@/features/AuthByEmail/model/slice/loginSlice';
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
-const asyncDefaultReducers: ReducersList = {
-  login: loginReducer,
-};
+const asyncDefaultReducers: ReducersList = {};
 
 export const StoreDecorator = (
   state: StateSchema,

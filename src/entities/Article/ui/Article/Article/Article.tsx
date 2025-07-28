@@ -7,7 +7,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Article.module.scss';
 import { Article as ArticleType } from '../../../model/types/article';
 import { ArticleLoading } from '../ArticleLoading/ArticleLoading';
-import { Avatar, AvatarSize } from '@/shared/ui/Avatar/Avatar';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 import CalendarIcon from '@/shared/assets/calendar.svg';
 import HeartIcon from '@/shared/assets/heart.svg';
@@ -41,7 +41,7 @@ export const Article: FC<ArticleProps> = memo(({
       <HoverCard
         trigger={(
           <Link to={`/profile/${article?.author.id}`} className={cls.articleAuthor}>
-            <Avatar size={AvatarSize.MD} src={`${__SERVER_URL__}${article?.author.avatar}`} />
+            <Avatar src={`${__SERVER_URL__}${article?.author.avatar}`} />
             <span>{article?.author.name || article?.author.email}</span>
           </Link>
       )}

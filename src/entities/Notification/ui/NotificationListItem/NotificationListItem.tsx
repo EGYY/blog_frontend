@@ -1,0 +1,27 @@
+import { Link } from 'react-router-dom';
+import { RoutePath } from '@/shared/config/routes/routes';
+import { Notification } from '../../model/types/notification';
+import cls from './NotificationListItem.module.scss';
+import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
+import BellIcon from '@/shared/assets/bell.svg';
+
+interface NotificationListItemProps {
+  item: Notification;
+}
+
+export const NotificationListItem = (props: NotificationListItemProps) => {
+  const { item } = props;
+  return (
+    <Link
+      to={`${RoutePath.article_detail}${item.article.id}`}
+      target="_blank"
+      className={cls.notificationItem}
+    >
+      <BellIcon width={20} />
+      <div className={cls.notificationItemContent}>
+        <p className={cls.notificationItemMessage}>{item.message}</p>
+        <p className={cls.notificationItemTime}>{timeAgo(item.createdAt)}</p>
+      </div>
+    </Link>
+  );
+};

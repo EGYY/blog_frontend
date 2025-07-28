@@ -10,13 +10,7 @@ import SpinIcon from '@/shared/assets/spin.svg';
 import cls from './Button.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-export enum ThemeButton {
-  DEFUALT = 'default',
-  SECONDARY = 'secondary',
-  GHOST = 'ghost',
-  GHOST_ICON = 'ghostIcon',
-  OUTLINE = 'outline'
-}
+type ThemeButton = 'default' | 'secondary' | 'ghost' | 'ghostIcon' | 'outline'
 
 type ButtonBaseProps = {
   theme?: ThemeButton;
@@ -45,7 +39,7 @@ export const Button: FC<ButtonProps> = memo((props) => {
     children,
     loading = false,
     className,
-    theme = ThemeButton.DEFUALT,
+    theme = 'default',
     disabled,
   } = props;
 
@@ -73,7 +67,7 @@ export const Button: FC<ButtonProps> = memo((props) => {
     );
   }
 
-  const { ...restButtonProps } = props;
+  const { loading: loadingButton, ...restButtonProps } = props;
 
   return (
     <button
@@ -81,7 +75,7 @@ export const Button: FC<ButtonProps> = memo((props) => {
       {...restButtonProps}
       className={classes}
     >
-      {loading && <SpinIcon className="spin" width={16} height={16} />}
+      {loadingButton && <SpinIcon className="spin" width={16} height={16} />}
       {children}
     </button>
   );

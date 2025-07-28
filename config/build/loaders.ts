@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import { BuildOptions } from './types/config.types';
 import { cssLoader } from './loaders/cssLoader';
+import { babelLoader } from './loaders/babelLoader';
 
 export function loaders(options: BuildOptions): webpack.RuleSetRule[] {
   const fileLoader = {
@@ -17,28 +18,20 @@ export function loaders(options: BuildOptions): webpack.RuleSetRule[] {
     use: ['@svgr/webpack'],
   };
 
-  const tsLoader = {
-    test: /\.tsx?$/,
-    use: 'ts-loader',
-    exclude: /node_modules/,
-  };
-
-  const babelLoader = {
-    test: /\.(js|jsx|tsx|ts)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-      },
-    },
-  };
+  // const tsLoader = {
+  //   test: /\.tsx?$/,
+  //   use: 'ts-loader',
+  //   exclude: /node_modules/,
+  // };
 
   const styleLoader = cssLoader(options.isDev);
+  const codeBabelLoader = babelLoader({ ...options, isTsx: false });
+  const tsxCodeBabelLoader = babelLoader({ ...options, isTsx: true });
 
   return [
-    babelLoader,
-    tsLoader,
+    codeBabelLoader,
+    tsxCodeBabelLoader,
+    // tsLoader,
     styleLoader,
     fileLoader,
     svgLoader,

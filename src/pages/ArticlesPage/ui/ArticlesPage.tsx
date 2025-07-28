@@ -24,15 +24,11 @@ import {
   articlesFiltersActions, articlesFiltersReducer, getArticleFilterCurrentFilters, getArticleFilterFiltersReady,
 } from '@/features/ArticlesFilters';
 import { isEmptyObject } from '@/shared/lib/helpers/isEmptyObject/isEmptyObject';
-import { articleCategoryReducer } from '@/entities/ArticleCategory';
-import { articleTagReducer } from '@/entities/ArticleTag';
 import { objectToSearchParams } from '@/shared/lib/helpers/objectToSearchParams/objectToSearchParams';
 
 const initialReducers: ReducersList = {
   article: articleReducer,
   articles_filters: articlesFiltersReducer,
-  article_categories: articleCategoryReducer,
-  article_tags: articleTagReducer,
 };
 
 const ArticlesPage = memo(() => {

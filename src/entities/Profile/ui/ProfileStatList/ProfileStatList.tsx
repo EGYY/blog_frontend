@@ -7,11 +7,12 @@ import BookIcon from '@/shared/assets/book-open.svg';
 import MessageIcon from '@/shared/assets/message-square.svg';
 import HeartIcon from '@/shared/assets/heart.svg';
 import InfoIcon from '@/shared/assets/info.svg';
+import UserIcon from '@/shared/assets/user-circle.svg';
 import { Profile } from '../../model/types/profile';
 
 interface ProfileStatListProps {
-    className?: string
-    profile: Profile | undefined
+  className?: string
+  profile: Profile | undefined
 }
 
 export const ProfileStatList = memo((props: ProfileStatListProps) => {
@@ -38,6 +39,14 @@ export const ProfileStatList = memo((props: ProfileStatListProps) => {
             case 'likes':
               keyTranslation = t('total_likes');
               icon = <HeartIcon width={20} />;
+              break;
+            case 'followers':
+              keyTranslation = t('total_followers');
+              icon = <UserIcon width={20} />;
+              break;
+            case 'following':
+              keyTranslation = t('total_following');
+              icon = <UserIcon width={20} />;
               break;
             default:
               break;
