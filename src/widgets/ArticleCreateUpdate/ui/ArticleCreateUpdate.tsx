@@ -6,7 +6,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { ArticleType } from '@/entities/Article';
-import cls from '@/entities/Article/ui/Article/Article/Article.module.scss';
 import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
 import { HtmlEditor } from '@/features/HtmlEditor';
 import CalendarIcon from '@/shared/assets/calendar.svg';
@@ -32,7 +31,7 @@ import { getArticleTitle } from '../model/selectors/getArticleTitle/getArticleTi
 import { createArticle } from '../model/services/createArticle/createArticle';
 import { updateArticle } from '../model/services/updateArticle/updateArticle';
 import { articleCreateUpdateActions } from '../model/slice/articleCreateUpdateSlice';
-import styles from './ArticleCreateUpdate.module.scss';
+import cls from './ArticleCreateUpdate.module.scss';
 import { useArticleTagsQuery } from '@/entities/ArticleTag';
 
 interface ArticleCreateUpdateProps {
@@ -154,7 +153,7 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
             {article?.likesCount || 0}
           </span>
         </div>
-        <div className={styles.selectors}>
+        <div className={cls.selectors}>
           <Select
             value={category}
             onChange={(val) => onChageCategory(val as string)}

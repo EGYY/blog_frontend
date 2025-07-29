@@ -19,12 +19,12 @@ import {
 } from '@/entities/Article';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ArticlesListHeader } from '@/widgets/ArticlesListHeader';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 import {
   articlesFiltersActions, articlesFiltersReducer, getArticleFilterCurrentFilters, getArticleFilterFiltersReady,
 } from '@/features/ArticlesFilters';
 import { isEmptyObject } from '@/shared/lib/helpers/isEmptyObject/isEmptyObject';
 import { objectToSearchParams } from '@/shared/lib/helpers/objectToSearchParams/objectToSearchParams';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {
   article: articleReducer,

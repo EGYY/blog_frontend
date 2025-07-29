@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { ProfileViewer } from '@/widgets/ProfileViewer';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 const ProfileDetailPage = () => {
   const { id } = useParams();

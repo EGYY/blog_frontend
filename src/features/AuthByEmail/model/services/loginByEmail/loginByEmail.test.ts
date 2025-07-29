@@ -1,8 +1,7 @@
 import Cookies from 'js-cookie';
-import { testUserData } from '@/entities/User/model/const/userConsts';
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk';
 import { loginByEmail } from './loginByEmail';
-import { userActions } from '@/entities/User';
+import { testUserData, userActions } from '@/entities/User';
 
 jest.mock('js-cookie');
 

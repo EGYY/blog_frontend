@@ -100,7 +100,25 @@ module.exports = {
     'react/no-unstable-nested-components': 'warn',
     // Check fsd
     'egyy-plugin/path-checker': ['error', { alias: '@' }],
-    'egyy-plugin/public-api-imports': ['error', { alias: '@' }],
+    'egyy-plugin/public-api-imports': [
+      'error',
+      {
+        alias: '@',
+        testFilesPatterns: [
+          '**/*.test.*',
+          '**/*.story.*',
+          '**/StoreDecorator.tsx',
+        ],
+      },
+
+    ],
+    'egyy-plugin/layer-imports': [
+      'error',
+      {
+        alias: '@',
+        ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+      },
+    ],
   },
   globals: {
     __IS_DEV__: true,

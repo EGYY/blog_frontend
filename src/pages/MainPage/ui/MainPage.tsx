@@ -7,10 +7,10 @@ import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ArticleListByCategory } from '@/widgets/ArticleListByCategory';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 import { useArticlesQuery } from '../api/mainPageArticlesApi';
 import { getMainPageSelectedCategory } from '../model/selectors/getMainPageSelectedCategory/getMainPageSelectedCategory';
 import { mainPageActions, mainPageReducer } from '../model/slice/mainPageSlice';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {
   main_page: mainPageReducer,

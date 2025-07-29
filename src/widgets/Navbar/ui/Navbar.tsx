@@ -10,14 +10,13 @@ import UserCircleIcon from '@/shared/assets/user-circle.svg';
 import { LoginModal } from '@/features/AuthByEmail';
 import { getLoadingUser, getUser } from '@/entities/User';
 import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
-import { AccountMenu } from '@/widgets/AccountMenu/AccountMenu';
-import { AccountMenuTrigger } from '@/widgets/AccountMenu/AccountMenuTrigger';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import Breadcrumb from '@/shared/ui/Breadcrumb/Breadcrumb';
 import { useBreadcrumbs } from '@/shared/lib/hooks/useBreadcrumbs/useBreadcrumbs';
 import { NotifcationList } from '@/entities/Notification';
 import BellIcon from '@/shared/assets/bell.svg';
+import { AccountMenu, AccountMenuTrigger } from '@/features/AccountMenu';
 
 interface NavbarProps {
   className?: string

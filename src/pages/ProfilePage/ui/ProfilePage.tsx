@@ -10,7 +10,7 @@ import {
   EditableProfileCard, getErrorUpdateProfile, getLoadingUpdateProfile, updateProfileReducer,
 } from '@/features/EditableProfileCard';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {
   update_profile: updateProfileReducer,

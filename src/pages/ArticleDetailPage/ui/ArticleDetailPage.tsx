@@ -10,13 +10,12 @@ import {
   getArticleError,
   getArticleLoading,
   getArticleRecommedations,
-  getArticleRecommendationsLoading,
   getArticleRecommendationsSelector,
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ArticleCommentsBlock } from '@/widgets/ArticleCommentsBlock';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {
   article: articleReducer,

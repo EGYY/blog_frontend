@@ -1,3 +1,4 @@
+// eslint-disable-next-line egyy-plugin/layer-imports
 import '@/app/styles/index.scss';
 import { Story, StoryContext } from '@storybook/react';
 import { useEffect } from 'react';

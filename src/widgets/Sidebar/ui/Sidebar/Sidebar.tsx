@@ -4,11 +4,11 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Sidebar.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
 import SidebarIcon from '@/shared/assets/sidebar.svg';
-import { LanguageSwitcher } from '@/widgets/LanguageSwitcher';
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher';
 import { SidebarLinks } from '../../model/const/sidebar';
 import { SidebarItem } from './SidebarItem';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import { LanguageSwitcher } from '@/features/LanguageSwitcher';
 
 interface SidebarProps {
     className?: string

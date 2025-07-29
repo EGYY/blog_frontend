@@ -1,5 +1,6 @@
 import axios, { CreateAxiosDefaults } from 'axios';
 import Cookies from 'js-cookie';
+// eslint-disable-next-line egyy-plugin/layer-imports
 import { UserServerResponse } from '@/entities/User';
 import { errorCatch } from '@/shared/lib/api/helper';
 

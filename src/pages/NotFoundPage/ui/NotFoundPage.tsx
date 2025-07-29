@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './NotFoundPage.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 interface NotFoundPageProps {
     className?: string
