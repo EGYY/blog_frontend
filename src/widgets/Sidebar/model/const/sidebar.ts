@@ -1,7 +1,8 @@
-import { RoutePath } from '@/shared/config/routes/routes';
 import { SidebarItemType } from '../types/sidebar';
-import HomeIcon from '@/shared/assets/home.svg';
+
 import BookOpenIcon from '@/shared/assets/book-open.svg';
+import HomeIcon from '@/shared/assets/home.svg';
+import { RoutePath } from '@/shared/config/routes/routes';
 
 export const SidebarLinks: SidebarItemType[] = [
   {

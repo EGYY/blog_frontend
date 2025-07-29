@@ -1,8 +1,7 @@
 import { FC, memo } from 'react';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
-
 import SpinIcon from '@/shared/assets/spin.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './PageLoader.module.scss';
 

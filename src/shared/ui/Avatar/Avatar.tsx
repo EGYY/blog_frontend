@@ -1,7 +1,9 @@
 import {
   ImgHTMLAttributes, memo, SyntheticEvent, useCallback,
 } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Avatar.module.scss';
 
 export type AvatarSize = 'sm' | 'md' |'lg'

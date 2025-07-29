@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+
 import { devConfig } from './devConfig';
 import { loaders } from './loaders';
 import { plugins } from './plugins';

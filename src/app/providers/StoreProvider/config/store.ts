@@ -1,12 +1,14 @@
 import {
   CombinedState, configureStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
+
 import { StateSchema } from './StateSchema';
-import { userReducer } from '@/entities/User';
 import { createReducerManager } from './reducerManager';
-import { axiosClassic, axiosWithAuth } from '@/shared/config/api/api';
+
+import { userReducer } from '@/entities/User';
 import { saveScrollPostitionReducer } from '@/features/SaveScrollPostition';
 import { toastReducer } from '@/features/Toast';
+import { axiosClassic, axiosWithAuth } from '@/shared/config/api/api';
 import { rtkApi } from '@/shared/config/api/rtkApi';
 
 export const createReduxStore = (

@@ -1,7 +1,9 @@
 import path from 'path';
+
 import webpack from 'webpack';
-import { webpackConfig } from './config/build/webpackConfig';
+
 import { BuildEnv, BuildPaths } from './config/build/types/config.types';
+import { webpackConfig } from './config/build/webpackConfig';
 
 export default (env: BuildEnv) => {
   const paths: BuildPaths = {

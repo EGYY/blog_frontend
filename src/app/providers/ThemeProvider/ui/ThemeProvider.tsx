@@ -1,6 +1,5 @@
-import {
-  FC, PropsWithChildren, useMemo, useState,
-} from 'react';
+import { PropsWithChildren, useMemo, useState } from 'react';
+
 import { STORAGE_THEME_KEY, Theme, ThemeContext } from '@/shared/config/theme/ThemeContext';
 
 const defaultTheme = localStorage.getItem(STORAGE_THEME_KEY) as Theme || Theme.LIGHT;

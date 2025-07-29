@@ -1,7 +1,9 @@
-import { useTranslation } from 'react-i18next';
 import { memo, useMemo } from 'react';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
+import { useTranslation } from 'react-i18next';
+
 import { SidebarItemType } from '../../model/types/sidebar';
+
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
 interface SidebarItemProps {

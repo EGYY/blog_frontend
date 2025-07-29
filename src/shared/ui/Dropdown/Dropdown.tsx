@@ -1,8 +1,11 @@
 import React, {
   useState, useRef, useEffect, useCallback, useMemo, memo,
 } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { Portal } from '../Portal/Portal';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Dropdown.module.scss';
 
 interface DropdownProps {

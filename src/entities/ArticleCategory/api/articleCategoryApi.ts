@@ -1,5 +1,6 @@
-import { rtkApi } from '@/shared/config/api/rtkApi';
 import { ArticleCategory } from '../model/types/articleCategory';
+
+import { rtkApi } from '@/shared/config/api/rtkApi';
 
 const articleCategoryApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({

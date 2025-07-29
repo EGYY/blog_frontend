@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
+
 import { getProfileData } from '../services/getProfileData';
 import { User, UserSchema, UserServerResponse } from '../types/user';
 

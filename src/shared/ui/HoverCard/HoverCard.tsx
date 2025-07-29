@@ -1,7 +1,11 @@
 import React, {
   useRef, useState, useEffect, useCallback, memo,
 } from 'react';
+
 import { Portal } from '../Portal/Portal';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './HoverCard.module.scss';
 
 type HoverCardProps = {
@@ -103,7 +107,7 @@ export const HoverCard: React.FC<HoverCardProps> = memo(({
         <Portal>
           <div
             ref={contentRef}
-            className={`${styles.card} ${visible ? styles.visible : ''}`}
+            className={classNames(styles.card, { [styles.visible]: visible })}
             style={{ top: position.top, left: position.left }}
             onMouseEnter={showCard}
             onMouseLeave={hideCard}

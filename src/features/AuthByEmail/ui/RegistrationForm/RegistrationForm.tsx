@@ -1,16 +1,18 @@
-import { useTranslation } from 'react-i18next';
 import {
   FC, memo, useCallback, useEffect, useRef,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import cls from '../LoginForm/LoginForm.module.scss';
-import { Input } from '@/shared/ui/Input/Input';
-import { Button } from '@/shared/ui/Button/Button';
+
 import { getErrorAuthByEmail } from '../../model/selectors/getErrorAuthByEmail/getErrorAuthByEmail';
 import { getLoadingAuthByEmail } from '../../model/selectors/getLoadingAuthByEmail/getLoadingAuthByEmail';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { registrateByEmail } from '../../model/services/registrateByEmail/registrateByEmail';
 import { authActions } from '../../model/slice/authSlice';
+import cls from '../LoginForm/LoginForm.module.scss';
+
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/Input/Input';
 
 interface RegistrationFormProps {
   openModal?: boolean,

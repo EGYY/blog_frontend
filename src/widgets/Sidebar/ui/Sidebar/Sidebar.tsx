@@ -1,14 +1,18 @@
 import { FC, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Sidebar.module.scss';
-import { Button } from '@/shared/ui/Button/Button';
-import SidebarIcon from '@/shared/assets/sidebar.svg';
+
 import { SidebarLinks } from '../../model/const/sidebar';
+
 import { SidebarItem } from './SidebarItem';
-import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
-import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+
 import { LanguageSwitcher } from '@/features/LanguageSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import SidebarIcon from '@/shared/assets/sidebar.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button } from '@/shared/ui/Button/Button';
+import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
+
+import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
     className?: string

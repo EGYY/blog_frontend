@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
 import { memo } from 'react';
+import { useSelector } from 'react-redux';
+
 import { getUser } from '@/entities/User';
 import { Button } from '@/shared/ui/Button/Button';
+
 import styles from './AccountMenu.module.scss';
 
 export const AccountMenuTrigger = memo(() => {

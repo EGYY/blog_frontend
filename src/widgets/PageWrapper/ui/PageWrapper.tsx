@@ -1,14 +1,16 @@
 import {
   FC, MutableRefObject, PropsWithChildren, UIEvent, useEffect, useRef,
 } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
-import cls from './PageWrapper.module.scss';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getScrollPositionByPath, saveScrollPostitionActions } from '@/features/SaveScrollPostition';
+import { useLocation } from 'react-router-dom';
+
 import { StateSchema } from '@/app/providers/StoreProvider';
+import { getScrollPositionByPath, saveScrollPostitionActions } from '@/features/SaveScrollPostition';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
+
+import cls from './PageWrapper.module.scss';
 
 interface PageWrapperProps extends PropsWithChildren {
     onScrollEnd?: () => void

@@ -1,10 +1,13 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { ArticleListItemByCategory } from './ArticleListItemByCategory';
+
 import { ArticleType, Category } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleListByCategory.module.scss';
-import { ArticleListItemByCategory } from './ArticleListItemByCategory';
 import { Tag } from '@/shared/ui/Tag/Tag';
+
+import cls from './ArticleListByCategory.module.scss';
 
 interface ArticleListByCategoryProps {
   className?: string
@@ -22,7 +25,7 @@ export const ArticleListByCategory = memo((props: ArticleListByCategoryProps) =>
   return (
     <div className={classNames(cls.articleListByCategoryContainer, {}, [className])}>
       {
-        categories.length > 0 && (
+        categories && categories.length > 0 && (
           <div className={cls.tagsTop}>
             {
               categories.map((category) => (
@@ -40,7 +43,7 @@ export const ArticleListByCategory = memo((props: ArticleListByCategoryProps) =>
       }
       <div className={classNames(cls.articleListByCategoryWrapper, {}, [className])}>
         {
-        articles.length > 0
+        articles && articles.length > 0
           ? articles.map((article) => (<ArticleListItemByCategory key={article.id} article={article} />))
           : <Tag className={cls.noData} variant="info">{t('data_empty')}</Tag>
         }

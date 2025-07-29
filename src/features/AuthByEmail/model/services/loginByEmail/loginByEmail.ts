@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-import { userActions, UserServerResponse } from '@/entities/User';
+
 import { ThunkExtraArg } from '@/app/providers/StoreProvider';
+import { userActions, UserServerResponse } from '@/entities/User';
 
 export const loginByEmail = createAsyncThunk<
   UserServerResponse,

@@ -1,11 +1,14 @@
 import { FC, PropsWithChildren } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Portal } from '../Portal/Portal';
-import cls from './Modal.module.scss';
+
 import { Button } from '../Button/Button';
-import XIcon from '@/shared/assets/x.svg';
 import { Overlay } from '../Overlay/Overlay';
+import { Portal } from '../Portal/Portal';
+
+import XIcon from '@/shared/assets/x.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+
+import cls from './Modal.module.scss';
 
 interface ModalProps extends PropsWithChildren {
     className?: string;

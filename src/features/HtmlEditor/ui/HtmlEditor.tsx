@@ -2,21 +2,22 @@
 import React, {
   useRef, useEffect, memo, useCallback,
 } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import styles from './HtmlEditor.module.scss';
-import { Button } from '@/shared/ui/Button/Button';
 
 import BoldIcon from '@/shared/assets/bold.svg';
-import ItalicIcon from '@/shared/assets/italic.svg';
-import UnderlineIcon from '@/shared/assets/underline.svg';
 import H1Icon from '@/shared/assets/heading-1.svg';
 import H2Icon from '@/shared/assets/heading-2.svg';
 import H3Icon from '@/shared/assets/heading-3.svg';
-import UnorderedListIcon from '@/shared/assets/list.svg';
-import OrderedListIcon from '@/shared/assets/list-ordered.svg';
 import ImageIcon from '@/shared/assets/images.svg';
+import ItalicIcon from '@/shared/assets/italic.svg';
+import OrderedListIcon from '@/shared/assets/list-ordered.svg';
+import UnorderedListIcon from '@/shared/assets/list.svg';
+import UnderlineIcon from '@/shared/assets/underline.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
+
+import styles from './HtmlEditor.module.scss';
 
 interface HtmlEditorProps {
     className?: string;

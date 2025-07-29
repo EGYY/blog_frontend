@@ -1,4 +1,3 @@
-export { UserRole } from './model/types/user';
 export { getInitedUser } from './model/selectors/getInitedUser/getInitedUser';
 export { getErrorUser } from './model/selectors/getError/getErrorUser';
 export { getLoadingUser } from './model/selectors/getLoading/getLoadingUser';
@@ -8,4 +7,3 @@ export { getAccessToken } from './model/selectors/getAccessToken/getAccessToken'
 export { getUser } from './model/selectors/getUser/getUser';
 export { userActions, userReducer } from './model/slice/userSlice';
 export type { UserSchema, User, UserServerResponse } from './model/types/user';
-export { testUserData } from './model/const/userConsts';

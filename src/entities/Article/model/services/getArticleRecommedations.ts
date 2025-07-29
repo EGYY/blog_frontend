@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkExtraArg } from '@/app/providers/StoreProvider';
+
 import { Article } from '../types/article';
+
+import { ThunkExtraArg } from '@/app/providers/StoreProvider';
 
 export const getArticleRecommedations = createAsyncThunk<
   Article[], string, { rejectValue: string, extra: ThunkExtraArg }>(

@@ -1,11 +1,12 @@
-import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
 import { articleActions, ArticleView, getArticlesView } from '@/entities/Article';
-import { Button } from '@/shared/ui/Button/Button';
 import GridIcon from '@/shared/assets/layout-grid.svg';
 import ListIcon from '@/shared/assets/layout-list.svg';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
 interface ArticlesViewSwitcherProps {

@@ -1,16 +1,19 @@
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+
 import { useNotifications } from '../../api/notificationApi';
 import { NotificationListItem } from '../NotificationListItem/NotificationListItem';
-import cls from './NotificationList.module.scss';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { Tag } from '@/shared/ui/Tag/Tag';
 
-interface NotifcationListProps {
+import cls from './NotificationList.module.scss';
+
+interface NotificationListProps {
     className?: string;
 }
 
-export const NotifcationList = (props: NotifcationListProps) => {
+export const NotificationList = (props: NotificationListProps) => {
   const { className } = props;
   const { t } = useTranslation('notifications');
   const { data: notifications, isLoading } = useNotifications(

@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Comment } from '@/entities/Comment';
-import { ArticleCommentsBlockSchema } from '../types/articleCommentsBlock';
-import { getArticleComments } from '../services/getArticleComments';
+
 import { addCommentToArticle } from '../services/addCommentToArticle';
+import { getArticleComments } from '../services/getArticleComments';
+import { ArticleCommentsBlockSchema } from '../types/articleCommentsBlock';
+
+import { Comment } from '@/entities/Comment';
 
 const initialState: ArticleCommentsBlockSchema = {
   comments: [],

@@ -1,4 +1,5 @@
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+
 import cls from './CommentList.module.scss';
 
 export const CommentListLoading = () => {

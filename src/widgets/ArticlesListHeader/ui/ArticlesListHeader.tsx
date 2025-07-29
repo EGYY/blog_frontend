@@ -1,7 +1,9 @@
 import { memo } from 'react';
+
 import { ArticlesFilters } from '@/features/ArticlesFilters';
 import { ArticlesViewSwitcher } from '@/features/ArticlesViewSwitcher';
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import cls from './ArticlesListHeader.module.scss';
 
 interface ArticlesListHeaderProps {

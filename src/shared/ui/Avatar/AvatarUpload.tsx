@@ -6,10 +6,14 @@ import {
   useCallback,
   SyntheticEvent,
 } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import styles from './AvatarUpload.module.scss';
+
 import UploadIcon from '../../assets/upload.svg';
+
 import { AvatarSize } from './Avatar';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
+import styles from './AvatarUpload.module.scss';
 
 interface AvatarUploadProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
@@ -45,7 +49,7 @@ export const AvatarUpload = memo((props: AvatarUploadProps) => {
 
   return (
     <div
-      className={classNames(styles.avatarWrapper, {}, [className, size])}
+      className={classNames(styles.avatarWrapper, {}, [className, styles[size]])}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >

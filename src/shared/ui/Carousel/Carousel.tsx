@@ -1,10 +1,13 @@
 import React, {
   useRef, useState, useCallback, useMemo, useEffect, memo,
 } from 'react';
+
+import { Button } from '../Button/Button';
+
 import ChevronLeft from '@/shared/assets/chevron-left.svg';
 import ChevronRight from '@/shared/assets/chevron-right.svg';
+
 import styles from './Carousel.module.scss';
-import { Button } from '../Button/Button';
 
 interface Breakpoints {
   [width: number]: number;

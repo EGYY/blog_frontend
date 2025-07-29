@@ -1,8 +1,11 @@
 import React, {
   memo, useCallback, useEffect, useRef, useState,
 } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { Portal } from '../Portal/Portal';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Tooltip.module.scss';
 
 type Placement = 'top' | 'bottom' | 'left' | 'right';

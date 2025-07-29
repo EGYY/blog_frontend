@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { STORAGE_THEME_KEY, Theme, ThemeContext } from './ThemeContext';
 
 interface UseThemeResult {

@@ -1,8 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import cls from './ArticleRecommendations.module.scss';
-import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
+import cls from './ArticleRecommendations.module.scss';
 
 interface ArticleRecommendationsProps {
     className?: string;

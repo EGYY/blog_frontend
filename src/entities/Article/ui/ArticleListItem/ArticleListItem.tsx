@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget } from 'react';
-import cls from './ArticleListItem.module.scss';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
 import { Article, ArticleView } from '../../model/types/article';
+
 import CalendarIcon from '@/shared/assets/calendar.svg';
-import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
-import { Tag } from '@/shared/ui/Tag/Tag';
-import { Card } from '@/shared/ui/Card/Card';
 import { RoutePath } from '@/shared/config/routes/routes';
-import { Button } from '@/shared/ui/Button/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
+import { Button } from '@/shared/ui/Button/Button';
+import { Card } from '@/shared/ui/Card/Card';
+import { Tag } from '@/shared/ui/Tag/Tag';
+
+import cls from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
     article: Article,

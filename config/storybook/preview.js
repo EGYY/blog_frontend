@@ -1,12 +1,13 @@
 import { addDecorator } from '@storybook/react';
-import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator';
-import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
-import { RouteDecorator } from '../../src/shared/config/storybook/RouteDecorator';
-import { I18nDecorator } from '../../src/shared/config/storybook/i18nDecorator';
-import { StoreDecorator } from '../../src/shared/config/storybook/StoreDecorator';
-import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator';
+
 import i18n from '../../src/shared/config/i18n/i18n';
-import { testUserData } from '../../src/entities/User/model/const/userConsts';
+import { RouteDecorator } from '../../src/shared/config/storybook/RouteDecorator';
+import { StoreDecorator } from '../../src/shared/config/storybook/StoreDecorator';
+import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator';
+import { SuspenseDecorator } from '../../src/shared/config/storybook/SuspenseDecorator';
+import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
+import { I18nDecorator } from '../../src/shared/config/storybook/i18nDecorator';
+import { testArticle, testProfile, testUser } from '../../src/shared/lib/tests/const/testContstants';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -59,7 +60,20 @@ addDecorator(ThemeDecorator);
 addDecorator(RouteDecorator);
 addDecorator(I18nDecorator);
 addDecorator(StoreDecorator({
-  login: { loading: false, error: null },
-  user: testUserData,
+  user: { userData: { user: testUser } },
+  profile_detail: { profile: testProfile },
+  article: { article: testArticle, recommendations: [testArticle], articles: [testArticle] },
 }));
 addDecorator(SuspenseDecorator);
+
+const originalSrcDescriptor = Object.getOwnPropertyDescriptor(Image.prototype, 'src');
+
+Object.defineProperty(Image.prototype, 'src', {
+  set(src) {
+    if (!src.includes('data:image')) {
+      this.setAttribute('src', 'https://placehold.co/150');
+    } else {
+      originalSrcDescriptor?.set?.call(this, src);
+    }
+  },
+});

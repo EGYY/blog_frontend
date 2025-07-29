@@ -1,7 +1,9 @@
 import {
   useState, useCallback, ReactNode, memo,
 } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Tabs.module.scss';
 
 export type Tab = {

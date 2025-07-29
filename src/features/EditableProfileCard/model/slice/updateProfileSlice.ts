@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { UpdateProfileSchema } from '../types/UpdateProfileSchema';
 

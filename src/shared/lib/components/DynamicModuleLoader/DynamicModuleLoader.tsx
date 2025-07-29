@@ -1,8 +1,9 @@
+import { Reducer } from '@reduxjs/toolkit';
 import {
   FC, memo, PropsWithChildren, useEffect,
 } from 'react';
 import { useDispatch, useStore } from 'react-redux';
-import { Reducer } from '@reduxjs/toolkit';
+
 import { ReduxStoreManager, StateSchema, StateSchemaKey } from '@/app/providers/StoreProvider';
 
 export type ReducersList = {

@@ -1,22 +1,25 @@
 import {
   memo, useCallback, useEffect, useMemo,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getUser } from '@/entities/User';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { profileDetailReducer } from '../model/slice/profileDetailSlice';
-import { getProfileDetail } from '../model/selectors/getProfileDetail/getProfileDetail';
-import { getLoadingProfileDetail } from '../model/selectors/getLoadingProfileDetail/getLoadingProfileDetail';
+
 import { getErrorProfileDetail } from '../model/selectors/getErrorProfileDetail/getErrorProfileDetail';
+import { getLoadingProfileDetail } from '../model/selectors/getLoadingProfileDetail/getLoadingProfileDetail';
+import { getProfileDetail } from '../model/selectors/getProfileDetail/getProfileDetail';
 import { getProfileById } from '../model/services/getProfileById';
-import { Button } from '@/shared/ui/Button/Button';
-import cls from './ProfileViewer.module.scss';
-import PenIcon from '@/shared/assets/square-pen.svg';
-import { Card } from '@/shared/ui/Card/Card';
+import { profileDetailReducer } from '../model/slice/profileDetailSlice';
+
 import { ProfileLastArticles, ProfileMainInfo, ProfileStatList } from '@/entities/Profile';
+import { getUser } from '@/entities/User';
+import PenIcon from '@/shared/assets/square-pen.svg';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
+import { Card } from '@/shared/ui/Card/Card';
+
+import cls from './ProfileViewer.module.scss';
 
 const initialReducers: ReducersList = {
   profile_detail: profileDetailReducer,
@@ -77,7 +80,7 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
         </div>
         <div className={cls.profileDetailPageContent}>
           <Card>
-            <ProfileMainInfo t={t} canSubscribe={canSubscribe} profile={profile} />
+            <ProfileMainInfo canSubscribe={canSubscribe} profile={profile} />
           </Card>
           <div>
             <ProfileStatList profile={profile} />

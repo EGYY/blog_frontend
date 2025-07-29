@@ -1,17 +1,24 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/shared/ui/Button/Button';
-import styles from './AccountMenu.module.scss';
+
 import { getUser, logout } from '@/entities/User';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import LogoutIcon from '@/shared/assets/logout.svg';
 import UserIcon from '@/shared/assets/user-circle.svg';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { RoutePath } from '@/shared/config/routes/routes';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
 
-export const AccountMenu = memo(() => {
+import styles from './AccountMenu.module.scss';
+
+interface AccountMenuProps {
+  className?: string;
+}
+
+export const AccountMenu = memo((props: AccountMenuProps) => {
+  const { className } = props;
   const { t } = useTranslation('navbar');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -26,7 +33,7 @@ export const AccountMenu = memo(() => {
   };
 
   return (
-    <div className={styles.accountMenu}>
+    <div className={classNames(styles.accountMenu, {}, [className])}>
       <div className={classNames(styles.accountMenuTrigger, {})}>
         <img src={`${__SERVER_URL__}${user?.avatar}`} alt={user?.name || user?.email} />
         <div className={styles.accountMenuTriggerInfo}>

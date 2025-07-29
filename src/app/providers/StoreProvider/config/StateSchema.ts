@@ -3,19 +3,20 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
+
+import { ArticleSchema } from '@/entities/Article';
 import { UserSchema } from '@/entities/User';
+import { AddCommentFormSchema } from '@/features/AddCommentForm';
+import { ArticlesFiltersSchema } from '@/features/ArticlesFilters';
 import { AuthSchema } from '@/features/AuthByEmail';
 import { UpdateProfileSchema } from '@/features/EditableProfileCard';
-import { ArticleSchema } from '@/entities/Article';
-import { ArticleCommentsBlockSchema } from '@/widgets/ArticleCommentsBlock';
-import { AddCommentFormSchema } from '@/features/AddCommentForm';
-import { ProfileDetailSchema } from '@/widgets/ProfileViewer';
 import { SaveScrollPostitionSchema } from '@/features/SaveScrollPostition';
-import { ArticlesFiltersSchema } from '@/features/ArticlesFilters';
 import { ToastSchema } from '@/features/Toast';
-import { ArticleCreateUpdateSchema } from '@/widgets/ArticleCreateUpdate';
 import { MainPageSchema } from '@/pages/MainPage';
 import { rtkApi } from '@/shared/config/api/rtkApi';
+import { ArticleCommentsBlockSchema } from '@/widgets/ArticleCommentsBlock';
+import { ArticleCreateUpdateSchema } from '@/widgets/ArticleCreateUpdate';
+import { ProfileDetailSchema } from '@/widgets/ProfileViewer';
 
 export interface StateSchema {
     user: UserSchema,

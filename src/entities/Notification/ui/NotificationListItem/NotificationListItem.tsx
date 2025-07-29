@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { RoutePath } from '@/shared/config/routes/routes';
+
 import { Notification } from '../../model/types/notification';
-import cls from './NotificationListItem.module.scss';
-import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
+
 import BellIcon from '@/shared/assets/bell.svg';
+import { RoutePath } from '@/shared/config/routes/routes';
+import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
+
+import cls from './NotificationListItem.module.scss';
 
 interface NotificationListItemProps {
   item: Notification;

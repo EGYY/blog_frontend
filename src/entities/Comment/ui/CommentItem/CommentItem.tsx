@@ -1,11 +1,12 @@
 import { FC, memo } from 'react';
 
+import { Comment } from '../../model/types/comment';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
 
 import cls from './CommentItem.module.scss';
-import { Comment } from '../../model/types/comment';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
 
 interface CommentItemProps {
     className?: string

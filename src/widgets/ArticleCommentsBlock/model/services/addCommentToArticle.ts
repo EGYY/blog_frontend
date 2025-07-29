@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkExtraArg } from '@/app/providers/StoreProvider';
+
 import { AddCommentFormServerResponse } from '../types/articleCommentsBlock';
+
 import { getArticleComments } from './getArticleComments';
+
+import { ThunkExtraArg } from '@/app/providers/StoreProvider';
 
 export const addCommentToArticle = createAsyncThunk<
     AddCommentFormServerResponse,

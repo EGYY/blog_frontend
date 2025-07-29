@@ -2,14 +2,16 @@ import {
   memo, useCallback,
 } from 'react';
 import { useSelector } from 'react-redux';
+
+import { useArticlesQuery } from '../api/mainPageArticlesApi';
+import { getMainPageSelectedCategory } from '../model/selectors/getMainPageSelectedCategory/getMainPageSelectedCategory';
+import { mainPageActions, mainPageReducer } from '../model/slice/mainPageSlice';
+
 import { Category } from '@/entities/Article';
 import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ArticleListByCategory } from '@/widgets/ArticleListByCategory';
-import { useArticlesQuery } from '../api/mainPageArticlesApi';
-import { getMainPageSelectedCategory } from '../model/selectors/getMainPageSelectedCategory/getMainPageSelectedCategory';
-import { mainPageActions, mainPageReducer } from '../model/slice/mainPageSlice';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {

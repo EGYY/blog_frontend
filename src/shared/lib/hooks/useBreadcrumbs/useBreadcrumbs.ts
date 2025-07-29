@@ -1,5 +1,5 @@
-import { useLocation, matchPath } from 'react-router-dom';
 import { useMemo } from 'react';
+import { useLocation, matchPath } from 'react-router-dom';
 
 export type BreadcrumbItem = {
   label: string;

@@ -1,14 +1,17 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { memo } from 'react';
+
+import { Profile } from '../../model/types/profile';
+
+import BookIcon from '@/shared/assets/book-open.svg';
+import { RoutePath } from '@/shared/config/routes/routes';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
 import { Card } from '@/shared/ui/Card/Card';
-import { Profile } from '../../model/types/profile';
-import cls from './ProfileLastArticles.module.scss';
-import BookIcon from '@/shared/assets/book-open.svg';
-import { RoutePath } from '@/shared/config/routes/routes';
 import { Tag } from '@/shared/ui/Tag/Tag';
+
+import cls from './ProfileLastArticles.module.scss';
 
 interface ProfileLastArticlesProps {
     className?: string

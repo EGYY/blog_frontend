@@ -3,10 +3,13 @@ import React, {
   useState, useRef, useEffect, memo, useMemo, useCallback,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import ChevronDownIcon from '../../assets/chevron-down.svg';
+
 import CheckIcon from '../../assets/check.svg';
-import styles from './Select.module.scss';
+import ChevronDownIcon from '../../assets/chevron-down.svg';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+
+import styles from './Select.module.scss';
 
 interface Option {
   label: string

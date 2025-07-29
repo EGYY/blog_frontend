@@ -1,11 +1,14 @@
 import React, { memo } from 'react';
-import X from '@/shared/assets/X.svg';
-import styles from './Drawer.module.scss';
+
 import { Button } from '../Button/Button';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
+
+import X from '@/shared/assets/x.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
+
+import styles from './Drawer.module.scss';
 
 interface DrawerProps {
     isOpen: boolean;

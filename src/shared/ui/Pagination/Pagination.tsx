@@ -1,7 +1,10 @@
 /* eslint-disable i18next/no-literal-string */
 import React, { useMemo, useCallback } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { Button } from '../Button/Button';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
 import styles from './Pagination.module.scss';
 
 const PaginationButton = React.memo(

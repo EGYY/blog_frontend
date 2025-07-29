@@ -25,9 +25,33 @@ module.exports = {
     'i18next',
     'react-hooks',
     'egyy-plugin',
+    'unused-imports',
+    'import',
   ],
   rules: {
-    'unused-imports/no-unused-imports': 'off',
+    'import/order': [
+      'error',
+      {
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: './**.module.*',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: false,
+        },
+      },
+    ],
+    'unused-imports/no-unused-imports': 'error',
     'react/jsx-filename-extension': [
       2,
       {

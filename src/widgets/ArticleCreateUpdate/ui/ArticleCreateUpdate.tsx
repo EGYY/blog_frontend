@@ -5,20 +5,7 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { ArticleType } from '@/entities/Article';
-import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
-import { HtmlEditor } from '@/features/HtmlEditor';
-import CalendarIcon from '@/shared/assets/calendar.svg';
-import EyeIcon from '@/shared/assets/eye.svg';
-import HeartIcon from '@/shared/assets/heart.svg';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button } from '@/shared/ui/Button/Button';
-import { ImageUpload } from '@/shared/ui/Image/ImageUpload';
-import { Input } from '@/shared/ui/Input/Input';
-import { Select } from '@/shared/ui/Select/Select';
-import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
+
 import { getArticleCategory } from '../model/selectors/getArticleCategory/getArticleCategory';
 import { getArticleContent } from '../model/selectors/getArticleContent/getArticleContent';
 import { getArticleError } from '../model/selectors/getArticleError/getArticleError';
@@ -31,8 +18,24 @@ import { getArticleTitle } from '../model/selectors/getArticleTitle/getArticleTi
 import { createArticle } from '../model/services/createArticle/createArticle';
 import { updateArticle } from '../model/services/updateArticle/updateArticle';
 import { articleCreateUpdateActions } from '../model/slice/articleCreateUpdateSlice';
-import cls from './ArticleCreateUpdate.module.scss';
+
+import { ArticleType } from '@/entities/Article';
+import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
 import { useArticleTagsQuery } from '@/entities/ArticleTag';
+import { HtmlEditor } from '@/features/HtmlEditor';
+import CalendarIcon from '@/shared/assets/calendar.svg';
+import EyeIcon from '@/shared/assets/eye.svg';
+import HeartIcon from '@/shared/assets/heart.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
+import { ImageUpload } from '@/shared/ui/Image/ImageUpload';
+import { Input } from '@/shared/ui/Input/Input';
+import { Select } from '@/shared/ui/Select/Select';
+import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
+
+import cls from './ArticleCreateUpdate.module.scss';
 
 interface ArticleCreateUpdateProps {
   className?: string
@@ -182,7 +185,7 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
       <b>{t('content')}</b>
       <HtmlEditor html={html} onChangeContent={onChangeHtml} />
       <Button type="button" onClick={submit} loading={loading}>
-        {type === 'create' ? t('create_article') : t('update_article')}
+        {type === 'create' && !article ? t('create_article') : t('update_article')}
       </Button>
     </article>
   );

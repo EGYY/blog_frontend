@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { getArticleData } from '../services/getArticleData';
 import { getArticleRecommedations } from '../services/getArticleRecommedations';
 import { getArticlesList } from '../services/getArticlesList';

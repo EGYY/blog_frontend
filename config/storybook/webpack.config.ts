@@ -1,7 +1,9 @@
-import webpack, { RuleSetRule } from 'webpack';
 import path from 'path';
-import { BuildPaths } from '../build/types/config.types';
+
+import webpack from 'webpack';
+
 import { cssLoader } from '../build/loaders/cssLoader';
+import { BuildPaths } from '../build/types/config.types';
 
 export default ({ config }: {config: webpack.Configuration}) => {
   const paths: BuildPaths = {
@@ -32,7 +34,7 @@ export default ({ config }: {config: webpack.Configuration}) => {
   config!.module!.rules.push(cssLoader(true));
   config.plugins?.push(new webpack.DefinePlugin({
     __IS_DEV__: JSON.stringify(true),
-    __SERVER_URL__: JSON.stringify(''),
+    __SERVER_URL__: JSON.stringify('https://test.ru'),
   }));
 
   return config;

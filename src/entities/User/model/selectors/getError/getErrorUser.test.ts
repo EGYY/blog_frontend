@@ -1,5 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { getErrorUser } from './getErrorUser';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 describe('getError', () => {
   test('should return err value', () => {

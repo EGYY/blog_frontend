@@ -1,5 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { getLoadingUser } from './getLoadingUser';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 describe('getLoading', () => {
   test('should return loading value', () => {

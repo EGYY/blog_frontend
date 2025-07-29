@@ -1,24 +1,27 @@
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { memo, useCallback, useEffect } from 'react';
-import { Tag } from '@/shared/ui/Tag/Tag';
-import cls from './ArticleCommentsBlock.module.scss';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { AddCommentForm, addCommentFormActions } from '@/features/AddCommentForm';
-import { CommentList } from '@/entities/Comment';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleCommentsBlockActions, articleCommentsBlockReducer } from '../model/slice/articleCommentsBlockSlice';
-import { getTotalArticleComments } from '../model/selectors/getTotalComments/getTotalArticleComments';
-import { getArticleCommentsLoading } from '../model/selectors/getArticleLoading/getArticleCommentsLoading';
+
 import { getArticleComments as getArticleCommentsSelector } from '../model/selectors/getArticleComments/getArticleComments';
-import { getArticleFormLoading } from '../model/selectors/getArticleFormLoading/getArticleFormLoading';
+import { getArticleCommentsPage } from '../model/selectors/getArticleCommentsPage/getArticleCommentsPage';
+import { getArticleCommentsTotalPages } from '../model/selectors/getArticleCommentsTotalPages/getArticleCommentsTotalPages';
 import { getArticleFormError } from '../model/selectors/getArticleFormError/getArticleFormError';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getArticleFormLoading } from '../model/selectors/getArticleFormLoading/getArticleFormLoading';
+import { getArticleCommentsLoading } from '../model/selectors/getArticleLoading/getArticleCommentsLoading';
+import { getTotalArticleComments } from '../model/selectors/getTotalComments/getTotalArticleComments';
 import { addCommentToArticle } from '../model/services/addCommentToArticle';
 import { getArticleComments } from '../model/services/getArticleComments';
+import { articleCommentsBlockActions, articleCommentsBlockReducer } from '../model/slice/articleCommentsBlockSlice';
+
+import { CommentList } from '@/entities/Comment';
+import { AddCommentForm, addCommentFormActions } from '@/features/AddCommentForm';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import Pagination from '@/shared/ui/Pagination/Pagination';
-import { getArticleCommentsTotalPages } from '../model/selectors/getArticleCommentsTotalPages/getArticleCommentsTotalPages';
-import { getArticleCommentsPage } from '../model/selectors/getArticleCommentsPage/getArticleCommentsPage';
+import { Tag } from '@/shared/ui/Tag/Tag';
+
+import cls from './ArticleCommentsBlock.module.scss';
 
 const initialReducers: ReducersList = {
   article_comments_block: articleCommentsBlockReducer,

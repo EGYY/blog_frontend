@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
 import { ArticleType } from '@/entities/Article';
 import { RoutePath } from '@/shared/config/routes/routes';
-import styles from './ArticleListByCategory.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
 import { Tag } from '@/shared/ui/Tag/Tag';
+
+import styles from './ArticleListByCategory.module.scss';
 
 interface ArticleListItemByCategoryProps {
     article: ArticleType

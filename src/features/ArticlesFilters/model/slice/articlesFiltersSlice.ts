@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { ArticlesFiltersSchema } from '../types/articlesFilters';
 
 const initialState: ArticlesFiltersSchema = {

@@ -1,5 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { getLoadingAuthByEmail } from './getLoadingAuthByEmail';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 describe('AuthByEmail selector', () => {
   test('get loading', () => {

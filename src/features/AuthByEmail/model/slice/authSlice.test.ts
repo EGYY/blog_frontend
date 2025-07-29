@@ -1,6 +1,7 @@
 import { loginByEmail } from '../services/loginByEmail/loginByEmail';
-import { authActions, authReducer } from './authSlice';
 import { AuthSchema } from '../types/AuthSchema';
+
+import { authActions, authReducer } from './authSlice';
 
 describe('loginSlice', () => {
   const initialState: AuthSchema = {

@@ -5,10 +5,14 @@ import {
   useRef,
   useCallback,
 } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import styles from './Image.module.scss';
+
 import UploadIcon from '../../assets/upload.svg';
+
 import { Image } from './Image';
+
+import { classNames } from '@/shared/lib/classNames/classNames';
+
+import styles from './Image.module.scss';
 
 interface ImageUploadProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string;

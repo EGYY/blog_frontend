@@ -1,7 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { StateSchema, ThunkExtraArg } from '@/app/providers/StoreProvider';
-import { CommentsServerResponse } from '../types/articleCommentsBlock';
+
 import { getArticleCommentsPage } from '../selectors/getArticleCommentsPage/getArticleCommentsPage';
+import { CommentsServerResponse } from '../types/articleCommentsBlock';
+
+import { StateSchema, ThunkExtraArg } from '@/app/providers/StoreProvider';
 
 export const getArticleComments = createAsyncThunk<
   CommentsServerResponse, string, { rejectValue: string, extra: ThunkExtraArg }>(

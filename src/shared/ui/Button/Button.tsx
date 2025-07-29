@@ -6,9 +6,11 @@ import {
   useMemo,
 } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
+
 import SpinIcon from '@/shared/assets/spin.svg';
-import cls from './Button.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
+
+import cls from './Button.module.scss';
 
 type ThemeButton = 'default' | 'secondary' | 'ghost' | 'ghostIcon' | 'outline'
 

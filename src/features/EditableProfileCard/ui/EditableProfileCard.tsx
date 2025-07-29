@@ -1,15 +1,18 @@
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { updateProfileData } from '../model/services/updateProfileData/updateProfileData';
+
 import { User } from '@/entities/User';
-import styles from './EditableProfileCard.module.scss';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { AvatarUpload } from '@/shared/ui/Avatar/AvatarUpload';
+import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
 import { Input } from '@/shared/ui/Input/Input';
-import { Button } from '@/shared/ui/Button/Button';
-import { AvatarUpload } from '@/shared/ui/Avatar/AvatarUpload';
 import { Textarea } from '@/shared/ui/Textarea/Textarea';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
+
+import styles from './EditableProfileCard.module.scss';
 
 interface EditableProfileCardProps {
     user?: User,

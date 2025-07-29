@@ -1,5 +1,3 @@
-import { User } from '@/entities/User';
-
 export interface Category {
     id: string
     name: string
@@ -8,7 +6,7 @@ export interface Category {
 export interface Tag {
     id: string
     name: string
-    createdById: any
+    createdById?: any
 }
 
 export interface Article {
@@ -24,7 +22,7 @@ export interface Article {
     viewsCount: number
     authorId: string
     categoryId: string
-    author: User
+    author: any
     comments: any[]
     likes: any[]
     category: Category

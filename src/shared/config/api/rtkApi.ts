@@ -1,8 +1,10 @@
 import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
 import type { AxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
-import { errorCatch } from '@/shared/lib/api/helper';
+
 import { axiosClassic, axiosWithAuth, getNewTokens } from './api';
+
+import { errorCatch } from '@/shared/lib/api/helper';
 
 type AxiosBaseQueryArgs = {
   url: string;

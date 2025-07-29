@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import { getArticleData, getArticle, articleReducer } from '@/entities/Article';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ArticleCreateUpdate, articleCreateUpdateReducer } from '@/widgets/ArticleCreateUpdate';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {

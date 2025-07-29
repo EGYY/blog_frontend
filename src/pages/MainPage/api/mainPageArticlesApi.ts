@@ -1,4 +1,4 @@
-import { ArticlesServerResponse, ArticleType } from '@/entities/Article';
+import { ArticlesServerResponse } from '@/entities/Article';
 import { rtkApi } from '@/shared/config/api/rtkApi';
 
 const articlesApi = rtkApi.injectEndpoints({

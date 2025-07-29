@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import { PageLoader } from '../PageLoader';
 
 export default {

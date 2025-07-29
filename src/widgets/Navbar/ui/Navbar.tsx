@@ -3,20 +3,22 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Navbar.module.scss';
-import { Button } from '@/shared/ui/Button/Button';
-import UserCircleIcon from '@/shared/assets/user-circle.svg';
-import { LoginModal } from '@/features/AuthByEmail';
+
+import { NotificationList } from '@/entities/Notification';
 import { getLoadingUser, getUser } from '@/entities/User';
+import { AccountMenu, AccountMenuTrigger } from '@/features/AccountMenu';
+import { LoginModal } from '@/features/AuthByEmail';
+import BellIcon from '@/shared/assets/bell.svg';
+import UserCircleIcon from '@/shared/assets/user-circle.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useBreadcrumbs } from '@/shared/lib/hooks/useBreadcrumbs/useBreadcrumbs';
+import Breadcrumb from '@/shared/ui/Breadcrumb/Breadcrumb';
+import { Button } from '@/shared/ui/Button/Button';
 import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
-import Breadcrumb from '@/shared/ui/Breadcrumb/Breadcrumb';
-import { useBreadcrumbs } from '@/shared/lib/hooks/useBreadcrumbs/useBreadcrumbs';
-import { NotifcationList } from '@/entities/Notification';
-import BellIcon from '@/shared/assets/bell.svg';
-import { AccountMenu, AccountMenuTrigger } from '@/features/AccountMenu';
+
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
   className?: string
@@ -68,7 +70,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
               </Tooltip>
         )}
           >
-            <NotifcationList />
+            <NotificationList />
           </Dropdown>
           <Dropdown trigger={<AccountMenuTrigger />}>
             <AccountMenu />

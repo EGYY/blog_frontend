@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkExtraArg } from '@/app/providers/StoreProvider';
+
 import { userActions } from '../slice/userSlice';
+
+import { ThunkExtraArg } from '@/app/providers/StoreProvider';
 
 export const logout = createAsyncThunk<boolean, void, {rejectValue: string, extra: ThunkExtraArg}>(
   'user/logout',

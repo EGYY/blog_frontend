@@ -1,16 +1,19 @@
-import { useTranslation } from 'react-i18next';
 import {
   FC, memo, useCallback, useEffect, useRef,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import cls from './LoginForm.module.scss';
-import { Input } from '@/shared/ui/Input/Input';
-import { Button } from '@/shared/ui/Button/Button';
+
 import { getErrorAuthByEmail } from '../../model/selectors/getErrorAuthByEmail/getErrorAuthByEmail';
 import { getLoadingAuthByEmail } from '../../model/selectors/getLoadingAuthByEmail/getLoadingAuthByEmail';
 import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { authActions } from '../../model/slice/authSlice';
+
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/Input/Input';
+
+import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
   openModal?: boolean,

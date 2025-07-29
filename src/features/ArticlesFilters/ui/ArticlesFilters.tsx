@@ -7,24 +7,33 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Input } from '@/shared/ui/Input/Input';
-import { Select } from '@/shared/ui/Select/Select';
-import { getArticleFilterSearchText } from '../../model/selectors/getArticleFilterSearchText/getArticleFilterSearchText';
+
+import { getArticleFilterSearchText } from '../model/selectors/getArticleFilterSearchText/getArticleFilterSearchText';
 import {
   getArticleFilterSelectedCategories,
-} from '../../model/selectors/getArticleFilterSelectedCategories/getArticleFilterSelectedCategories';
+} from '../model/selectors/getArticleFilterSelectedCategories/getArticleFilterSelectedCategories';
 import {
   getArticleFilterSelectedTags,
-} from '../../model/selectors/getArticleFilterSelectedTags/getArticleFilterSelectedTags';
-import { getArticleFilterSort } from '../../model/selectors/getArticleFilterSort/getArticleFilterSort';
-import { articlesFiltersActions } from '../../model/slice/articlesFiltersSlice';
-import cls from './ArticleFilters.module.scss';
-import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+} from '../model/selectors/getArticleFilterSelectedTags/getArticleFilterSelectedTags';
+import { getArticleFilterSort } from '../model/selectors/getArticleFilterSort/getArticleFilterSort';
+import { articlesFiltersActions } from '../model/slice/articlesFiltersSlice';
+
 import { useArticleCategoriesQuery } from '@/entities/ArticleCategory';
 import { useArticleTagsQuery } from '@/entities/ArticleTag';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { Input } from '@/shared/ui/Input/Input';
+import { Select } from '@/shared/ui/Select/Select';
 
-export const ArticlesFilters = memo(() => {
+import cls from './ArticleFilters.module.scss';
+
+interface ArticlesFiltersProps {
+  className?: string;
+}
+
+export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
+  const { className } = props;
   const dispatch = useAppDispatch();
   const { t } = useTranslation('article');
   const { data: categories } = useArticleCategoriesQuery();
@@ -119,7 +128,7 @@ export const ArticlesFilters = memo(() => {
   }, [dispatch]);
 
   return (
-    <div className={cls.articleFilters}>
+    <div className={classNames(cls.articleFilters, {}, [className])}>
       <Input
         value={searchText}
         onChange={onChangeSearchText}

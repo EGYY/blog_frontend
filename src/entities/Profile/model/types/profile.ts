@@ -6,6 +6,8 @@ export interface Profile extends User {
         articles: number
         comments: number
         likes: number
+        followers: number
+        following: number
     },
     articles: ArticleType[]
 }

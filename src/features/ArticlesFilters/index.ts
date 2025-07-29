@@ -6,5 +6,5 @@ export {
 
 export { articlesFiltersReducer } from './model/slice/articlesFiltersSlice';
 export { articlesFiltersActions } from './model/slice/articlesFiltersSlice';
-export { ArticlesFilters } from './ui/ArticlesFilters/ArticlesFilters';
+export { ArticlesFilters } from './ui/ArticlesFilters';
 export type { ArticlesFiltersSchema } from './model/types/articlesFilters';

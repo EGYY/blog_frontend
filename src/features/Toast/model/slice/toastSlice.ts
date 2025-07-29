@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { Toast, ToastSchema } from '../types/toast';
 
 const initialState: ToastSchema = {

@@ -1,21 +1,21 @@
 import { FC, memo } from 'react';
-
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
+import { Article as ArticleType } from '../../../model/types/article';
+import { ArticleError } from '../ArticleError/ArticleError';
+import { ArticleLoading } from '../ArticleLoading/ArticleLoading';
+
+import { ProfileMainInfo } from '@/entities/Profile';
+import CalendarIcon from '@/shared/assets/calendar.svg';
+import EyeIcon from '@/shared/assets/eye.svg';
+import HeartIcon from '@/shared/assets/heart.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { HoverCard } from '@/shared/ui/HoverCard/HoverCard';
+import { Tag } from '@/shared/ui/Tag/Tag';
 
 import cls from './Article.module.scss';
-import { Article as ArticleType } from '../../../model/types/article';
-import { ArticleLoading } from '../ArticleLoading/ArticleLoading';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
-import CalendarIcon from '@/shared/assets/calendar.svg';
-import HeartIcon from '@/shared/assets/heart.svg';
-import EyeIcon from '@/shared/assets/eye.svg';
-import { Tag } from '@/shared/ui/Tag/Tag';
-import { ArticleError } from '../ArticleError/ArticleError';
-import { HoverCard } from '@/shared/ui/HoverCard/HoverCard';
-import { ProfileMainInfo } from '@/entities/Profile';
 
 interface ArticleProps {
   className?: string
@@ -27,7 +27,6 @@ interface ArticleProps {
 export const Article: FC<ArticleProps> = memo(({
   className, article, loadingArticle, errorArticle,
 }) => {
-  const { t } = useTranslation('profile');
   if (loadingArticle) {
     return <ArticleLoading />;
   }
@@ -45,7 +44,7 @@ export const Article: FC<ArticleProps> = memo(({
             <span>{article?.author.name || article?.author.email}</span>
           </Link>
       )}
-        content={<ProfileMainInfo t={t} profile={article?.author} />}
+        content={<ProfileMainInfo profile={article?.author} />}
         side="bottom"
       />
       <div className={cls.articleContent}>

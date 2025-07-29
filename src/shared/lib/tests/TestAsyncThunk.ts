@@ -1,5 +1,6 @@
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
+
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { axiosClassic } from '@/shared/config/api/api';
 

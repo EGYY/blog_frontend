@@ -1,11 +1,14 @@
 import {
   FC, memo, useEffect, useState,
 } from 'react';
-import cls from './Toast.module.scss';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Toast } from '../model/types/toast';
+
 import { toastActions } from '../model/slice/toastSlice';
+import { Toast } from '../model/types/toast';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import cls from './Toast.module.scss';
 
 interface ToastItemProps {
   toast: Toast;

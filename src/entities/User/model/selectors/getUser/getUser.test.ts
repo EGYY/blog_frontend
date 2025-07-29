@@ -1,14 +1,15 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { getUser } from './getUser';
-import { testUserData } from '../../const/userConsts';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { testUserAfterAuth } from '@/shared/lib/tests/const/testContstants';
 
 describe('getUser', () => {
   test('should return user value', () => {
     const state: DeepPartial<StateSchema> = {
       user: {
-        userData: testUserData,
+        userData: testUserAfterAuth,
       },
     };
-    expect(getUser(state as StateSchema)).toEqual(testUserData.user);
+    expect(getUser(state as StateSchema)).toEqual(testUserAfterAuth.user);
   });
 });

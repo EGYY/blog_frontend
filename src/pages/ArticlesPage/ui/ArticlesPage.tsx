@@ -3,7 +3,7 @@ import {
 } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
 import {
   articleActions,
   ArticleList,
@@ -17,13 +17,14 @@ import {
   getArticlesView,
   getInitedArticles,
 } from '@/entities/Article';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { ArticlesListHeader } from '@/widgets/ArticlesListHeader';
 import {
   articlesFiltersActions, articlesFiltersReducer, getArticleFilterCurrentFilters, getArticleFilterFiltersReady,
 } from '@/features/ArticlesFilters';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { isEmptyObject } from '@/shared/lib/helpers/isEmptyObject/isEmptyObject';
 import { objectToSearchParams } from '@/shared/lib/helpers/objectToSearchParams/objectToSearchParams';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { ArticlesListHeader } from '@/widgets/ArticlesListHeader';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {

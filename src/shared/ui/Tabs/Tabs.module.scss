@@ -25,7 +25,7 @@
   transition: all 0.2s ease;
   cursor: pointer;
 
-  &:hover {
+  &:hover:not(.active) {
     background-color: var(--border-color);
   }
 }

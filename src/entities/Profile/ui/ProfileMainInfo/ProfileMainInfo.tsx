@@ -1,25 +1,27 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { User } from '@/entities/User';
+import BellIcon from '@/shared/assets/bell-ring.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { Button } from '@/shared/ui/Button/Button';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
-import BellIcon from '@/shared/assets/bell-ring.svg';
+
 import cls from './ProfileMainInfo.module.scss';
-import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { User } from '@/entities/User';
 
 interface ProfileMainInfoProps {
     canSubscribe?: boolean
     className?: string
     profile: User | undefined
-    t: any
 }
 
 export const ProfileMainInfo = memo((props: ProfileMainInfoProps) => {
   const {
-    canSubscribe = false, profile, className, t,
+    canSubscribe = false, profile, className,
   } = props;
+  const { t } = useTranslation('profile');
 
   const displayRole = useMemo(() => {
     if (profile?.role) {

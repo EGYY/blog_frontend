@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Category } from '@/entities/Article';
+
 import { MainPageSchema } from '../types/mainPage';
+
+import { Category } from '@/entities/Article';
 
 const initialState: MainPageSchema = {
   selectedCategory: undefined,

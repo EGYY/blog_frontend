@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import {
   getErrorUser,
   getLoadingUser,
   getProfileData, getUser,
 } from '@/entities/User';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
   EditableProfileCard, getErrorUpdateProfile, getLoadingUpdateProfile, updateProfileReducer,
 } from '@/features/EditableProfileCard';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {

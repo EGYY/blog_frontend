@@ -2,13 +2,16 @@ import {
   FC, memo, Suspense, useMemo,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { Modal } from '@/shared/ui/Modal/Modal';
-import { LoginFormAsync } from '../LoginForm/LoginForm.async';
-import { LoadingModal } from './LoadingModal';
+
 import { getAuthTypeForm } from '../../model/selectors/getAuthTypeForm/getAuthTypeForm';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { authReducer } from '../../model/slice/authSlice';
+import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 import { RegistrationFormAsync } from '../RegistrationForm/RegistrationForm.async';
+
+import { LoadingModal } from './LoadingModal';
+
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Modal } from '@/shared/ui/Modal/Modal';
 
 const initialReducers: ReducersList = {
   auth: authReducer,

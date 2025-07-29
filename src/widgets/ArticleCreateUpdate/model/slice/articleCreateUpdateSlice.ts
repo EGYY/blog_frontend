@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ArticleType } from '@/entities/Article';
-import { ArticleCreateUpdateSchema } from '../types/articleCreateUpdateTypes';
+
 import { createArticle } from '../services/createArticle/createArticle';
 import { updateArticle } from '../services/updateArticle/updateArticle';
+import { ArticleCreateUpdateSchema } from '../types/articleCreateUpdateTypes';
+
+import { ArticleType } from '@/entities/Article';
 
 const initialState: ArticleCreateUpdateSchema = {
   loading: false,

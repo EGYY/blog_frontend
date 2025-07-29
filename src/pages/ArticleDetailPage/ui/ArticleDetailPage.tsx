@@ -1,6 +1,7 @@
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import {
   Article,
   ArticleRecommendations,
@@ -12,8 +13,8 @@ import {
   getArticleRecommedations,
   getArticleRecommendationsSelector,
 } from '@/entities/Article';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ArticleCommentsBlock } from '@/widgets/ArticleCommentsBlock';
 import { PageWrapper } from '@/widgets/PageWrapper';
 

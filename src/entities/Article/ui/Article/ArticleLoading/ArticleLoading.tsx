@@ -1,5 +1,7 @@
 import { memo } from 'react';
+
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+
 import styles from './ArticleLoading.module.scss';
 
 export const ArticleLoading = memo(() => {

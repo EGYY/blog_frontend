@@ -1,7 +1,10 @@
 import Cookies from 'js-cookie';
-import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk';
+
 import { loginByEmail } from './loginByEmail';
-import { testUserData, userActions } from '@/entities/User';
+
+import { userActions } from '@/entities/User';
+import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk';
+import { testUserAfterAuth } from '@/shared/lib/tests/const/testContstants';
 
 jest.mock('js-cookie');
 
@@ -13,17 +16,17 @@ describe('loginByEmail.test.ts', () => {
   });
   test('success login', async () => {
     const thunk = new TestAsyncThunk(loginByEmail);
-    thunk.api.post.mockResolvedValue({ data: testUserData });
+    thunk.api.post.mockResolvedValue({ data: testUserAfterAuth });
     const credentials = { email: 'test@example.ru', password: '123456qs' };
     const result = await thunk.callThunk(credentials);
 
     expect(thunk.api.post).toHaveBeenCalledWith('/auth/login', credentials);
-    expect(CookiesTest.set).toHaveBeenCalledWith('accessToken', testUserData.accessToken, {
+    expect(CookiesTest.set).toHaveBeenCalledWith('accessToken', testUserAfterAuth.accessToken, {
       domain: 'localhost',
       sameSite: 'strict',
       expires: 1,
     });
-    expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(testUserData));
+    expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(testUserAfterAuth));
     expect(result.meta.requestStatus).toBe('fulfilled');
   });
 

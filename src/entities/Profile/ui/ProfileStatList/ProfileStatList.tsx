@@ -1,14 +1,17 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ProfileStatList.module.scss';
-import { Card } from '@/shared/ui/Card/Card';
+
+import { Profile } from '../../model/types/profile';
+
 import BookIcon from '@/shared/assets/book-open.svg';
-import MessageIcon from '@/shared/assets/message-square.svg';
 import HeartIcon from '@/shared/assets/heart.svg';
 import InfoIcon from '@/shared/assets/info.svg';
+import MessageIcon from '@/shared/assets/message-square.svg';
 import UserIcon from '@/shared/assets/user-circle.svg';
-import { Profile } from '../../model/types/profile';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Card } from '@/shared/ui/Card/Card';
+
+import cls from './ProfileStatList.module.scss';
 
 interface ProfileStatListProps {
   className?: string

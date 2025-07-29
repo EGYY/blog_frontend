@@ -1,7 +1,9 @@
-import { userReducer, userActions } from './userSlice';
 import { getProfileData } from '../services/getProfileData';
 import { UserSchema } from '../types/user';
-import { testUserData } from '../const/userConsts';
+
+import { userReducer, userActions } from './userSlice';
+
+import { testUserAfterAuth } from '@/shared/lib/tests/const/testContstants';
 
 describe('userSlice', () => {
   const initialState: UserSchema = {
@@ -12,13 +14,13 @@ describe('userSlice', () => {
   };
 
   it('setAuthData', () => {
-    const nextState = userReducer(initialState, userActions.setAuthData(testUserData));
-    expect(nextState.userData).toEqual(testUserData);
+    const nextState = userReducer(initialState, userActions.setAuthData(testUserAfterAuth));
+    expect(nextState.userData).toEqual(testUserAfterAuth);
   });
 
   it('logout', () => {
     const stateWithUser: UserSchema = {
-      userData: testUserData,
+      userData: testUserAfterAuth,
       loading: false,
       error: undefined,
       inited: true,
@@ -40,12 +42,12 @@ describe('userSlice', () => {
   it('getProfileData.fulfilled', () => {
     const action = {
       type: getProfileData.fulfilled.type,
-      payload: testUserData.user,
+      payload: testUserAfterAuth.user,
     };
 
     const nextState = userReducer(initialState, action);
     expect(nextState).toEqual({
-      userData: { user: testUserData.user },
+      userData: { user: testUserAfterAuth.user },
       loading: false,
       error: undefined,
       inited: true,
@@ -54,7 +56,7 @@ describe('userSlice', () => {
 
   it('getProfileData.rejected', () => {
     const stateWithUser: UserSchema = {
-      userData: testUserData,
+      userData: testUserAfterAuth,
       loading: false,
       inited: true,
     };

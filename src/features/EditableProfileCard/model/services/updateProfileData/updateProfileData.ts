@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User, userActions } from '@/entities/User';
+
 import { ThunkExtraArg } from '@/app/providers/StoreProvider';
+import { User, userActions } from '@/entities/User';
 
 type UpdateProfileDataBody = FormData
 

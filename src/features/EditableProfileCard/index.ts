@@ -5,5 +5,5 @@ export { updateProfileData } from './model/services/updateProfileData/updateProf
 
 export { updateProfileActions, updateProfileReducer } from './model/slice/updateProfileSlice';
 
-export { EditableProfileCard } from './ui/EditableProfileCard/EditableProfileCard';
+export { EditableProfileCard } from './ui/EditableProfileCard';
 export type { UpdateProfileSchema } from './model/types/UpdateProfileSchema';

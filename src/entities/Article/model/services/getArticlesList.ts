@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { StateSchema, ThunkExtraArg } from '@/app/providers/StoreProvider';
+
 import { ArticlesServerResponse } from '../types/article';
+
+import { StateSchema, ThunkExtraArg } from '@/app/providers/StoreProvider';
 
 export interface GetArticlesListQueryParams {
   replace?: boolean,

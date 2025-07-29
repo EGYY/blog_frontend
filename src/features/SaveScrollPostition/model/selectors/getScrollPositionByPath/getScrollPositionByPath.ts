@@ -1,6 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { StateSchema } from '@/app/providers/StoreProvider';
+
 import { getScrollPositions } from '../getScrollPositions/getScrollPositions';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getScrollPositionByPath = createSelector(
   getScrollPositions,
