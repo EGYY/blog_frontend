@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { ToastContainer } from '@/features/Toast';
+import { ToastContainer } from '@/shared/lib/components/Toast';
 
 export const ToastProvider = ({ children }: PropsWithChildren) => {
   return (

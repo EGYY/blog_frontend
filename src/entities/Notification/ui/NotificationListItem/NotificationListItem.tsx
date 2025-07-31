@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Notification } from '../../model/types/notification';
 
 import BellIcon from '@/shared/assets/bell.svg';
-import { RoutePath } from '@/shared/config/routes/routes';
+import { getRouteArticleDetail } from '@/shared/config/routes/routes';
 import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
 
 import cls from './NotificationListItem.module.scss';
@@ -16,7 +16,7 @@ export const NotificationListItem = (props: NotificationListItemProps) => {
   const { item } = props;
   return (
     <Link
-      to={`${RoutePath.article_detail}${item.article.id}`}
+      to={getRouteArticleDetail(item.article.id)}
       target="_blank"
       className={cls.notificationItem}
     >

@@ -6,6 +6,24 @@
   gap: 20px;
 }
 
+.articleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  .articleHeaderActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    button,
+    a {
+      padding-block: 0.2rem;
+    }
+  }
+}
+
 .articleAuthor {
   display: flex;
   align-items: center;
@@ -81,6 +99,10 @@
 
 .articleHtml {
   color: var(--primary-color);
+
+  b {
+    display: contents;
+  }
 
   & > * {
     display: flex;

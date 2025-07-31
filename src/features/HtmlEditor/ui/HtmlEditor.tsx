@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import BoldIcon from '@/shared/assets/bold.svg';
+import CodeIcon from '@/shared/assets/code.svg';
 import H1Icon from '@/shared/assets/heading-1.svg';
 import H2Icon from '@/shared/assets/heading-2.svg';
 import H3Icon from '@/shared/assets/heading-3.svg';
@@ -20,10 +21,10 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import styles from './HtmlEditor.module.scss';
 
 interface HtmlEditorProps {
-    className?: string;
-    html?: string;
-    onChangeContent?: (html: string) => void;
-    showPreview?: boolean;
+  className?: string;
+  html?: string;
+  onChangeContent?: (html: string) => void;
+  showPreview?: boolean;
 }
 
 export const HtmlEditor = memo((props: HtmlEditorProps) => {
@@ -94,6 +95,9 @@ export const HtmlEditor = memo((props: HtmlEditorProps) => {
             break;
           case 'h3':
             formattedText = `<h3>${selectedText}</h3>`;
+            break;
+          case 'code':
+            formattedText = `<code><pre>${selectedText}</pre></code>`;
             break;
           default:
             formattedText = selectedText;
@@ -224,6 +228,14 @@ export const HtmlEditor = memo((props: HtmlEditorProps) => {
             <ImageIcon width={15} />
           </Button>
         </Tooltip>
+        <Tooltip content="Код" preferredPlacement="top">
+          <Button
+            theme="ghostIcon"
+            onClick={() => handleFormatting('code')}
+          >
+            <CodeIcon width={15} />
+          </Button>
+        </Tooltip>
 
         <input
           type="file"
@@ -240,10 +252,10 @@ export const HtmlEditor = memo((props: HtmlEditorProps) => {
         onInput={handleInput}
       />
       {showPreview && (
-      <div className={styles.preview}>
-        <h3>HTML Output:</h3>
-        <pre>{html}</pre>
-      </div>
+        <div className={styles.preview}>
+          <h3>HTML Output:</h3>
+          <pre>{html}</pre>
+        </div>
       )}
     </Card>
   );

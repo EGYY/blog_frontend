@@ -122,6 +122,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     'react/no-unstable-nested-components': 'warn',
+    'no-nested-ternary': 'off',
     // Check fsd
     'egyy-plugin/path-checker': ['error', { alias: '@' }],
     'egyy-plugin/public-api-imports': [

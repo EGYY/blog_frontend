@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { getUser, logout } from '@/entities/User';
 import LogoutIcon from '@/shared/assets/logout.svg';
 import UserIcon from '@/shared/assets/user-circle.svg';
-import { RoutePath } from '@/shared/config/routes/routes';
+import { getRouteMain } from '@/shared/config/routes/routes';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button/Button';
+import { Image } from '@/shared/ui/Image/Image';
 
 import styles from './AccountMenu.module.scss';
 
@@ -25,7 +26,7 @@ export const AccountMenu = memo((props: AccountMenuProps) => {
   const user = useSelector(getUser);
 
   const handleLogout = () => {
-    dispatch(logout()).then(() => navigate(RoutePath.main));
+    dispatch(logout()).then(() => navigate(getRouteMain()));
   };
 
   const handleGoToProfile = () => {
@@ -35,7 +36,7 @@ export const AccountMenu = memo((props: AccountMenuProps) => {
   return (
     <div className={classNames(styles.accountMenu, {}, [className])}>
       <div className={classNames(styles.accountMenuTrigger, {})}>
-        <img src={`${__SERVER_URL__}${user?.avatar}`} alt={user?.name || user?.email} />
+        <Image src={`${__SERVER_URL__}${user?.avatar}`} alt={user?.name || user?.email} />
         <div className={styles.accountMenuTriggerInfo}>
           <b>{user?.name}</b>
           <span>{user?.email}</span>

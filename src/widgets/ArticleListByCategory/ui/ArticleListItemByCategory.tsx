@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { ArticleType } from '@/entities/Article';
-import { RoutePath } from '@/shared/config/routes/routes';
+import { getRouteArticleDetail } from '@/shared/config/routes/routes';
 import { Button } from '@/shared/ui/Button/Button';
+import { Image } from '@/shared/ui/Image/Image';
 import { Tag } from '@/shared/ui/Tag/Tag';
 
 import styles from './ArticleListByCategory.module.scss';
@@ -17,10 +18,10 @@ export const ArticleListItemByCategory = (props: ArticleListItemByCategoryProps)
   const { t } = useTranslation('article');
   return (
     <Link
-      to={`${RoutePath.article_detail}${article.id}`}
+      to={getRouteArticleDetail(article.id)}
       className={styles.card}
     >
-      <img className={styles.image} src={`${__SERVER_URL__}${article.poster}`} alt={article.title} />
+      <Image className={styles.image} src={`${__SERVER_URL__}${article.poster}`} alt={article.title} />
       <div className={styles.overlay}>
         <span className={styles.category}>{article.category.name}</span>
         <h3 className={styles.title}>{article.title}</h3>

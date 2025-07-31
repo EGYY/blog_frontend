@@ -2,16 +2,16 @@ import { SidebarItemType } from '../types/sidebar';
 
 import BookOpenIcon from '@/shared/assets/book-open.svg';
 import HomeIcon from '@/shared/assets/home.svg';
-import { RoutePath } from '@/shared/config/routes/routes';
+import { getRouteArticles, getRouteMain } from '@/shared/config/routes/routes';
 
 export const SidebarLinks: SidebarItemType[] = [
   {
-    path: RoutePath.main,
+    path: getRouteMain(),
     translate_key: 'main',
     icon: HomeIcon,
   },
   {
-    path: RoutePath.articles,
+    path: getRouteArticles(),
     translate_key: 'articles',
     icon: BookOpenIcon,
   },

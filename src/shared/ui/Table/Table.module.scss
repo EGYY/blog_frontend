@@ -1,0 +1,105 @@
+.container {
+  overflow: auto;
+  border-radius: 8px;
+  max-height: 500px;
+}
+
+.tableMainActions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+
+  .searchAction {
+    max-width: 30vw;
+  }
+
+  .filterColumnsAction {
+    margin-left: auto;
+    width: fit-content;
+    min-width: 150px;
+  }
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  color: var(--secondary-color);
+  background-color: var(--bg-color);
+}
+
+tbody {
+  & > tr > td {
+    transition: background-color 0.3s ease;
+  }
+
+  & > tr:hover > td {
+    background-color: var(--button-secondary-bg);
+  }
+}
+
+.th,
+.td {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: var(--bg-color);
+}
+
+.th {
+  .thContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .thActions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.tdNoContent {
+  vertical-align: middle;
+  padding: 100px;
+  min-height: 300px;
+  text-align: center;
+}
+
+.activeFilter {
+  stroke: #3e96ff;
+}
+
+.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  box-shadow: 2px 0 4px rgb(0 0 0 / 5%);
+  background-color: var(--bg-color);
+}
+
+.stickyHeader {
+  z-index: 3;
+}
+
+.resizeHandle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 4;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+}

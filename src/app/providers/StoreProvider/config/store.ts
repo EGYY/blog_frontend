@@ -7,9 +7,9 @@ import { createReducerManager } from './reducerManager';
 
 import { userReducer } from '@/entities/User';
 import { saveScrollPostitionReducer } from '@/features/SaveScrollPostition';
-import { toastReducer } from '@/features/Toast';
 import { axiosClassic, axiosWithAuth } from '@/shared/config/api/api';
 import { rtkApi } from '@/shared/config/api/rtkApi';
+import { toastReducer } from '@/shared/lib/components/Toast';
 
 export const createReduxStore = (
   initialState?: StateSchema,

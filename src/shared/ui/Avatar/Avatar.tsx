@@ -1,6 +1,8 @@
 import {
-  ImgHTMLAttributes, memo, SyntheticEvent, useCallback,
+  ImgHTMLAttributes, memo,
 } from 'react';
+
+import { Image } from '../Image/Image';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -18,16 +20,12 @@ export const Avatar = memo((props: AvatarProps) => {
     className, alt = 'avatar', size = 'md', ...otherProps
   } = props;
 
-  const onErrorImage = useCallback((e: SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = `${__SERVER_URL__}/uploads/no-user-image.png`;
-  }, []);
-
   return (
-    <img
+    <Image
       {...otherProps}
       alt={alt}
       className={classNames(styles.avatar, {}, [className, styles[size]])}
-      onError={onErrorImage}
+      fallbackSrc={`${__SERVER_URL__}/uploads/no-user-image.png`}
     />
   );
 });

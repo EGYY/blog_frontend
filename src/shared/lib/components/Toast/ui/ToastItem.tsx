@@ -2,11 +2,10 @@ import {
   FC, memo, useEffect, useState,
 } from 'react';
 
+import { classNames } from '../../../classNames/classNames';
+import { useAppDispatch } from '../../../hooks/useAppDispatch/useAppDispatch';
 import { toastActions } from '../model/slice/toastSlice';
 import { Toast } from '../model/types/toast';
-
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import cls from './Toast.module.scss';
 

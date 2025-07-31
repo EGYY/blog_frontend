@@ -20,5 +20,8 @@
     "upload_image": "Загрузить изображение",
     "create_article": "Создать статью",
     "update_article": "Обновить статью",
-    "delete_article": "Удалить статью"  
+    "delete_article": "Удалить статью",
+    "share": "Поделиться",
+    "download_pdf": "Скачать PDF",
+    "edit": "Редактировать"
 }

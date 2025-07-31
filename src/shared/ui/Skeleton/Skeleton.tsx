@@ -24,7 +24,7 @@ export const Skeleton: FC<SkeletonProps> = memo(({
 }) => {
   const customStyle = useMemo(() => ({
     width: width ?? (circle ? height ?? '40px' : '100%'),
-    height: height ?? '1em',
+    height: height ?? '100%',
     borderRadius: circle ? '50%' : radius ?? '4px',
     ...style,
   }), [circle, height, radius, style, width]);

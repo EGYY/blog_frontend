@@ -7,7 +7,16 @@ import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfileDetailPage } from '@/pages/ProfileDetailPage';
 import { ProfilePage } from '@/pages/ProfilePage';
-import { RoutePath, Routes } from '@/shared/config/routes/routes';
+import {
+  getRouteArticleCreate,
+  getRouteArticleDetail,
+  getRouteArticles,
+  getRouteArticleUpdate,
+  getRouteMain,
+  getRouteProfileDetail,
+  getRouteProfileEdit,
+  Routes,
+} from '@/shared/config/routes/routes';
 
 type AppRouteProps = RouteProps & {
   authOnly?: boolean
@@ -15,38 +24,38 @@ type AppRouteProps = RouteProps & {
 
 export const routeConfig: Record<Routes, AppRouteProps> = {
   [Routes.MAIN]: {
-    path: RoutePath.main,
+    path: getRouteMain(),
     element: <MainPage />,
   },
   [Routes.ARTICLES]: {
-    path: RoutePath.articles,
+    path: getRouteArticles(),
     element: <ArticlesPage />,
   },
   [Routes.ARTICLE_DETAIL]: {
-    path: `${RoutePath.article_detail}:id`,
+    path: getRouteArticleDetail(':id'),
     element: <ArticleDetailPage />,
   },
   [Routes.ARTICLE_CREATE]: {
-    path: `${RoutePath.article_create}`,
+    path: getRouteArticleCreate(),
     element: <ArticleCreateUpdatePage />,
     authOnly: true,
   },
   [Routes.ARTICLE_UPDATE]: {
-    path: `${RoutePath.article_update}:id/edit`,
+    path: getRouteArticleUpdate(':id'),
     element: <ArticleCreateUpdatePage />,
     authOnly: true,
   },
   [Routes.PROFILE_EDIT]: {
-    path: RoutePath.profile_edit,
+    path: getRouteProfileEdit(),
     element: <ProfilePage />,
     authOnly: true,
   },
   [Routes.PROFILE_DETAIL]: {
-    path: `${RoutePath.profile_detail}:id`,
+    path: getRouteProfileDetail(':id'),
     element: <ProfileDetailPage />,
   },
   [Routes.NOT_FOUND]: {
-    path: RoutePath.not_found,
+    path: '*',
     element: <NotFoundPage />,
   },
 };

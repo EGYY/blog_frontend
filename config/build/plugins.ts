@@ -10,26 +10,18 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config.types';
 
 export function plugins(options: BuildOptions): webpack.WebpackPluginInstance[] {
-  const { paths, analyze } = options;
+  const { paths, analyze, isDev } = options;
   const plugins = [
     new HtmlWebpackPlugin({
       template: paths.html,
     }),
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].css',
-    }),
+
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(options.isDev),
       __SERVER_URL__: JSON.stringify(options.serverUrl),
     }),
     new ReactRefreshWebpackPlugin(),
-    new CopyPlugin({
-      patterns: [
-        { from: paths.locales, to: paths.buildLocales },
-      ],
-    }),
   ];
   if (options.isDev) {
     plugins.push(new webpack.HotModuleReplacementPlugin());
@@ -45,6 +37,18 @@ export function plugins(options: BuildOptions): webpack.WebpackPluginInstance[] 
         },
         mode: 'write-references',
       },
+    }));
+  }
+
+  if (!options.isDev) {
+    plugins.push(new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].css',
+    }));
+    plugins.push(new CopyPlugin({
+      patterns: [
+        { from: paths.locales, to: paths.buildLocales },
+      ],
     }));
   }
   return plugins;

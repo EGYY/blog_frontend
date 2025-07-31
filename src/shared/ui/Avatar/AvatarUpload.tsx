@@ -4,10 +4,10 @@ import {
   useState,
   useRef,
   useCallback,
-  SyntheticEvent,
 } from 'react';
 
 import UploadIcon from '../../assets/upload.svg';
+import { Image } from '../Image/Image';
 
 import { AvatarSize } from './Avatar';
 
@@ -34,10 +34,6 @@ export const AvatarUpload = memo((props: AvatarUploadProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onErrorImage = useCallback((e: SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = `${__SERVER_URL__}/uploads/no-user-image.png`;
-  }, []);
-
   const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -53,12 +49,12 @@ export const AvatarUpload = memo((props: AvatarUploadProps) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <img
+      <Image
         {...otherProps}
         src={previewSrc || src}
         alt={alt}
         className={styles.avatar}
-        onError={onErrorImage}
+        fallbackSrc={`${__SERVER_URL__}/uploads/no-user-image.png`}
       />
       {isHovering && (
         <div className={styles.cover}>

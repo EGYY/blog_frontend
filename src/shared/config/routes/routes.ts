@@ -9,13 +9,10 @@ export enum Routes {
     NOT_FOUND = 'not_found'
 }
 
-export const RoutePath: Record<Routes, string> = {
-  [Routes.MAIN]: '/',
-  [Routes.ARTICLES]: '/articles',
-  [Routes.ARTICLE_DETAIL]: '/articles/',
-  [Routes.ARTICLE_CREATE]: '/articles/create',
-  [Routes.ARTICLE_UPDATE]: '/articles/',
-  [Routes.PROFILE_EDIT]: '/profile/edit',
-  [Routes.PROFILE_DETAIL]: '/profile/',
-  [Routes.NOT_FOUND]: '*',
-};
+export const getRouteMain = () => '/';
+export const getRouteArticles = () => '/articles';
+export const getRouteArticleDetail = (id: string) => `/articles/${id}`;
+export const getRouteArticleCreate = () => '/articles/create';
+export const getRouteArticleUpdate = (id: string) => `/articles/${id}/edit`;
+export const getRouteProfileEdit = () => '/profile/edit';
+export const getRouteProfileDetail = (id: string) => `/profile/${id}`;

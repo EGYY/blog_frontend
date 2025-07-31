@@ -74,7 +74,7 @@ export const Tooltip: React.FC<TooltipProps> = memo(({
         finalPlacement = place;
         finalTop = top;
         finalLeft = left;
-        return true; // stop iteration
+        return true;
       }
 
       return false;

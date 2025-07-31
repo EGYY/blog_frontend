@@ -42,7 +42,7 @@ export const ProfileMainInfo = memo((props: ProfileMainInfoProps) => {
   return (
     <div className={classNames(cls.profileCard, {}, [className])}>
       <div className={cls.profileInfo}>
-        <Avatar style={{ width: 80, height: 80 }} src={`${__SERVER_URL__}${profile?.avatar}`} />
+        <Avatar src={`${__SERVER_URL__}${profile?.avatar}`} />
         <h3>{profile?.name || profile?.email}</h3>
         <Tooltip content={profile?.bio} preferredPlacement="bottom">
           <p>{profile?.bio}</p>

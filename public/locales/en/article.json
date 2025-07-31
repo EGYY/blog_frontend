@@ -20,5 +20,8 @@
     "upload_image": "Upload image",
     "create": "Create article",
     "update": "Update article",
-    "delete": "Delete article"
+    "delete": "Delete article",
+    "share": "Share",
+    "download_pdf": "Download PDF",
+    "edit": "Edit"
 }

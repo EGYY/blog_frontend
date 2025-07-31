@@ -45,3 +45,55 @@ body.dark main {
   height: 1px;
   background-color: var(--border-color);
 }
+
+code {
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: "Fira Code", Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  color: var(--code-color);
+  background-color: var(--code-bg);
+}
+
+pre {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+  font-family: "Fira Code", Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: var(--pre-color);
+  background-color: var(--pre-bg);
+}
+
+pre code {
+  border-radius: 0;
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .printable-actions {
+    display: none;
+  }
+
+  .printable-article,
+  .printable-article * {
+    visibility: visible;
+  }
+
+  .printable-article {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    width: 100%;
+  }
+}

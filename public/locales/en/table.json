@@ -1,0 +1,11 @@
+{
+    "search": "Search",
+    "columns": "Columns",
+    "default_sort": "Default",
+    "asc_sort": "Ascending",
+    "desc_sort": "Descending",
+    "data_empty": "No data available",
+    "filters": "Fitlers",
+    "clear": "Clear",
+    "ok": "Ok"
+}

@@ -24,7 +24,7 @@ export const ArticlesViewSwitcher = memo((props: ArticlesViewSwitcherProps) => {
   }, [dispatch, view]);
 
   return (
-    <Tooltip content={t('change_view')} className={className}>
+    <Tooltip content={t('change_view')} className={className} preferredPlacement="left">
       <Button
         onClick={onChangeView}
         theme="ghostIcon"

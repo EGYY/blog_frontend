@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Profile } from '../../model/types/profile';
 
 import BookIcon from '@/shared/assets/book-open.svg';
-import { RoutePath } from '@/shared/config/routes/routes';
+import { getRouteArticleDetail } from '@/shared/config/routes/routes';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { timeAgo } from '@/shared/lib/helpers/formatDate/formatDate';
 import { Card } from '@/shared/ui/Card/Card';
@@ -26,7 +26,7 @@ export const ProfileLastArticles = memo((props: ProfileLastArticlesProps) => {
       <h3>{t('last_articles')}</h3>
       <div className={cls.lastArticleList}>
         {profile?.articles && profile?.articles?.length > 0 ? profile?.articles.map((article) => (
-          <Link key={article.id} to={`${RoutePath.article_detail}${article.id}`} className={cls.lastArticleItem}>
+          <Link key={article.id} to={getRouteArticleDetail(article.id)} className={cls.lastArticleItem}>
             <div className={cls.profileCardStatItemIcon}>
               <BookIcon width={20} />
             </div>

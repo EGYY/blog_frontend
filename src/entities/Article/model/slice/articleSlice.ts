@@ -13,7 +13,7 @@ const initialState: ArticleSchema = {
   recommedationsLoading: false,
   recommendationsError: undefined,
   articles: [],
-  loadingArticles: false,
+  loadingArticles: true,
   pageArticles: 1,
   totalArticles: 0,
   view: localStorage.getItem('viewCards') as ArticleView || ArticleView.GRID,
