@@ -30,10 +30,11 @@ import cls from './ArticleFilters.module.scss';
 
 interface ArticlesFiltersProps {
   className?: string;
+  isMobile?: boolean;
 }
 
 export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
-  const { className } = props;
+  const { className, isMobile = false } = props;
   const dispatch = useAppDispatch();
   const { t } = useTranslation('article');
   const { data: categories } = useArticleCategoriesQuery();
@@ -128,7 +129,7 @@ export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
   }, [dispatch]);
 
   return (
-    <div className={classNames(cls.articleFilters, {}, [className])}>
+    <div className={classNames(cls.articleFilters, { [cls.mobile]: isMobile }, [className])}>
       <Input
         value={searchText}
         onChange={onChangeSearchText}

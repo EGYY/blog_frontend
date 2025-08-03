@@ -6,6 +6,13 @@
   }
 }
 
+.lastArticlesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .lastArticleList {
   display: flex;
   flex-direction: column;
@@ -50,4 +57,29 @@
   border-radius: 0.625rem;
   padding: calc(0.25rem * 2);
   background-color: var(--tag-default-bg);
+}
+
+.lastArticleActions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 5px;
+}
+
+.confirmDeleteDialog {
+  padding: 5px;
+
+  b {
+    display: block;
+    max-width: 200px;
+    text-align: center;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+    gap: 10px;
+  }
 }

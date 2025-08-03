@@ -12,11 +12,22 @@
     "role_admin": "Админ",
     "role_author": "Автор",
     "subscribe": "Подписаться",
+    "unsubscribe": "Отписаться",
     "total_articles": "Cтатей",
     "total_comments": "Комментариев",
     "total_likes": "Лайков",
     "total_followers": "Подписчиков",
     "total_following": "Подписок",
     "last_articles": "Последние статьи",
-    "edit": "Редактировать"
+    "list_articles": "Список статей",
+    "no_articles": "Список статей пуст",
+    "create": "Создать",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "confirm_delete_title": "Удалить статью?",
+    "confirm_delete_description": "Это действие нельзя будет отменить.",
+    "cancel": "Отмена",
+    "ok": "ОК",
+    "published": "Опубликовано",
+    "not_published": "Не опубликовано"
 }

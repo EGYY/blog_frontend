@@ -3,19 +3,23 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { toggleLike } from '../../../model/services/toggleLike';
+import { articleActions } from '../../../model/slice/articleSlice';
 import { Article as ArticleType } from '../../../model/types/article';
 import { ArticleError } from '../ArticleError/ArticleError';
 import { ArticleLoading } from '../ArticleLoading/ArticleLoading';
 
-import { ProfileMainInfo } from '@/entities/Profile';
-import { getUser } from '@/entities/User';
+import {
+  ProfileMainInfo, useSubscribe,
+} from '@/entities/Profile';
+import { getUser, useCanUserSubscribe } from '@/entities/User';
 import CalendarIcon from '@/shared/assets/calendar.svg';
 import DownloadIcon from '@/shared/assets/download.svg';
 import EyeIcon from '@/shared/assets/eye.svg';
 import HeartIcon from '@/shared/assets/heart.svg';
 import ShareIcon from '@/shared/assets/share.svg';
 import PenIcon from '@/shared/assets/square-pen.svg';
-import { getRouteArticleUpdate } from '@/shared/config/routes/routes';
+import { getRouteArticleUpdate, getRouteProfileDetail } from '@/shared/config/routes/routes';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { toastActions } from '@/shared/lib/components/Toast';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
@@ -43,6 +47,13 @@ export const Article: FC<ArticleProps> = memo(({
   const dispatch = useAppDispatch();
   const user = useSelector(getUser);
   const isMobile = useMobile();
+
+  const { error: errorSubscribe, handleSubscribe, loading: loadingSubscribe } = useSubscribe({
+    subscribed: Boolean(article?.subscribed),
+    changeSubscribe: (val) => dispatch(articleActions.changeSubscribe(val)),
+  });
+
+  const { canSubscribe } = useCanUserSubscribe(article?.author?.id);
 
   const isAuthUserArticle = useMemo(() => {
     if (article && user) {
@@ -79,6 +90,11 @@ export const Article: FC<ArticleProps> = memo(({
     window.print();
   };
 
+  const handleToggleLike = (id: string | undefined) => {
+    if (!id) return;
+    dispatch(toggleLike(id));
+  };
+
   if (loadingArticle) {
     return <ArticleLoading />;
   }
@@ -92,12 +108,21 @@ export const Article: FC<ArticleProps> = memo(({
       <div className={cls.articleHeader}>
         <HoverCard
           trigger={(
-            <Link to={`/profile/${article?.author.id}`} className={cls.articleAuthor}>
+            <Link to={getRouteProfileDetail(article?.author.id)} className={cls.articleAuthor}>
               <Avatar src={`${__SERVER_URL__}${article?.author.avatar}`} />
               <span>{article?.author.name || article?.author.email}</span>
             </Link>
       )}
-          content={<ProfileMainInfo profile={article?.author} />}
+          content={(
+            <ProfileMainInfo
+              profile={article?.author}
+              canSubscribe={canSubscribe}
+              subscribed={article?.subscribed}
+              handleSubscribe={handleSubscribe}
+              loadingSubscribe={loadingSubscribe}
+              errorSubscribe={errorSubscribe}
+            />
+        )}
           side="bottom"
         />
         <div className={classNames(cls.articleHeaderActions, {}, ['printable-actions'])}>
@@ -130,7 +155,10 @@ export const Article: FC<ArticleProps> = memo(({
             <EyeIcon />
             {article?.viewsCount}
           </span>
-          <span>
+          <span
+            className={classNames(cls.toggleLike, { [cls.liked]: article?.liked }, [])}
+            onClick={() => handleToggleLike(article?.id)}
+          >
             <HeartIcon />
             {article?.likesCount}
           </span>

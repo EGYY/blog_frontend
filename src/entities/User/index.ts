@@ -1,3 +1,4 @@
+export { useCanUserSubscribe } from './model/hooks/useCanUserSubscribe/useCanUserSubscribe';
 export { getInitedUser } from './model/selectors/getInitedUser/getInitedUser';
 export { getErrorUser } from './model/selectors/getError/getErrorUser';
 export { getLoadingUser } from './model/selectors/getLoading/getLoadingUser';

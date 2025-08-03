@@ -12,6 +12,7 @@ import { getArticleError } from '../model/selectors/getArticleError/getArticleEr
 import { getArticleLoading } from '../model/selectors/getArticleLoading/getArticleLoading';
 import { getArticlePoster } from '../model/selectors/getArticlePoster/getArticlePoster';
 import { getArticlePosterFile } from '../model/selectors/getArticlePosterFile/getArticlePosterFile';
+import { getArticlePublished } from '../model/selectors/getArticlePublished/getArticlePublished';
 import { getArticleSubtitle } from '../model/selectors/getArticleSubtitle/getArticleSubtitle';
 import { getArticleCreateUpdateTags } from '../model/selectors/getArticleTags/getArticleTags';
 import { getArticleTitle } from '../model/selectors/getArticleTitle/getArticleTitle';
@@ -30,6 +31,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button/Button';
+import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
 import { ImageUpload } from '@/shared/ui/Image/ImageUpload';
 import { Input } from '@/shared/ui/Input/Input';
 import { Select } from '@/shared/ui/Select/Select';
@@ -50,7 +52,7 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
     type = 'create',
   } = props;
   const dispatch = useAppDispatch();
-  const { t } = useTranslation('article');
+  const { t } = useTranslation(['article', 'profile']);
 
   const { data: categories } = useArticleCategoriesQuery();
   const { data: tags } = useArticleTagsQuery();
@@ -60,6 +62,7 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
 
   const title = useSelector(getArticleTitle);
   const subtitle = useSelector(getArticleSubtitle);
+  const published = useSelector(getArticlePublished);
   const category = useSelector(getArticleCategory);
   const selectedTags = useSelector(getArticleCreateUpdateTags);
   const poster = useSelector(getArticlePoster);
@@ -92,6 +95,10 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
     dispatch(articleCreateUpdateActions.setArticleSubtitle(e.currentTarget.value));
   }, [dispatch]);
 
+  const onChangePublished = useCallback((val: boolean) => {
+    dispatch(articleCreateUpdateActions.setArticlePubslished(val));
+  }, [dispatch]);
+
   const onChageCategory = useCallback((val: string) => {
     dispatch(articleCreateUpdateActions.setArticleCategory(val));
   }, [dispatch]);
@@ -118,6 +125,7 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
       ['categoryId', category],
       ['tagIds', selectedTags ? selectedTags.join(',') : null],
       ['poster', posterFile],
+      ['published', published],
     ];
 
     fields.forEach(([key, value]) => {
@@ -131,16 +139,16 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
     } else if (type === 'update' && article?.id) {
       dispatch(updateArticle({ id: article.id, body: form }));
     }
-  }, [article?.id, category, dispatch, html, posterFile, subtitle, selectedTags, title, type]);
+  }, [title, subtitle, html, category, selectedTags, posterFile, published, type, article?.id, dispatch]);
 
   return (
     <article className={classNames(cls.articleWrapper, {}, [className])}>
       <div className={cls.articleContent}>
         <div className={cls.articleTitle}>
-          <Input label={t('title')} value={title} onChange={onChangeTitle} />
+          <Input label={t('article:title')} value={title} onChange={onChangeTitle} />
         </div>
         <div className={cls.articleSubtitle}>
-          <Input label={t('subtitle')} value={subtitle} onChange={onChangeSubtitle} />
+          <Input label={t('article:subtitle')} value={subtitle} onChange={onChangeSubtitle} />
         </div>
         <div className={cls.articleInfo}>
           <span>
@@ -156,13 +164,20 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
             {article?.likesCount || 0}
           </span>
         </div>
+        <Checkbox
+          label={t('profile:published')}
+          checked={published}
+          onChange={onChangePublished}
+          name="published"
+          className={cls.published}
+        />
         <div className={cls.selectors}>
           <Select
             value={category}
             onChange={(val) => onChageCategory(val as string)}
             options={filterCategories}
-            label={t('category_label')}
-            placeholder={t('select_placeholder')}
+            label={t('article:category_label')}
+            placeholder={t('article:select_placeholder')}
             className={cls.articleFilterSelect}
           />
           <Select
@@ -170,22 +185,22 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
             value={selectedTags}
             onChange={(val) => onChageTags(val as string[])}
             options={filterTags}
-            label={t('tag_label')}
-            placeholder={t('select_placeholder')}
+            label={t('article:tag_label')}
+            placeholder={t('article:select_placeholder')}
             className={cls.articleFilterSelect}
           />
         </div>
       </div>
       <div className={cls.artticlePoster}>
-        <Tooltip content={t('upload_image')} preferredPlacement="top">
+        <Tooltip content={t('article:upload_image')} preferredPlacement="top">
           <ImageUpload src={`${__SERVER_URL__}${poster}`} alt={title} onChangeImage={onChangePoster} />
         </Tooltip>
       </div>
       <div className={classNames('separator', {}, [cls.separator])} />
-      <b>{t('content')}</b>
+      <b>{t('article:content')}</b>
       <HtmlEditor html={html} onChangeContent={onChangeHtml} />
       <Button type="button" onClick={submit} loading={loading}>
-        {type === 'create' && !article ? t('create_article') : t('update_article')}
+        {type === 'create' && !article ? t('article:create_article') : t('article:update_article')}
       </Button>
     </article>
   );

@@ -7,5 +7,6 @@ export interface ArticleCreateUpdateSchema {
     articleTags: string[];
     articleCategory: string;
     articlePoster: string;
-    articlePosterFile?: File
+    articlePosterFile?: File;
+    articlePublished?: boolean;
 }

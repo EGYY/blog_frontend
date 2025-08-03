@@ -1,0 +1,47 @@
+.customBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--input-border);
+  border-radius: 0.375rem;
+  width: 20px;
+  height: 20px;
+  background-color: var(--bg-color);
+  transition: border-color, background-color 0.15s ease-in-out;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: var(--primary-color);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+
+  .label {
+    color: var(--secondary-color);
+  }
+}
+
+.checkboxWrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 0.5rem;
+
+  &:hover .customBox {
+    border-color: var(--secondary-color);
+  }
+}
+
+.input {
+  display: none;
+}
+
+.checkIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--primary-color);
+}

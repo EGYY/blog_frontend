@@ -9,6 +9,7 @@ export interface User {
     avatar: string
     bio: string
     role: UserRole
+    subscribed?: boolean
 }
 
 export interface UserServerResponse {

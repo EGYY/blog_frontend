@@ -11,3 +11,10 @@ export interface Profile extends User {
     },
     articles: ArticleType[]
 }
+
+export interface Subscribe {
+    id: string
+    createdAt: string
+    followerId: string
+    followingId: string
+}

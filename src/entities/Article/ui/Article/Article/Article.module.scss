@@ -48,6 +48,17 @@
   }
 }
 
+.toggleLike {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.liked svg {
+    fill: #fb2c36;
+    stroke: #fb2c36;
+  }
+}
+
 .articleContent {
   .articleTitle {
     margin-bottom: 20px;

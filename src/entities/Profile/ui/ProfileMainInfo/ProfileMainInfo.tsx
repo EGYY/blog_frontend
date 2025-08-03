@@ -1,10 +1,14 @@
-import { memo, useMemo } from 'react';
+import {
+  memo, useEffect, useMemo,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { User } from '@/entities/User';
 import BellIcon from '@/shared/assets/bell-ring.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { toastActions } from '@/shared/lib/components/Toast';
 import { formatDate } from '@/shared/lib/helpers/formatDate/formatDate';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { Button } from '@/shared/ui/Button/Button';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
@@ -15,13 +19,27 @@ interface ProfileMainInfoProps {
     canSubscribe?: boolean
     className?: string
     profile: User | undefined
+    subscribed?: boolean
+    handleSubscribe?: (id: string) => void
+    loadingSubscribe?: boolean
+    errorSubscribe?: string
 }
 
 export const ProfileMainInfo = memo((props: ProfileMainInfoProps) => {
   const {
-    canSubscribe = false, profile, className,
+    canSubscribe = false, profile, className, subscribed = false, handleSubscribe, loadingSubscribe = false, errorSubscribe,
   } = props;
   const { t } = useTranslation('profile');
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (errorSubscribe) {
+      dispatch(toastActions.addToast({
+        type: 'error',
+        message: errorSubscribe,
+      }));
+    }
+  }, [dispatch, errorSubscribe]);
 
   const displayRole = useMemo(() => {
     if (profile?.role) {
@@ -49,10 +67,13 @@ export const ProfileMainInfo = memo((props: ProfileMainInfoProps) => {
         </Tooltip>
       </div>
       {
-      canSubscribe && (
-        <Button>
+      canSubscribe && profile && handleSubscribe && (
+        <Button
+          onClick={() => handleSubscribe(profile.id)}
+          loading={loadingSubscribe}
+        >
           <BellIcon width={20} />
-          {t('subscribe')}
+          {subscribed ? t('unsubscribe') : t('subscribe')}
         </Button>
       )
     }

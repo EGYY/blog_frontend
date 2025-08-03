@@ -1,5 +1,5 @@
 import {
-  memo, useCallback, useEffect, useMemo,
+  memo, useCallback, useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -9,11 +9,17 @@ import { getErrorProfileDetail } from '../model/selectors/getErrorProfileDetail/
 import { getLoadingProfileDetail } from '../model/selectors/getLoadingProfileDetail/getLoadingProfileDetail';
 import { getProfileDetail } from '../model/selectors/getProfileDetail/getProfileDetail';
 import { getProfileById } from '../model/services/getProfileById';
-import { profileDetailReducer } from '../model/slice/profileDetailSlice';
+import { profileDetailActions, profileDetailReducer } from '../model/slice/profileDetailSlice';
 
-import { ProfileLastArticles, ProfileMainInfo, ProfileStatList } from '@/entities/Profile';
-import { getUser } from '@/entities/User';
+import {
+  ProfileArticles,
+  ProfileMainInfo,
+  ProfileStatList,
+  useSubscribe,
+} from '@/entities/Profile';
+import { useCanUserSubscribe } from '@/entities/User';
 import PenIcon from '@/shared/assets/square-pen.svg';
+import { getRouteProfileEdit } from '@/shared/config/routes/routes';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button/Button';
@@ -34,10 +40,16 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
   const { t } = useTranslation('profile');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const user = useSelector(getUser);
   const profile = useSelector(getProfileDetail);
   const loading = useSelector(getLoadingProfileDetail);
   const error = useSelector(getErrorProfileDetail);
+
+  const { error: errorSubscribe, handleSubscribe, loading: loadingSubscribe } = useSubscribe({
+    subscribed: Boolean(profile?.subscribed),
+    changeSubscribe: (val) => dispatch(profileDetailActions.changeSubscribe(val)),
+  });
+
+  const { canSubscribe, isAuthUserProfile } = useCanUserSubscribe(id);
 
   useEffect(() => {
     if (id) {
@@ -46,23 +58,8 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
   }, [id, dispatch]);
 
   const handleGoEditProfile = useCallback(() => {
-    navigate('/profile/edit');
+    navigate(getRouteProfileEdit());
   }, [navigate]);
-
-  const isAuthUserProfile = useMemo(() => {
-    if (user) {
-      const condition = user.id === id;
-      return condition;
-    }
-    return false;
-  }, [id, user]);
-
-  const canSubscribe = useMemo(() => {
-    if (!user?.id || isAuthUserProfile) {
-      return false;
-    }
-    return true;
-  }, [user, isAuthUserProfile]);
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
@@ -80,12 +77,19 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
         </div>
         <div className={cls.profileDetailPageContent}>
           <Card>
-            <ProfileMainInfo canSubscribe={canSubscribe} profile={profile} />
+            <ProfileMainInfo
+              canSubscribe={canSubscribe}
+              profile={profile}
+              subscribed={profile?.subscribed}
+              handleSubscribe={handleSubscribe}
+              loadingSubscribe={loadingSubscribe}
+              errorSubscribe={errorSubscribe}
+            />
           </Card>
           <div>
             <ProfileStatList profile={profile} />
             {profile?.articles && profile?.articles.length > 0 && (
-              <ProfileLastArticles profile={profile} />
+              <ProfileArticles articles={profile?.articles} />
             )}
           </div>
         </div>

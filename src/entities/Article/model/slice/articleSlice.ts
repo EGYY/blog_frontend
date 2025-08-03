@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getArticleData } from '../services/getArticleData';
 import { getArticleRecommedations } from '../services/getArticleRecommedations';
 import { getArticlesList } from '../services/getArticlesList';
+import { toggleLike } from '../services/toggleLike';
 import { Article, ArticleSchema, ArticleView } from '../types/article';
 
 const initialState: ArticleSchema = {
@@ -25,6 +26,11 @@ export const articleSlice = createSlice({
   name: 'article',
   initialState,
   reducers: {
+    changeSubscribe: (state, action: PayloadAction<boolean>) => {
+      if (state.article) {
+        state.article.subscribed = action.payload;
+      }
+    },
     setArticle: (state, { payload }: PayloadAction<Article>) => {
       state.article = payload;
     },
@@ -102,6 +108,16 @@ export const articleSlice = createSlice({
       .addCase(getArticleRecommedations.rejected, (state, action) => {
         state.recommedationsLoading = false;
         state.recommendationsError = action.payload;
+      })
+      .addCase(toggleLike.fulfilled, (state, action) => {
+        if (state.article) {
+          state.article.liked = action.payload.liked;
+          if (action.payload.liked) {
+            state.article.likesCount += 1;
+          } else {
+            state.article.likesCount -= 1;
+          }
+        }
       });
   },
 });

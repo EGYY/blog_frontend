@@ -100,6 +100,7 @@ module.exports = {
           'defaultTabId',
           'aria-label',
           'theme',
+          'position',
         ],
       },
     ],

@@ -39,3 +39,20 @@
 .articleFiltersSearch {
   width: 100%;
 }
+
+.mobile {
+  flex-direction: column;
+
+  .articleFiltersSelectWrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .articleFiltersSearch {
+    width: 100%;
+  }
+
+  .articleFilterSelect {
+    width: 100%;
+  }
+}

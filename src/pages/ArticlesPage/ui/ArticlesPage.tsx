@@ -18,13 +18,14 @@ import {
   getInitedArticles,
 } from '@/entities/Article';
 import {
-  articlesFiltersActions, articlesFiltersReducer, getArticleFilterCurrentFilters, getArticleFilterFiltersReady,
+  articlesFiltersActions, articlesFiltersReducer, getArticleFilterCurrentFilters,
 } from '@/features/ArticlesFilters';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { isEmptyObject } from '@/shared/lib/helpers/isEmptyObject/isEmptyObject';
 import { objectToSearchParams } from '@/shared/lib/helpers/objectToSearchParams/objectToSearchParams';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { ArticlesListHeader } from '@/widgets/ArticlesListHeader';
+import { useMobile } from '@/shared/lib/hooks/useMobile/useMobile';
+import { ArticlesListHeader, MobileArticleListHeader } from '@/widgets/ArticlesListHeader';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {
@@ -41,15 +42,16 @@ const ArticlesPage = memo(() => {
   const page = useSelector(getArticlesListPage);
   const total = useSelector(getArticlesListTotal);
   const inited = useSelector(getInitedArticles);
-  const filtersReady = useSelector(getArticleFilterFiltersReady);
   const currentFilters = useSelector(getArticleFilterCurrentFilters);
 
   const navigate = useNavigate();
   const location = useLocation();
   const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
 
+  const isMobile = useMobile();
+
   useEffect(() => {
-    if (!inited && filtersReady) {
+    if (!inited) {
       if (query.get('search')) {
         dispatch(articlesFiltersActions.setSearch(query.get('search')!));
       }
@@ -83,7 +85,7 @@ const ArticlesPage = memo(() => {
       }
       dispatch(articleActions.setInitedArticles(true));
     }
-  }, [dispatch, inited, query, filtersReady]);
+  }, [dispatch, inited, query]);
 
   useEffect(() => {
     if (inited) {
@@ -107,7 +109,7 @@ const ArticlesPage = memo(() => {
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterAnmount={false}>
       <PageWrapper onScrollEnd={onScrollEnd} needAutoScroll>
-        <ArticlesListHeader />
+        {isMobile ? <MobileArticleListHeader /> : <ArticlesListHeader />}
         <ArticleList loading={loading} articles={articles} error={error} view={view} />
       </PageWrapper>
     </DynamicModuleLoader>

@@ -16,6 +16,7 @@ const initialState: ArticleCreateUpdateSchema = {
   articleCategory: '',
   articlePoster: '',
   articlePosterFile: undefined,
+  articlePublished: false,
 };
 
 export const articleCreateUpdateSlice = createSlice({
@@ -49,6 +50,9 @@ export const articleCreateUpdateSlice = createSlice({
     setArticlePosterFile: (state, action: PayloadAction<File>) => {
       state.articlePosterFile = action.payload;
     },
+    setArticlePubslished: (state, action: PayloadAction<boolean>) => {
+      state.articlePublished = action.payload;
+    },
     initDefaultData: (state, action: PayloadAction<ArticleType | undefined>) => {
       if (action.payload) {
         const article = action.payload;
@@ -58,6 +62,7 @@ export const articleCreateUpdateSlice = createSlice({
         state.articleTags = article.tags.map((tag) => tag.id);
         state.articleCategory = article.categoryId;
         state.articlePoster = article.poster;
+        state.articlePublished = Boolean(article.published);
       } else {
         state.articleContent = '';
         state.articleTitle = '';
@@ -65,6 +70,7 @@ export const articleCreateUpdateSlice = createSlice({
         state.articleTags = [];
         state.articleCategory = '';
         state.articlePoster = '';
+        state.articlePublished = false;
       }
     },
     resetData: (state) => {
@@ -74,6 +80,7 @@ export const articleCreateUpdateSlice = createSlice({
       state.articleTags = [];
       state.articleCategory = '';
       state.articlePoster = '';
+      state.articlePublished = false;
     },
   },
   extraReducers: (builder) => {

@@ -11,10 +11,11 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
 interface ArticlesViewSwitcherProps {
     className?: string
+    isMobile?: boolean
 }
 
 export const ArticlesViewSwitcher = memo((props: ArticlesViewSwitcherProps) => {
-  const { className } = props;
+  const { className, isMobile = false } = props;
   const { t } = useTranslation('article');
   const dispatch = useAppDispatch();
   const view = useSelector(getArticlesView);
@@ -24,12 +25,14 @@ export const ArticlesViewSwitcher = memo((props: ArticlesViewSwitcherProps) => {
   }, [dispatch, view]);
 
   return (
-    <Tooltip content={t('change_view')} className={className} preferredPlacement="left">
+    <Tooltip content={t('change_view')} preferredPlacement="left">
       <Button
         onClick={onChangeView}
         theme="ghostIcon"
+        className={className}
       >
         {view === ArticleView.GRID ? <GridIcon width={20} /> : <ListIcon width={20} />}
+        {isMobile ? t('change_view') : ''}
       </Button>
     </Tooltip>
   );

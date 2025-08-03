@@ -8,13 +8,15 @@ import cls from './ArticlesListHeader.module.scss';
 
 interface ArticlesListHeaderProps {
     className?: string
+    isMobile?: boolean
 }
 export const ArticlesListHeader = memo((props: ArticlesListHeaderProps) => {
-  const { className } = props;
+  const { className, isMobile = false } = props;
   return (
-    <div className={classNames(cls.articlesListHeader, {}, [className])}>
-      <ArticlesFilters />
-      <ArticlesViewSwitcher className={cls.articlesListSwitcher} />
+    <div className={classNames(cls.articlesListHeader, { [cls.mobile]: isMobile }, [className])}>
+      {isMobile && <ArticlesViewSwitcher isMobile={isMobile} className={cls.articlesListSwitcher} />}
+      <ArticlesFilters isMobile={isMobile} />
+      {!isMobile && <ArticlesViewSwitcher isMobile={isMobile} className={cls.articlesListSwitcher} />}
     </div>
   );
 });

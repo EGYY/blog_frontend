@@ -27,6 +27,8 @@ export interface Article {
     likes: any[]
     category: Category
     tags: Tag[]
+    subscribed?: boolean
+    liked?: boolean
 }
 
 export interface ArticlesServerResponse {

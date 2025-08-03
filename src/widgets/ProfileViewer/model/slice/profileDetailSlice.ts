@@ -13,6 +13,11 @@ export const profileDetailSlice = createSlice({
   name: 'profileDetail',
   initialState,
   reducers: {
+    changeSubscribe: (state, action: PayloadAction<boolean>) => {
+      if (state.profile) {
+        state.profile.subscribed = action.payload;
+      }
+    },
     setLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.loading = payload;
     },

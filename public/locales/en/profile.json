@@ -12,11 +12,22 @@
     "role_admin": "Admin",
     "role_author": "Author",
     "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe",
     "total_articles": "Articles",
     "total_comments": "Comments",
     "total_likes": "Likes",
     "total_followers": "Followers",
     "total_following": "Following",
     "last_articles": "Last Articles",
-    "edit": "Edit"
+    "list_articles": " List of articles",
+    "no_articles": "No articles",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm_delete_title": "Delete the article?",
+    "confirm_delete_description": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "ok": "ОК",
+    "published": "Published",
+    "not_published": "Not published"
 }

@@ -23,5 +23,9 @@
     "delete": "Delete article",
     "share": "Share",
     "download_pdf": "Download PDF",
-    "edit": "Edit"
+    "edit": "Edit",
+    "filters": "Filters",
+    "access_denied": "Access denied",
+    "access_denied_description": "You don't have permission to edit this article.",
+    "access_denied_action_text": "Go to the articles list"
 }

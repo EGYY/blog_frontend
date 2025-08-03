@@ -1,0 +1,25 @@
+.dialog {
+  max-width: 300px;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--secondary-color); // gray-500
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
