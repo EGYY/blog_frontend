@@ -1,5 +1,5 @@
 import {
-  memo, useCallback, useEffect, useMemo,
+  memo, useCallback, useMemo,
 } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -24,6 +24,7 @@ import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/Dynam
 import { isEmptyObject } from '@/shared/lib/helpers/isEmptyObject/isEmptyObject';
 import { objectToSearchParams } from '@/shared/lib/helpers/objectToSearchParams/objectToSearchParams';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppEffect } from '@/shared/lib/hooks/useAppEffect/useAppEffect';
 import { useMobile } from '@/shared/lib/hooks/useMobile/useMobile';
 import { ArticlesListHeader, MobileArticleListHeader } from '@/widgets/ArticlesListHeader';
 import { PageWrapper } from '@/widgets/PageWrapper';
@@ -50,7 +51,7 @@ const ArticlesPage = memo(() => {
 
   const isMobile = useMobile();
 
-  useEffect(() => {
+  useAppEffect(() => {
     if (!inited) {
       if (query.get('search')) {
         dispatch(articlesFiltersActions.setSearch(query.get('search')!));
@@ -87,7 +88,7 @@ const ArticlesPage = memo(() => {
     }
   }, [dispatch, inited, query]);
 
-  useEffect(() => {
+  useAppEffect(() => {
     if (inited) {
       if (!isEmptyObject(currentFilters)) {
         const params = objectToSearchParams(currentFilters);

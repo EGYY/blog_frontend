@@ -28,6 +28,7 @@ export default (env: BuildEnv) => {
     port,
     analyze,
     serverUrl,
+    project: 'frontend',
   });
   return config;
 };

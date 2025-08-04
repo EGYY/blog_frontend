@@ -1,5 +1,5 @@
 import {
-  memo, useCallback, useEffect, useMemo, useState,
+  memo, useCallback, useMemo, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import { updateProfileActions } from '../model/slice/updateProfileSlice';
 import { ProfileArticles } from '@/entities/Profile';
 import { User } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppEffect } from '@/shared/lib/hooks/useAppEffect/useAppEffect';
 import { AvatarUpload } from '@/shared/ui/Avatar/AvatarUpload';
 import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
@@ -47,7 +48,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
   const [email, setEmail] = useState(user?.email);
   const [avatar, setAvatar] = useState<File | undefined>();
 
-  useEffect(() => {
+  useAppEffect(() => {
     dispatch(getProfileArticles());
   }, [dispatch, pageArticles]);
 

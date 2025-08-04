@@ -13,12 +13,12 @@
     "lint:style": "npx stylelint \"**/*.scss\"",
     "lint:style:fix": "npx stylelint \"**/*.scss\" --fix",
     "unit:test": "jest --config ./config/jest/jest.config.ts",
-    "unit:test:staged": "jest --config ./config/jest/jest.config.ts -o",
+    "unit:test:staged": "jest --config ./config/jest/jest.config.ts --findRelatedTests --coverage",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki test approve",
     "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
-    "test:ui:json": "node scripts/generate-visual-json-report.ts",
+    "test:ui:json": "node scripts/generate-visual-json-report.js",
     "test:ui:html": "npx reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "build-storybook": "build-storybook -c ./config/storybook",
@@ -118,14 +118,14 @@
   "loki": {
     "configurations": {
       "chrome.laptop": {
-        "target": "chrome.app",
+        "target": "chrome.docker",
         "width": 1366,
         "height": 768,
         "deviceScaleFactor": 1,
         "mobile": false
       },
       "chrome.iphone7": {
-        "target": "chrome.app",
+        "target": "chrome.docker",
         "preset": "iPhone 7"
       }
     }

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +18,7 @@ import { AddCommentForm, addCommentFormActions } from '@/features/AddCommentForm
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppEffect } from '@/shared/lib/hooks/useAppEffect/useAppEffect';
 import Pagination from '@/shared/ui/Pagination/Pagination';
 import { Tag } from '@/shared/ui/Tag/Tag';
 
@@ -44,7 +45,7 @@ const ArticleCommentsBlock = memo((props: ArticleCommentsBlockProps) => {
   const formLoading = useSelector(getArticleFormLoading);
   const formError = useSelector(getArticleFormError);
 
-  useEffect(() => {
+  useAppEffect(() => {
     if (articleId) {
       dispatch(getArticleComments(articleId));
     }

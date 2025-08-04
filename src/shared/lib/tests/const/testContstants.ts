@@ -30,7 +30,7 @@ export const testArticle: ArticleType = {
   title: 'Заголовок',
   subtitle: 'Подзаголовок',
   content: '<h3>Привет я статья</h3>',
-  poster: 'https://placehold.co/400',
+  poster: '',
   published: true,
   likesCount: 0,
   viewsCount: 14,

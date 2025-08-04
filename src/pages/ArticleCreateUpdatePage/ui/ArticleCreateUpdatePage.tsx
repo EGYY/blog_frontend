@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { getUser } from '@/entities/User';
 import { getRouteArticles } from '@/shared/config/routes/routes';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppEffect } from '@/shared/lib/hooks/useAppEffect/useAppEffect';
 import { ArticleCreateUpdate, articleCreateUpdateReducer } from '@/widgets/ArticleCreateUpdate';
 import { PageError } from '@/widgets/PageError';
 import { PageWrapper } from '@/widgets/PageWrapper';
@@ -26,7 +27,7 @@ const ArticleCreateUpdatePage = () => {
   const article = useSelector(getArticle);
   const user = useSelector(getUser);
 
-  useEffect(() => {
+  useAppEffect(() => {
     if (id) {
       dispatch(getArticleData(id));
     }

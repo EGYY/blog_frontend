@@ -23,4 +23,5 @@ export interface BuildOptions {
     port: number,
     analyze: boolean,
     serverUrl: string,
+    project: string,
 }

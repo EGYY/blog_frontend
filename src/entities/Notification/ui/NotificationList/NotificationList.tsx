@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useNotifications } from '../../api/notificationApi';
@@ -24,13 +25,18 @@ export const NotificationList = (props: NotificationListProps) => {
     },
   );
 
+  const nonEmptyNotifications = useMemo(() => {
+    return notifications?.filter((n) => Boolean(n.article));
+  }, [notifications]);
+
   return (
     <div className={classNames(cls.notificationListWrapper, {}, [className])}>
       <h3>{t('notifications')}</h3>
       <div className="separator" />
       <div className={cls.notificationList}>
-        {notifications && notifications?.length > 0
-          ? notifications.map((notification) => (<NotificationListItem key={notification.id} item={notification} />))
+        {nonEmptyNotifications && nonEmptyNotifications?.length > 0
+          ? nonEmptyNotifications
+            .map((notification) => (<NotificationListItem key={notification.id} item={notification} />))
           : <Tag variant="info">{t('empty')}</Tag>}
         {isLoading && (
         <>

@@ -149,7 +149,7 @@ module.exports = {
   globals: {
     __IS_DEV__: true,
     __PROJECT__: true,
-    __SERVER_URL: true,
+    __SERVER_URL__: true,
   },
   overrides: [
     {
