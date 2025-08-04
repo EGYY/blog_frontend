@@ -10,7 +10,7 @@ import { Theme } from '@/shared/config/theme/ThemeContext';
 
 export interface componentRenderOptions {
     route?: string
-    initialState?: StateSchema
+    initialState?: DeepPartial<StateSchema>
     asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
     theme?: Theme
 }

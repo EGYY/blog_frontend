@@ -34,7 +34,7 @@ const MainPage = memo(() => {
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterAnmount={false}>
-      <PageWrapper>
+      <PageWrapper data-testid="main-page">
         <ArticleListByCategory
           articles={articles?.data || []}
           categories={categories}

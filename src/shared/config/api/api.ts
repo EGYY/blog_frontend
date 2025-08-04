@@ -31,13 +31,14 @@ export const getNewTokens = async () => {
 };
 
 axiosWithAuth.interceptors.request.use((config) => {
+  const isOptionalAuthRequest = config.headers?.['x-public'];
   const accessToken = Cookies.get('accessToken');
 
-  if (!accessToken) {
+  if (!accessToken && !isOptionalAuthRequest) {
     return Promise.reject(new axios.Cancel('No access or refresh token'));
   }
 
-  if (config?.headers && accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
+  if (config?.headers && accessToken && !isOptionalAuthRequest) config.headers.Authorization = `Bearer ${accessToken}`;
 
   return config;
 });

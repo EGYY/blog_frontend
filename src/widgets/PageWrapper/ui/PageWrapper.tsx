@@ -15,9 +15,11 @@ import cls from './PageWrapper.module.scss';
 interface PageWrapperProps extends PropsWithChildren {
     onScrollEnd?: () => void
     needAutoScroll?: boolean
+    'data-testid'?: string
 }
 
-export const PageWrapper: FC<PageWrapperProps> = ({ children, onScrollEnd, needAutoScroll }) => {
+export const PageWrapper: FC<PageWrapperProps> = (props) => {
+  const { children, onScrollEnd, needAutoScroll } = props;
   const dispatch = useAppDispatch();
   const location = useLocation();
   const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -42,6 +44,7 @@ export const PageWrapper: FC<PageWrapperProps> = ({ children, onScrollEnd, needA
       ref={wrapperRef}
       className={cls.content}
       onScroll={onScroll}
+      data-testid={props?.['data-testid'] ?? 'page'}
     >
       {children}
       {onScrollEnd && <div className={cls.trigger} ref={triggerRef} />}

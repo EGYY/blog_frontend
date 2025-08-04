@@ -33,7 +33,7 @@ const ProfilePage = () => {
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
-      <PageWrapper>
+      <PageWrapper data-testid="profile-page">
         <EditableProfileCard user={user} loading={loadingUpdateProfile} error={errorUpdateProfile} />
       </PageWrapper>
     </DynamicModuleLoader>

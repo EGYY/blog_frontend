@@ -8,7 +8,7 @@ export const getArticleData = createAsyncThunk<Article, string, { rejectValue: s
   'article/getArticleData',
   async (id, { rejectWithValue, extra }) => {
     try {
-      const response = await extra.apiAuth.get<Article>(`/articles/${id}`);
+      const response = await extra.apiAuth.get<Article>(`/articles/${id}`, { headers: { 'x-public': true } });
       return response.data;
     } catch (e: any) {
       if (e?.response?.data?.message) {

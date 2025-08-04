@@ -13,6 +13,7 @@
     "lint:style": "npx stylelint \"**/*.scss\"",
     "lint:style:fix": "npx stylelint \"**/*.scss\" --fix",
     "unit:test": "jest --config ./config/jest/jest.config.ts",
+    "unit:test:staged": "jest --config ./config/jest/jest.config.ts -o",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki test approve",
     "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
@@ -22,6 +23,10 @@
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "build-storybook": "build-storybook -c ./config/storybook",
     "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": ["npx eslint", "npm run unit:test:staged"],
+    "**/*.scss": "npx stylint"
   },
   "keywords": [],
   "author": "",
@@ -76,6 +81,7 @@
     "husky": "^8.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "lint-staged": "^13.0.3",
     "loki": "^0.35.1",
     "mini-css-extract-plugin": "^2.5.3",
     "react-refresh": "^0.12.0",

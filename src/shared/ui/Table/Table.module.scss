@@ -25,14 +25,20 @@
   table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
+  font-size: 0.875rem;
 }
 
 .thead {
   position: sticky;
   top: 0;
   z-index: 2;
-  color: var(--secondary-color);
-  background-color: var(--bg-color);
+  color: var(--primary-color);
+
+  tr {
+    th {
+      background-color: var(--button-secondary-bg);
+    }
+  }
 }
 
 tbody {
@@ -41,7 +47,7 @@ tbody {
   }
 
   & > tr:hover > td {
-    background-color: var(--button-secondary-bg);
+    background-color: color-mix(in oklab, var(--button-secondary-bg) 50%, transparent);
   }
 }
 

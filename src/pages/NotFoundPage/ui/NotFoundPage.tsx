@@ -16,7 +16,7 @@ export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <PageWrapper>
+    <PageWrapper data-testid="not-found-page">
       <div className={classNames(cls.notFoundPage, {}, [className])}>
         <h1>
           {t('not_found_page')}
