@@ -19,7 +19,7 @@ export default (env: BuildEnv) => {
   const isDev = mode === 'development';
   const port = env.port || 3000;
   const analyze = env.analyze || false;
-  const serverUrl = env.sereverUrl || 'http://localhost:5000';
+  const serverUrl = env.sereverUrl || 'http://localhost:8080';
 
   const config: webpack.Configuration = webpackConfig({
     mode,
