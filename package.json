@@ -15,6 +15,7 @@
     "unit:test": "jest --config ./config/jest/jest.config.ts",
     "unit:test:staged": "jest --config ./config/jest/jest.config.ts --findRelatedTests --coverage",
     "test:ui": "npx loki test",
+    "test:e2e": "cypress open",
     "test:ui:ok": "npx loki test approve",
     "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
@@ -25,7 +26,10 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": ["npx eslint", "npm run unit:test:staged"],
+    "**/*.{ts,tsx}": [
+      "npx eslint",
+      "npm run unit:test:staged"
+    ],
     "**/*.scss": "npx stylint"
   },
   "keywords": [],
@@ -66,6 +70,7 @@
     "circular-dependency-plugin": "^5.2.2",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
+    "cypress": "^11.0.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-egyy-plugin": "^0.0.7",
