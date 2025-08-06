@@ -106,6 +106,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                                     label={t('form_name')}
                                     name="name"
                                     className={styles.profileCardFormEl}
+                                    data-testid="profile-card.name"
                                 />
                                 <Input
                                     value={email}
@@ -120,6 +121,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                                     label={t('form_bio')}
                                     name="bio"
                                     defaultValue={user?.bio}
+                                    data-testid="profile-card.bio"
                                 />
                             </div>
                             {error && (
@@ -130,6 +132,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                                     loading={loading}
                                     disabled={!email || !userName || loading}
                                     type="submit"
+                                    data-testid="profile-card.save"
                                 >
                                     {t('form_submit')}
                                 </Button>

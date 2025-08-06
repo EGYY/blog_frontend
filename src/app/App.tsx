@@ -1,24 +1,26 @@
 import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Router } from './providers/router';
 
 import { getInitedUser, getProfileData } from '@/entities/User';
 import { useTheme } from '@/shared/config/theme/useTheme';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppEffect } from '@/shared/lib/hooks/useAppEffect/useAppEffect';
 import { PageLoader } from '@/widgets/PageLoader';
 import { Sidebar } from '@/widgets/Sidebar';
 
 export const App = () => {
     const { theme } = useTheme();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const inited = useSelector(getInitedUser);
 
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
 
-    useEffect(() => {
+    useAppEffect(() => {
         if (!inited) {
             dispatch(getProfileData());
         }

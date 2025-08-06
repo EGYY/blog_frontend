@@ -194,12 +194,14 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
                     />
                 </div>
                 <div className={cls.articleInfo}>
-                    <span>
-                        <CalendarIcon />
-                        {formatDate(
-                            article?.createdAt || new Date().toISOString(),
-                        )}
-                    </span>
+                    {__PROJECT__ !== 'storybook' && (
+                        <span>
+                            <CalendarIcon />
+                            {formatDate(
+                                article?.createdAt || new Date().toISOString(),
+                            )}
+                        </span>
+                    )}
                     <span>
                         <EyeIcon />
                         {article?.viewsCount || 0}
