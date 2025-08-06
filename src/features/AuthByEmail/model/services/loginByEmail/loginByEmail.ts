@@ -5,29 +5,29 @@ import { ThunkExtraArg } from '@/app/providers/StoreProvider';
 import { userActions, UserServerResponse } from '@/entities/User';
 
 export const loginByEmail = createAsyncThunk<
-  UserServerResponse,
-  { email: string, password: string },
-  { rejectValue: string, extra: ThunkExtraArg }
->(
-  'auth/loginByEmail',
-  async (body, { rejectWithValue, dispatch, extra }) => {
+    UserServerResponse,
+    { email: string; password: string },
+    { rejectValue: string; extra: ThunkExtraArg }
+>('auth/loginByEmail', async (body, { rejectWithValue, dispatch, extra }) => {
     try {
-      const response = await extra.api.post<UserServerResponse>('/auth/login', body);
-      if (!response.data || !response.data?.accessToken) {
-        return rejectWithValue('Некорректный ответ сервера');
-      }
-      Cookies.set('accessToken', response.data.accessToken, {
-        domain: 'localhost',
-        sameSite: 'strict',
-        expires: 1,
-      });
-      dispatch(userActions.setAuthData(response.data));
-      return response.data;
+        const response = await extra.api.post<UserServerResponse>(
+            '/auth/login',
+            body,
+        );
+        if (!response.data || !response.data?.accessToken) {
+            return rejectWithValue('Некорректный ответ сервера');
+        }
+        Cookies.set('accessToken', response.data.accessToken, {
+            domain: 'localhost',
+            sameSite: 'strict',
+            expires: 1,
+        });
+        dispatch(userActions.setAuthData(response.data));
+        return response.data;
     } catch (e: any) {
-      if (e?.response?.data?.message) {
-        return rejectWithValue(e.response.data.message);
-      }
-      return rejectWithValue(e.message);
+        if (e?.response?.data?.message) {
+            return rejectWithValue(e.response.data.message);
+        }
+        return rejectWithValue(e.message);
     }
-  },
-);
+});

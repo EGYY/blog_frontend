@@ -1,5 +1,9 @@
 import {
-  AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
+    AnyAction,
+    CombinedState,
+    EnhancedStore,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
@@ -19,41 +23,44 @@ import { ArticleCreateUpdateSchema } from '@/widgets/ArticleCreateUpdate';
 import { ProfileDetailSchema } from '@/widgets/ProfileViewer';
 
 export interface StateSchema {
-    user: UserSchema,
-    scroll: SaveScrollPostitionSchema,
-    toasts: ToastSchema,
-    main_page?: MainPageSchema,
-    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
-    auth?: AuthSchema,
-    update_profile?: UpdateProfileSchema,
-    article?: ArticleSchema,
-    article_create_update?: ArticleCreateUpdateSchema,
-    articles_filters?: ArticlesFiltersSchema,
-    comment_form?: AddCommentFormSchema
-    article_comments_block?: ArticleCommentsBlockSchema,
-    profile_detail?: ProfileDetailSchema
+    user: UserSchema;
+    scroll: SaveScrollPostitionSchema;
+    toasts: ToastSchema;
+    main_page?: MainPageSchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
+    auth?: AuthSchema;
+    update_profile?: UpdateProfileSchema;
+    article?: ArticleSchema;
+    article_create_update?: ArticleCreateUpdateSchema;
+    articles_filters?: ArticlesFiltersSchema;
+    comment_form?: AddCommentFormSchema;
+    article_comments_block?: ArticleCommentsBlockSchema;
+    profile_detail?: ProfileDetailSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
 
 export interface ReducerManager {
-    getReducerMap: () => ReducersMapObject<StateSchema>,
-    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>,
-    add: (key: StateSchemaKey, reducer: Reducer) => void,
-    remove: (key: StateSchemaKey) => void
+    getReducerMap: () => ReducersMapObject<StateSchema>;
+    reduce: (
+        state: StateSchema,
+        action: AnyAction,
+    ) => CombinedState<StateSchema>;
+    add: (key: StateSchemaKey, reducer: Reducer) => void;
+    remove: (key: StateSchemaKey) => void;
 }
 
 export interface ReduxStoreManager extends EnhancedStore<StateSchema> {
-    reducerManager: ReducerManager
+    reducerManager: ReducerManager;
 }
 
 export interface ThunkExtraArg {
-    api: AxiosInstance,
-    apiAuth: AxiosInstance,
-    navigate?: (to: To, options?: NavigateOptions) => void,
+    api: AxiosInstance;
+    apiAuth: AxiosInstance;
+    navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkExtraArgForTests {
-    api: jest.MockedFn<AxiosInstance>,
-    navigate?: jest.Mock,
+    api: jest.MockedFn<AxiosInstance>;
+    navigate?: jest.Mock;
 }

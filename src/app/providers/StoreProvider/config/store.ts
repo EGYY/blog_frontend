@@ -1,5 +1,8 @@
 import {
-  CombinedState, configureStore, Reducer, ReducersMapObject,
+    CombinedState,
+    configureStore,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 
 import { StateSchema } from './StateSchema';
@@ -12,38 +15,38 @@ import { rtkApi } from '@/shared/config/api/rtkApi';
 import { toastReducer } from '@/shared/lib/components/Toast';
 
 export const createReduxStore = (
-  initialState?: StateSchema,
-  asyncReducers?: ReducersMapObject<StateSchema>,
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
 ) => {
-  const rootReducers: ReducersMapObject<StateSchema> = {
-    ...asyncReducers,
-    user: userReducer,
-    scroll: saveScrollPostitionReducer,
-    toasts: toastReducer,
-    [rtkApi.reducerPath]: rtkApi.reducer,
+    const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
+        user: userReducer,
+        scroll: saveScrollPostitionReducer,
+        toasts: toastReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
+    };
 
-  };
+    const reducerManager = createReducerManager(rootReducers);
 
-  const reducerManager = createReducerManager(rootReducers);
+    const store = configureStore({
+        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
+        devTools: __IS_DEV__,
+        preloadedState: initialState,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: {
+                        api: axiosClassic,
+                        apiAuth: axiosWithAuth,
+                    },
+                },
+            }).concat(rtkApi.middleware),
+    });
 
-  const store = configureStore({
-    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
-    devTools: __IS_DEV__,
-    preloadedState: initialState,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-      thunk: {
-        extraArgument: {
-          api: axiosClassic,
-          apiAuth: axiosWithAuth,
-        },
-      },
-    }).concat(rtkApi.middleware),
-  });
+    // @ts-ignore
+    store.reducerManager = reducerManager;
 
-  // @ts-ignore
-  store.reducerManager = reducerManager;
-
-  return store;
+    return store;
 };
 
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

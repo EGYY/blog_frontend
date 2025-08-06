@@ -1,4 +1,7 @@
-export { profileDetailReducer, profileDetailActions } from './model/slice/profileDetailSlice';
+export {
+    profileDetailReducer,
+    profileDetailActions,
+} from './model/slice/profileDetailSlice';
 
 export { ProfileViewer } from './ui/ProfileViewer';
 

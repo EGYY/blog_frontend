@@ -1,39 +1,43 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import withMock from 'storybook-addon-mock';
 
 import MainPage from '../MainPage';
 
-import { testArticle, testCategories } from '@/shared/lib/tests/const/testContstants';
+import {
+    testArticle,
+    testCategories,
+} from '@/shared/lib/tests/const/testContstants';
 
 export default {
-  title: 'pages/MainPage',
-  component: MainPage,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-  args: {},
-  decorators: [withMock],
-  parameters: {
-    mockData: [
-      {
-        url: `${__SERVER_URL__}/article-categories`,
-        method: 'GET',
-        status: 200,
-        response: testCategories,
-      },
-      {
-        url: `${__SERVER_URL__}/articles?limit=50`,
-        method: 'GET',
-        status: 200,
-        response: {
-          data: ['1', '2', '3', '4', '5'].map((id) => ({ ...testArticle, id })),
-          limit: 50,
-          page: 1,
-          total: 5,
-        },
-      },
-    ],
-  },
+    title: 'pages/MainPage',
+    component: MainPage,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+    args: {},
+    parameters: {
+        mockData: [
+            {
+                url: `${__SERVER_URL__}/article-categories`,
+                method: 'GET',
+                status: 200,
+                response: testCategories,
+            },
+            {
+                url: `${__SERVER_URL__}/articles?limit=50`,
+                method: 'GET',
+                status: 200,
+                response: {
+                    data: ['1', '2', '3', '4', '5'].map((id) => ({
+                        ...testArticle,
+                        id,
+                    })),
+                    limit: 50,
+                    page: 1,
+                    total: 5,
+                },
+            },
+        ],
+    },
 } as ComponentMeta<typeof MainPage>;
 
 const Template: ComponentStory<typeof MainPage> = () => <MainPage />;

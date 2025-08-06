@@ -15,37 +15,42 @@ interface NotificationListProps {
 }
 
 export const NotificationList = (props: NotificationListProps) => {
-  const { className } = props;
-  const { t } = useTranslation('notifications');
-  const { data: notifications, isLoading } = useNotifications(
-    undefined,
-    {
-      pollingInterval: 10000,
-      refetchOnMountOrArgChange: true,
-    },
-  );
+    const { className } = props;
+    const { t } = useTranslation('notifications');
+    const { data: notifications, isLoading } = useNotifications(undefined, {
+        pollingInterval: 10000,
+        refetchOnMountOrArgChange: true,
+    });
 
-  const nonEmptyNotifications = useMemo(() => {
-    return notifications?.filter((n) => Boolean(n.article));
-  }, [notifications]);
+    const nonEmptyNotifications = useMemo(() => {
+        return notifications?.filter((n) => Boolean(n.article));
+    }, [notifications]);
 
-  return (
-    <div className={classNames(cls.notificationListWrapper, {}, [className])}>
-      <h3>{t('notifications')}</h3>
-      <div className="separator" />
-      <div className={cls.notificationList}>
-        {nonEmptyNotifications && nonEmptyNotifications?.length > 0
-          ? nonEmptyNotifications
-            .map((notification) => (<NotificationListItem key={notification.id} item={notification} />))
-          : <Tag variant="info">{t('empty')}</Tag>}
-        {isLoading && (
-        <>
-          <Skeleton height={50} />
-          <Skeleton height={50} />
-          <Skeleton height={50} />
-        </>
-        )}
-      </div>
-    </div>
-  );
+    return (
+        <div
+            className={classNames(cls.notificationListWrapper, {}, [className])}
+        >
+            <h3>{t('notifications')}</h3>
+            <div className="separator" />
+            <div className={cls.notificationList}>
+                {nonEmptyNotifications && nonEmptyNotifications?.length > 0 ? (
+                    nonEmptyNotifications.map((notification) => (
+                        <NotificationListItem
+                            key={notification.id}
+                            item={notification}
+                        />
+                    ))
+                ) : (
+                    <Tag variant="info">{t('empty')}</Tag>
+                )}
+                {isLoading && (
+                    <>
+                        <Skeleton height={50} />
+                        <Skeleton height={50} />
+                        <Skeleton height={50} />
+                    </>
+                )}
+            </div>
+        </div>
+    );
 };

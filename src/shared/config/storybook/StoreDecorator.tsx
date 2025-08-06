@@ -9,17 +9,20 @@ import { articleCreateUpdateReducer } from '@/widgets/ArticleCreateUpdate';
 import { profileDetailReducer } from '@/widgets/ProfileViewer';
 
 const asyncDefaultReducers: DeepPartial<ReducersList> = {
-  user: userReducer,
-  profile_detail: profileDetailReducer,
-  article_create_update: articleCreateUpdateReducer,
-  article: articleReducer,
+    user: userReducer,
+    profile_detail: profileDetailReducer,
+    article_create_update: articleCreateUpdateReducer,
+    article: articleReducer,
 };
 
-export const StoreDecorator = (
-  state: DeepPartial<StateSchema>,
-  asyncReducers?: ReducersList,
-) => (StoryComponent: Story) => (
-  <StoreProvider initialState={state} asyncReducers={{ ...asyncDefaultReducers, ...asyncReducers }}>
-    <StoryComponent />
-  </StoreProvider>
-);
+export const StoreDecorator =
+    (state: DeepPartial<StateSchema>, asyncReducers?: ReducersList) =>
+    (StoryComponent: Story) =>
+        (
+            <StoreProvider
+                initialState={state}
+                asyncReducers={{ ...asyncDefaultReducers, ...asyncReducers }}
+            >
+                <StoryComponent />
+            </StoreProvider>
+        );

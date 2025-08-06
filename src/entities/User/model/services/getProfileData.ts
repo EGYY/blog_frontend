@@ -4,17 +4,18 @@ import { User } from '../types/user';
 
 import { axiosWithAuth } from '@/shared/config/api/api';
 
-export const getProfileData = createAsyncThunk<User, void, {rejectValue: string}>(
-  'user/getProfileData',
-  async (_, { rejectWithValue }) => {
+export const getProfileData = createAsyncThunk<
+    User,
+    void,
+    { rejectValue: string }
+>('user/getProfileData', async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosWithAuth.get<User>('/users/profile');
-      return response.data;
+        const response = await axiosWithAuth.get<User>('/users/profile');
+        return response.data;
     } catch (e: any) {
-      if (e?.response?.data?.message) {
-        return rejectWithValue(e.response.data.message);
-      }
-      return rejectWithValue(e.message);
+        if (e?.response?.data?.message) {
+            return rejectWithValue(e.response.data.message);
+        }
+        return rejectWithValue(e.message);
     }
-  },
-);
+});

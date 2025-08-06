@@ -8,25 +8,28 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import cls from './LanguageSwitcher.module.scss';
 
 interface LanguageSwitcherProps {
-    className?: string
+    className?: string;
 }
 
-export const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(({ className }) => {
-  const { t, i18n } = useTranslation('sidebar');
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = memo(
+    ({ className }) => {
+        const { t, i18n } = useTranslation('sidebar');
 
-  const toggleLanguage = () => {
-    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-  };
-  return (
-    <Tooltip content={t('language_title')} preferredPlacement="right">
-      <Button
-        className={classNames(cls.languageSwitcher, {}, [className])}
-        theme="ghostIcon"
-        onClick={toggleLanguage}
-      >
-        {t('language')}
-      </Button>
-    </Tooltip>
-
-  );
-});
+        const toggleLanguage = () => {
+            i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+        };
+        return (
+            <Tooltip content={t('language_title')} preferredPlacement="right">
+                <Button
+                    className={classNames(cls.languageSwitcher, {}, [
+                        className,
+                    ])}
+                    theme="ghostIcon"
+                    onClick={toggleLanguage}
+                >
+                    {t('language')}
+                </Button>
+            </Tooltip>
+        );
+    },
+);

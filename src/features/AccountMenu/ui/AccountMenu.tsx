@@ -15,46 +15,49 @@ import { Image } from '@/shared/ui/Image/Image';
 import styles from './AccountMenu.module.scss';
 
 interface AccountMenuProps {
-  className?: string;
+    className?: string;
 }
 
 export const AccountMenu = memo((props: AccountMenuProps) => {
-  const { className } = props;
-  const { t } = useTranslation('navbar');
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const user = useSelector(getUser);
+    const { className } = props;
+    const { t } = useTranslation('navbar');
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const user = useSelector(getUser);
 
-  const handleLogout = () => {
-    dispatch(logout()).then(() => navigate(getRouteMain()));
-  };
+    const handleLogout = () => {
+        dispatch(logout()).then(() => navigate(getRouteMain()));
+    };
 
-  const handleGoToProfile = () => {
-    navigate(`/profile/${user?.id}`);
-  };
+    const handleGoToProfile = () => {
+        navigate(`/profile/${user?.id}`);
+    };
 
-  return (
-    <div className={classNames(styles.accountMenu, {}, [className])}>
-      <div className={classNames(styles.accountMenuTrigger, {})}>
-        <Image src={`${__SERVER_URL__}${user?.avatar}`} alt={user?.name || user?.email} />
-        <div className={styles.accountMenuTriggerInfo}>
-          <b>{user?.name}</b>
-          <span>{user?.email}</span>
+    return (
+        <div className={classNames(styles.accountMenu, {}, [className])}>
+            <div className={classNames(styles.accountMenuTrigger, {})}>
+                <Image
+                    src={`${__SERVER_URL__}${user?.avatar}`}
+                    alt={user?.name || user?.email}
+                />
+                <div className={styles.accountMenuTriggerInfo}>
+                    <b>{user?.name}</b>
+                    <span>{user?.email}</span>
+                </div>
+            </div>
+            <div className={classNames(styles.menuItems, {}, [styles.mt])}>
+                <Button theme="ghost" onClick={handleGoToProfile}>
+                    <UserIcon />
+                    {t('profile')}
+                </Button>
+            </div>
+            <div className={styles.separator} />
+            <div className={styles.menuItems}>
+                <Button theme="ghost" onClick={handleLogout}>
+                    <LogoutIcon />
+                    {t('logout')}
+                </Button>
+            </div>
         </div>
-      </div>
-      <div className={classNames(styles.menuItems, {}, [styles.mt])}>
-        <Button theme="ghost" onClick={handleGoToProfile}>
-          <UserIcon />
-          {t('profile')}
-        </Button>
-      </div>
-      <div className={styles.separator} />
-      <div className={styles.menuItems}>
-        <Button theme="ghost" onClick={handleLogout}>
-          <LogoutIcon />
-          {t('logout')}
-        </Button>
-      </div>
-    </div>
-  );
+    );
 });

@@ -1,5 +1,5 @@
 export interface AuthSchema {
-    loading: boolean,
-    typeForm: 'auth' | 'register',
-    error?: string,
+    loading: boolean;
+    typeForm: 'auth' | 'register';
+    error?: string;
 }

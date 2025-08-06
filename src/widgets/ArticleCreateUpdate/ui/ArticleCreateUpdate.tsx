@@ -1,8 +1,4 @@
-import {
-  ChangeEvent,
-  memo,
-  useCallback, useEffect, useMemo,
-} from 'react';
+import { ChangeEvent, memo, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -40,168 +36,226 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import cls from './ArticleCreateUpdate.module.scss';
 
 interface ArticleCreateUpdateProps {
-  className?: string
-  article?: ArticleType
-  type?: 'create' | 'update'
+    className?: string;
+    article?: ArticleType;
+    type?: 'create' | 'update';
 }
 
 export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
-  const {
-    className,
-    article,
-    type = 'create',
-  } = props;
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation(['article', 'profile']);
+    const { className, article, type = 'create' } = props;
+    const dispatch = useAppDispatch();
+    const { t } = useTranslation(['article', 'profile']);
 
-  const { data: categories } = useArticleCategoriesQuery();
-  const { data: tags } = useArticleTagsQuery();
+    const { data: categories } = useArticleCategoriesQuery();
+    const { data: tags } = useArticleTagsQuery();
 
-  const loading = useSelector(getArticleLoading);
-  const error = useSelector(getArticleError);
+    const loading = useSelector(getArticleLoading);
+    const error = useSelector(getArticleError);
 
-  const title = useSelector(getArticleTitle);
-  const subtitle = useSelector(getArticleSubtitle);
-  const published = useSelector(getArticlePublished);
-  const category = useSelector(getArticleCategory);
-  const selectedTags = useSelector(getArticleCreateUpdateTags);
-  const poster = useSelector(getArticlePoster);
-  const posterFile = useSelector(getArticlePosterFile);
-  const html = useSelector(getArticleContent);
+    const title = useSelector(getArticleTitle);
+    const subtitle = useSelector(getArticleSubtitle);
+    const published = useSelector(getArticlePublished);
+    const category = useSelector(getArticleCategory);
+    const selectedTags = useSelector(getArticleCreateUpdateTags);
+    const poster = useSelector(getArticlePoster);
+    const posterFile = useSelector(getArticlePosterFile);
+    const html = useSelector(getArticleContent);
 
-  useEffect(() => {
-    dispatch(articleCreateUpdateActions.initDefaultData(article));
-  }, [dispatch, article]);
+    useEffect(() => {
+        dispatch(articleCreateUpdateActions.initDefaultData(article));
+    }, [dispatch, article]);
 
-  const filterCategories = useMemo(() => {
-    if (categories && categories?.length > 0) {
-      return categories?.map((category) => ({ label: category.name, value: category.id }));
-    }
-    return [];
-  }, [categories]);
+    const filterCategories = useMemo(() => {
+        if (categories && categories?.length > 0) {
+            return categories?.map((category) => ({
+                label: category.name,
+                value: category.id,
+            }));
+        }
+        return [];
+    }, [categories]);
 
-  const filterTags = useMemo(() => {
-    if (tags && tags?.length > 0) {
-      return tags?.map((tag) => ({ label: tag.name, value: tag.id }));
-    }
-    return [];
-  }, [tags]);
+    const filterTags = useMemo(() => {
+        if (tags && tags?.length > 0) {
+            return tags?.map((tag) => ({ label: tag.name, value: tag.id }));
+        }
+        return [];
+    }, [tags]);
 
-  const onChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(articleCreateUpdateActions.setArticleTitle(e.currentTarget.value));
-  }, [dispatch]);
+    const onChangeTitle = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            dispatch(
+                articleCreateUpdateActions.setArticleTitle(
+                    e.currentTarget.value,
+                ),
+            );
+        },
+        [dispatch],
+    );
 
-  const onChangeSubtitle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(articleCreateUpdateActions.setArticleSubtitle(e.currentTarget.value));
-  }, [dispatch]);
+    const onChangeSubtitle = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            dispatch(
+                articleCreateUpdateActions.setArticleSubtitle(
+                    e.currentTarget.value,
+                ),
+            );
+        },
+        [dispatch],
+    );
 
-  const onChangePublished = useCallback((val: boolean) => {
-    dispatch(articleCreateUpdateActions.setArticlePubslished(val));
-  }, [dispatch]);
+    const onChangePublished = useCallback(
+        (val: boolean) => {
+            dispatch(articleCreateUpdateActions.setArticlePubslished(val));
+        },
+        [dispatch],
+    );
 
-  const onChageCategory = useCallback((val: string) => {
-    dispatch(articleCreateUpdateActions.setArticleCategory(val));
-  }, [dispatch]);
+    const onChageCategory = useCallback(
+        (val: string) => {
+            dispatch(articleCreateUpdateActions.setArticleCategory(val));
+        },
+        [dispatch],
+    );
 
-  const onChageTags = useCallback((val: string[]) => {
-    dispatch(articleCreateUpdateActions.setArticleTags(val));
-  }, [dispatch]);
+    const onChageTags = useCallback(
+        (val: string[]) => {
+            dispatch(articleCreateUpdateActions.setArticleTags(val));
+        },
+        [dispatch],
+    );
 
-  const onChangePoster = useCallback((file: File) => {
-    dispatch(articleCreateUpdateActions.setArticlePosterFile(file));
-  }, [dispatch]);
+    const onChangePoster = useCallback(
+        (file: File) => {
+            dispatch(articleCreateUpdateActions.setArticlePosterFile(file));
+        },
+        [dispatch],
+    );
 
-  const onChangeHtml = useCallback((val: string) => {
-    dispatch(articleCreateUpdateActions.setArticleContent(val));
-  }, [dispatch]);
+    const onChangeHtml = useCallback(
+        (val: string) => {
+            dispatch(articleCreateUpdateActions.setArticleContent(val));
+        },
+        [dispatch],
+    );
 
-  const submit = useCallback(() => {
-    const form = new FormData();
+    const submit = useCallback(() => {
+        const form = new FormData();
 
-    const fields: [string, any][] = [
-      ['title', title],
-      ['subtitle', subtitle],
-      ['content', html],
-      ['categoryId', category],
-      ['tagIds', selectedTags ? selectedTags.join(',') : null],
-      ['poster', posterFile],
-      ['published', published],
-    ];
+        const fields: [string, any][] = [
+            ['title', title],
+            ['subtitle', subtitle],
+            ['content', html],
+            ['categoryId', category],
+            ['tagIds', selectedTags ? selectedTags.join(',') : null],
+            ['poster', posterFile],
+            ['published', published],
+        ];
 
-    fields.forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
-        form.append(key, value);
-      }
-    });
+        fields.forEach(([key, value]) => {
+            if (value !== undefined && value !== null && value !== '') {
+                form.append(key, value);
+            }
+        });
 
-    if (type === 'create') {
-      dispatch(createArticle(form));
-    } else if (type === 'update' && article?.id) {
-      dispatch(updateArticle({ id: article.id, body: form }));
-    }
-  }, [title, subtitle, html, category, selectedTags, posterFile, published, type, article?.id, dispatch]);
+        if (type === 'create') {
+            dispatch(createArticle(form));
+        } else if (type === 'update' && article?.id) {
+            dispatch(updateArticle({ id: article.id, body: form }));
+        }
+    }, [
+        title,
+        subtitle,
+        html,
+        category,
+        selectedTags,
+        posterFile,
+        published,
+        type,
+        article?.id,
+        dispatch,
+    ]);
 
-  return (
-    <article className={classNames(cls.articleWrapper, {}, [className])}>
-      <div className={cls.articleContent}>
-        <div className={cls.articleTitle}>
-          <Input label={t('article:title')} value={title} onChange={onChangeTitle} />
-        </div>
-        <div className={cls.articleSubtitle}>
-          <Input label={t('article:subtitle')} value={subtitle} onChange={onChangeSubtitle} />
-        </div>
-        <div className={cls.articleInfo}>
-          <span>
-            <CalendarIcon />
-            {formatDate(article?.createdAt || new Date().toISOString())}
-          </span>
-          <span>
-            <EyeIcon />
-            {article?.viewsCount || 0}
-          </span>
-          <span>
-            <HeartIcon />
-            {article?.likesCount || 0}
-          </span>
-        </div>
-        <Checkbox
-          label={t('profile:published')}
-          checked={published}
-          onChange={onChangePublished}
-          name="published"
-          className={cls.published}
-        />
-        <div className={cls.selectors}>
-          <Select
-            value={category}
-            onChange={(val) => onChageCategory(val as string)}
-            options={filterCategories}
-            label={t('article:category_label')}
-            placeholder={t('article:select_placeholder')}
-            className={cls.articleFilterSelect}
-          />
-          <Select
-            multiple
-            value={selectedTags}
-            onChange={(val) => onChageTags(val as string[])}
-            options={filterTags}
-            label={t('article:tag_label')}
-            placeholder={t('article:select_placeholder')}
-            className={cls.articleFilterSelect}
-          />
-        </div>
-      </div>
-      <div className={cls.artticlePoster}>
-        <Tooltip content={t('article:upload_image')} preferredPlacement="top">
-          <ImageUpload src={`${__SERVER_URL__}${poster}`} alt={title} onChangeImage={onChangePoster} />
-        </Tooltip>
-      </div>
-      <div className={classNames('separator', {}, [cls.separator])} />
-      <b>{t('article:content')}</b>
-      <HtmlEditor html={html} onChangeContent={onChangeHtml} />
-      <Button type="button" onClick={submit} loading={loading}>
-        {type === 'create' && !article ? t('article:create_article') : t('article:update_article')}
-      </Button>
-    </article>
-  );
+    return (
+        <article className={classNames(cls.articleWrapper, {}, [className])}>
+            <div className={cls.articleContent}>
+                <div className={cls.articleTitle}>
+                    <Input
+                        label={t('article:title')}
+                        value={title}
+                        onChange={onChangeTitle}
+                    />
+                </div>
+                <div className={cls.articleSubtitle}>
+                    <Input
+                        label={t('article:subtitle')}
+                        value={subtitle}
+                        onChange={onChangeSubtitle}
+                    />
+                </div>
+                <div className={cls.articleInfo}>
+                    <span>
+                        <CalendarIcon />
+                        {formatDate(
+                            article?.createdAt || new Date().toISOString(),
+                        )}
+                    </span>
+                    <span>
+                        <EyeIcon />
+                        {article?.viewsCount || 0}
+                    </span>
+                    <span>
+                        <HeartIcon />
+                        {article?.likesCount || 0}
+                    </span>
+                </div>
+                <Checkbox
+                    label={t('profile:published')}
+                    checked={published}
+                    onChange={onChangePublished}
+                    name="published"
+                    className={cls.published}
+                />
+                <div className={cls.selectors}>
+                    <Select
+                        value={category}
+                        onChange={(val) => onChageCategory(val as string)}
+                        options={filterCategories}
+                        label={t('article:category_label')}
+                        placeholder={t('article:select_placeholder')}
+                        className={cls.articleFilterSelect}
+                    />
+                    <Select
+                        multiple
+                        value={selectedTags}
+                        onChange={(val) => onChageTags(val as string[])}
+                        options={filterTags}
+                        label={t('article:tag_label')}
+                        placeholder={t('article:select_placeholder')}
+                        className={cls.articleFilterSelect}
+                    />
+                </div>
+            </div>
+            <div className={cls.artticlePoster}>
+                <Tooltip
+                    content={t('article:upload_image')}
+                    preferredPlacement="top"
+                >
+                    <ImageUpload
+                        src={`${__SERVER_URL__}${poster}`}
+                        alt={title}
+                        onChangeImage={onChangePoster}
+                    />
+                </Tooltip>
+            </div>
+            <div className={classNames('separator', {}, [cls.separator])} />
+            <b>{t('article:content')}</b>
+            <HtmlEditor html={html} onChangeContent={onChangeHtml} />
+            <Button type="button" onClick={submit} loading={loading}>
+                {type === 'create' && !article
+                    ? t('article:create_article')
+                    : t('article:update_article')}
+            </Button>
+        </article>
+    );
 });

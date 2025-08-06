@@ -5,17 +5,20 @@ import { MainPageSchema } from '../types/mainPage';
 import { Category } from '@/entities/Article';
 
 const initialState: MainPageSchema = {
-  selectedCategory: undefined,
+    selectedCategory: undefined,
 };
 
 export const mainPageSlice = createSlice({
-  name: 'mainPage',
-  initialState,
-  reducers: {
-    setSelectedCategory: (state, { payload }: PayloadAction<Category | undefined>) => {
-      state.selectedCategory = payload;
+    name: 'mainPage',
+    initialState,
+    reducers: {
+        setSelectedCategory: (
+            state,
+            { payload }: PayloadAction<Category | undefined>,
+        ) => {
+            state.selectedCategory = payload;
+        },
     },
-  },
 });
 
 export const { actions: mainPageActions } = mainPageSlice;

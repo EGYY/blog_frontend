@@ -13,21 +13,21 @@ import './app/styles/index.scss';
 const container = document.getElementById('root');
 
 if (!container) {
-  throw new Error('root container not found');
+    throw new Error('root container not found');
 }
 
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter>
-    <StoreProvider>
-      <ToastProvider>
-        <ErrorBoundary>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
-        </ErrorBoundary>
-      </ToastProvider>
-    </StoreProvider>
-  </BrowserRouter>,
+    <BrowserRouter>
+        <StoreProvider>
+            <ToastProvider>
+                <ErrorBoundary>
+                    <ThemeProvider>
+                        <App />
+                    </ThemeProvider>
+                </ErrorBoundary>
+            </ToastProvider>
+        </StoreProvider>
+    </BrowserRouter>,
 );

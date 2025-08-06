@@ -2,13 +2,9 @@ export { ArticleListItem } from './ui/ArticleListItem/ArticleListItem';
 
 export { ArticleRecommendations } from './ui/ArticleRecommendations/ArticleRecommendations';
 
-export {
-  getArticleRecommedationsError,
-} from './model/selectors/getArticleRecommedationsError/getArticleRecommedationsError';
+export { getArticleRecommedationsError } from './model/selectors/getArticleRecommedationsError/getArticleRecommedationsError';
 
-export {
-  getArticleRecommendationsLoading,
-} from './model/selectors/getArticleRecommendationsLoading/getArticleRecommendationsLoading';
+export { getArticleRecommendationsLoading } from './model/selectors/getArticleRecommendationsLoading/getArticleRecommendationsLoading';
 export { getArticleRecommendationsSelector } from './model/selectors/getArticleRecommendations/getArticleRecommendations';
 export { getInitedArticles } from './model/selectors/getInitedArticles/getInitedArticles';
 export { getArticlesListTotal } from './model/selectors/getArticlesListTotal/getArticlesListTotal';
@@ -17,7 +13,10 @@ export { getArticlesView } from './model/selectors/getArticlesView/getArticlesVi
 export { getArticlesListSelector } from './model/selectors/getArticlesList/getArticlesList';
 export { getArticlesListLoading } from './model/selectors/getArticlesListLoading/getArticlesListLoading';
 export { getArticlesListError } from './model/selectors/getArticlesListError/getArticlesListError';
-export { getArticlesList, type GetArticlesListQueryParams } from './model/services/getArticlesList';
+export {
+    getArticlesList,
+    type GetArticlesListQueryParams,
+} from './model/services/getArticlesList';
 
 export { articleReducer, articleActions } from './model/slice/articleSlice';
 
@@ -31,6 +30,10 @@ export { getArticleRecommedations } from './model/services/getArticleRecommedati
 
 export { Article } from './ui/Article/Article/Article';
 export type {
-  ArticleSchema, Article as ArticleType, Category, ArticlesServerResponse, Tag as TagType,
+    ArticleSchema,
+    Article as ArticleType,
+    Category,
+    ArticlesServerResponse,
+    Tag as TagType,
 } from './model/types/article';
 export { ArticleView } from './model/types/article';

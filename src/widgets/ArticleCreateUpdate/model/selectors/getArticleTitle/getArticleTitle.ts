@@ -1,3 +1,4 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-export const getArticleTitle = (state: StateSchema) => state?.article_create_update?.articleTitle || '';
+export const getArticleTitle = (state: StateSchema) =>
+    state?.article_create_update?.articleTitle || '';

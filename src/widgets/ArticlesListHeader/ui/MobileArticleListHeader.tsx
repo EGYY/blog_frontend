@@ -10,21 +10,26 @@ import { Drawer } from '@/shared/ui/Drawer/Drawer';
 import cls from './ArticlesListHeader.module.scss';
 
 function MobileArticleListHeaderComponent() {
-  const [open, setOpen] = useState(false);
-  const { t } = useTranslation('article');
-  return (
-    <>
-      <Button className={cls.mobileFilterButton} theme="outline" onClick={() => setOpen(true)}>
-        <FilterIcon width={15} />
-        {' '}
-        {t('filters')}
-      </Button>
-      <Drawer position="right" isOpen={open} onClose={() => setOpen(false)}>
-        <ArticlesListHeader isMobile />
-      </Drawer>
-    </>
-
-  );
+    const [open, setOpen] = useState(false);
+    const { t } = useTranslation('article');
+    return (
+        <>
+            <Button
+                className={cls.mobileFilterButton}
+                theme="outline"
+                onClick={() => setOpen(true)}
+            >
+                <FilterIcon width={15} /> {t('filters')}
+            </Button>
+            <Drawer
+                position="right"
+                isOpen={open}
+                onClose={() => setOpen(false)}
+            >
+                <ArticlesListHeader isMobile />
+            </Drawer>
+        </>
+    );
 }
 
 export default MobileArticleListHeaderComponent;

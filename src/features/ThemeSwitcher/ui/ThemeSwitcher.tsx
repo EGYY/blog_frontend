@@ -12,27 +12,22 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import cls from './ThemeSwitcher.module.scss';
 
 interface ThemeSwitcherProps {
-    className?: string
+    className?: string;
 }
 
 export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
-  const { theme, switchTheme } = useTheme();
-  const { t } = useTranslation('sidebar');
+    const { theme, switchTheme } = useTheme();
+    const { t } = useTranslation('sidebar');
 
-  return (
-    <Tooltip content={t('toggle_theme')} preferredPlacement="right">
-      <Button
-        onClick={switchTheme}
-        className={classNames(cls.themeSwitcher, {}, [className])}
-        theme="ghostIcon"
-      >
-        {theme === Theme.LIGHT ? (
-          <SunIcon />
-        ) : (
-          <MoonIcon />
-        )}
-      </Button>
-    </Tooltip>
-
-  );
+    return (
+        <Tooltip content={t('toggle_theme')} preferredPlacement="right">
+            <Button
+                onClick={switchTheme}
+                className={classNames(cls.themeSwitcher, {}, [className])}
+                theme="ghostIcon"
+            >
+                {theme === Theme.LIGHT ? <SunIcon /> : <MoonIcon />}
+            </Button>
+        </Tooltip>
+    );
 });

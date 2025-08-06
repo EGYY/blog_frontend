@@ -16,35 +16,33 @@ interface ModalProps extends PropsWithChildren {
     onClose: () => void;
 }
 export const Modal: FC<ModalProps> = (props) => {
-  const {
-    className, children, open, onClose,
-  } = props;
+    const { className, children, open, onClose } = props;
 
-  const {
-    close,
-    isClosing,
-    isMounted,
-  } = useModal({ isOpen: open, onClose });
+    const { close, isClosing, isMounted } = useModal({ isOpen: open, onClose });
 
-  if (!isMounted) return null;
+    if (!isMounted) return null;
 
-  return (
-    <Portal>
-      <Overlay onClick={close}>
-        <div
-          className={classNames(cls.content, { [cls.closed]: isClosing, [cls.opened]: open }, [className])}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Button
-            className={cls.closeBtn}
-            theme="ghostIcon"
-            onClick={close}
-          >
-            <XIcon width={20} />
-          </Button>
-          {children}
-        </div>
-      </Overlay>
-    </Portal>
-  );
+    return (
+        <Portal>
+            <Overlay onClick={close}>
+                <div
+                    className={classNames(
+                        cls.content,
+                        { [cls.closed]: isClosing, [cls.opened]: open },
+                        [className],
+                    )}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <Button
+                        className={cls.closeBtn}
+                        theme="ghostIcon"
+                        onClick={close}
+                    >
+                        <XIcon width={20} />
+                    </Button>
+                    {children}
+                </div>
+            </Overlay>
+        </Portal>
+    );
 };

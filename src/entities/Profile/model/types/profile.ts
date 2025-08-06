@@ -3,18 +3,18 @@ import { User } from '@/entities/User';
 
 export interface Profile extends User {
     _count: {
-        articles: number
-        comments: number
-        likes: number
-        followers: number
-        following: number
-    },
-    articles: ArticleType[]
+        articles: number;
+        comments: number;
+        likes: number;
+        followers: number;
+        following: number;
+    };
+    articles: ArticleType[];
 }
 
 export interface Subscribe {
-    id: string
-    createdAt: string
-    followerId: string
-    followingId: string
+    id: string;
+    createdAt: string;
+    followerId: string;
+    followingId: string;
 }

@@ -1,3 +1,5 @@
 import { lazy } from 'react';
 
-export const ArticleCommentsBlockAsync = lazy(() => import('./ArticleCommentsBlock'));
+export const ArticleCommentsBlockAsync = lazy(
+    () => import('./ArticleCommentsBlock'),
+);

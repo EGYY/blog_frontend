@@ -11,22 +11,23 @@ type UpdateArticlePayload = {
 export const updateArticle = createAsyncThunk<
     ArticleType,
     UpdateArticlePayload,
-    { rejectValue: string, extra: ThunkExtraArg }
->(
-  'article/updateArticle',
-  async ({ id, body }, { rejectWithValue, extra }) => {
+    { rejectValue: string; extra: ThunkExtraArg }
+>('article/updateArticle', async ({ id, body }, { rejectWithValue, extra }) => {
     try {
-      const response = await extra.apiAuth.patch<ArticleType>(`/articles/${id}`, body, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      return response.data;
+        const response = await extra.apiAuth.patch<ArticleType>(
+            `/articles/${id}`,
+            body,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            },
+        );
+        return response.data;
     } catch (e: any) {
-      if (e?.response?.data?.message) {
-        return rejectWithValue(e.response.data.message);
-      }
-      return rejectWithValue(e.message);
+        if (e?.response?.data?.message) {
+            return rejectWithValue(e.response.data.message);
+        }
+        return rejectWithValue(e.message);
     }
-  },
-);
+});

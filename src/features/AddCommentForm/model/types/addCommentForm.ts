@@ -1,3 +1,3 @@
 export interface AddCommentFormSchema {
-    content: string
+    content: string;
 }

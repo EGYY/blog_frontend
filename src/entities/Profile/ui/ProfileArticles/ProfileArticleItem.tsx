@@ -11,15 +11,18 @@ interface ProfileArticleItemProps {
     article: ArticleType;
 }
 export const ProfileArticleItem = ({ article }: ProfileArticleItemProps) => {
-  return (
-    <Link to={getRouteArticleDetail(article.id)} className={cls.lastArticleItem}>
-      <div className={cls.profileCardStatItemIcon}>
-        <BookIcon width={20} />
-      </div>
-      <div className={cls.lastArticleItemInfo}>
-        <p>{article.title}</p>
-        <span>{timeAgo(article.createdAt)}</span>
-      </div>
-    </Link>
-  );
+    return (
+        <Link
+            to={getRouteArticleDetail(article.id)}
+            className={cls.lastArticleItem}
+        >
+            <div className={cls.profileCardStatItemIcon}>
+                <BookIcon width={20} />
+            </div>
+            <div className={cls.lastArticleItemInfo}>
+                <p>{article.title}</p>
+                <span>{timeAgo(article.createdAt)}</span>
+            </div>
+        </Link>
+    );
 };

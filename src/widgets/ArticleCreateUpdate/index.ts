@@ -1,4 +1,7 @@
-export { articleCreateUpdateActions, articleCreateUpdateReducer } from './model/slice/articleCreateUpdateSlice';
+export {
+    articleCreateUpdateActions,
+    articleCreateUpdateReducer,
+} from './model/slice/articleCreateUpdateSlice';
 
 export { ArticleCreateUpdate } from './ui/ArticleCreateUpdate';
 

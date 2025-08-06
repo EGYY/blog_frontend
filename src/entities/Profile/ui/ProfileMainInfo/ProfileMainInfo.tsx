@@ -1,6 +1,4 @@
-import {
-  memo, useEffect, useMemo,
-} from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { User } from '@/entities/User';
@@ -16,77 +14,83 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import cls from './ProfileMainInfo.module.scss';
 
 interface ProfileMainInfoProps {
-    canSubscribe?: boolean
-    className?: string
-    profile: User | undefined
-    subscribed?: boolean
-    handleSubscribe?: (id: string) => void
-    loadingSubscribe?: boolean
-    errorSubscribe?: string
+    canSubscribe?: boolean;
+    className?: string;
+    profile: User | undefined;
+    subscribed?: boolean;
+    handleSubscribe?: (id: string) => void;
+    loadingSubscribe?: boolean;
+    errorSubscribe?: string;
 }
 
 export const ProfileMainInfo = memo((props: ProfileMainInfoProps) => {
-  const {
-    canSubscribe = false, profile, className, subscribed = false, handleSubscribe, loadingSubscribe = false, errorSubscribe,
-  } = props;
-  const { t } = useTranslation('profile');
-  const dispatch = useAppDispatch();
+    const {
+        canSubscribe = false,
+        profile,
+        className,
+        subscribed = false,
+        handleSubscribe,
+        loadingSubscribe = false,
+        errorSubscribe,
+    } = props;
+    const { t } = useTranslation('profile');
+    const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (errorSubscribe) {
-      dispatch(toastActions.addToast({
-        type: 'error',
-        message: errorSubscribe,
-      }));
-    }
-  }, [dispatch, errorSubscribe]);
+    useEffect(() => {
+        if (errorSubscribe) {
+            dispatch(
+                toastActions.addToast({
+                    type: 'error',
+                    message: errorSubscribe,
+                }),
+            );
+        }
+    }, [dispatch, errorSubscribe]);
 
-  const displayRole = useMemo(() => {
-    if (profile?.role) {
-      switch (profile?.role) {
-        case 'USER':
-          return t('role_user');
-        case 'ADMIN':
-          return t('role_admin');
-        case 'AUTHOR':
-          return t('role_author');
-        default:
-          return t('role_user');
-      }
-    }
-    return t('role_user');
-  }, [profile?.role, t]);
+    const displayRole = useMemo(() => {
+        if (profile?.role) {
+            switch (profile?.role) {
+                case 'USER':
+                    return t('role_user');
+                case 'ADMIN':
+                    return t('role_admin');
+                case 'AUTHOR':
+                    return t('role_author');
+                default:
+                    return t('role_user');
+            }
+        }
+        return t('role_user');
+    }, [profile?.role, t]);
 
-  return (
-    <div className={classNames(cls.profileCard, {}, [className])}>
-      <div className={cls.profileInfo}>
-        <Avatar src={`${__SERVER_URL__}${profile?.avatar}`} />
-        <h3>{profile?.name || profile?.email}</h3>
-        <Tooltip content={profile?.bio} preferredPlacement="bottom">
-          <p>{profile?.bio}</p>
-        </Tooltip>
-      </div>
-      {
-      canSubscribe && profile && handleSubscribe && (
-        <Button
-          onClick={() => handleSubscribe(profile.id)}
-          loading={loadingSubscribe}
-        >
-          <BellIcon width={20} />
-          {subscribed ? t('unsubscribe') : t('subscribe')}
-        </Button>
-      )
-    }
-      <div className={cls.profileCardInfoList}>
-        <div>
-          <span>{t('active since')}</span>
-          <span>{formatDate(profile?.createdAt)}</span>
+    return (
+        <div className={classNames(cls.profileCard, {}, [className])}>
+            <div className={cls.profileInfo}>
+                <Avatar src={`${__SERVER_URL__}${profile?.avatar}`} />
+                <h3>{profile?.name || profile?.email}</h3>
+                <Tooltip content={profile?.bio} preferredPlacement="bottom">
+                    <p>{profile?.bio}</p>
+                </Tooltip>
+            </div>
+            {canSubscribe && profile && handleSubscribe && (
+                <Button
+                    onClick={() => handleSubscribe(profile.id)}
+                    loading={loadingSubscribe}
+                >
+                    <BellIcon width={20} />
+                    {subscribed ? t('unsubscribe') : t('subscribe')}
+                </Button>
+            )}
+            <div className={cls.profileCardInfoList}>
+                <div>
+                    <span>{t('active since')}</span>
+                    <span>{formatDate(profile?.createdAt)}</span>
+                </div>
+                <div>
+                    <span>{t('role')}</span>
+                    <span>{displayRole}</span>
+                </div>
+            </div>
         </div>
-        <div>
-          <span>{t('role')}</span>
-          <span>{displayRole}</span>
-        </div>
-      </div>
-    </div>
-  );
+    );
 });

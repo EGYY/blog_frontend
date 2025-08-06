@@ -6,7 +6,7 @@ export enum Routes {
     ARTICLE_UPDATE = 'article_update',
     PROFILE_EDIT = 'profile_edit',
     PROFILE_DETAIL = 'profile_detail',
-    NOT_FOUND = 'not_found'
+    NOT_FOUND = 'not_found',
 }
 
 export const getRouteMain = () => '/';

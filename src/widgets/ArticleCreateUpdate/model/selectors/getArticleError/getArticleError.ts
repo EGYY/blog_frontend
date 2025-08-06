@@ -1,3 +1,4 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-export const getArticleError = (state: StateSchema) => state?.article_create_update?.error || '';
+export const getArticleError = (state: StateSchema) =>
+    state?.article_create_update?.error || '';

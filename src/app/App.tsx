@@ -10,36 +10,36 @@ import { PageLoader } from '@/widgets/PageLoader';
 import { Sidebar } from '@/widgets/Sidebar';
 
 export const App = () => {
-  const { theme } = useTheme();
-  const dispatch = useDispatch();
-  const inited = useSelector(getInitedUser);
+    const { theme } = useTheme();
+    const dispatch = useDispatch();
+    const inited = useSelector(getInitedUser);
 
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
+    useEffect(() => {
+        document.body.className = theme;
+    }, [theme]);
 
-  useEffect(() => {
+    useEffect(() => {
+        if (!inited) {
+            dispatch(getProfileData());
+        }
+    }, [dispatch, inited]);
+
     if (!inited) {
-      dispatch(getProfileData());
+        return (
+            <div id="app" className={classNames('app center-page')}>
+                <PageLoader />
+            </div>
+        );
     }
-  }, [dispatch, inited]);
 
-  if (!inited) {
     return (
-      <div id="app" className={classNames('app center-page')}>
-        <PageLoader />
-      </div>
-    );
-  }
-
-  return (
-    <div id="app" className={classNames('app')}>
-      <Suspense fallback="">
-        <div className="page">
-          <Sidebar />
-          <Router />
+        <div id="app" className={classNames('app')}>
+            <Suspense fallback="">
+                <div className="page">
+                    <Sidebar />
+                    <Router />
+                </div>
+            </Suspense>
         </div>
-      </Suspense>
-    </div>
-  );
+    );
 };

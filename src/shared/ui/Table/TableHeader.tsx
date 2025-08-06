@@ -26,82 +26,128 @@ type TableHeaderProps<T> = {
     handleMouseDown: (e: React.MouseEvent, colIndex: number) => void;
 };
 
-function TableHeaderComponent<T extends Record<string, any>>(props: TableHeaderProps<T>) {
-  const {
-    columns,
-    filters,
-    sortKey,
-    sortDirection,
-    stickyColumnCount,
-    getLeftOffset,
-    handleSort,
-    handleFilterChange,
-    handleMouseDown,
-  } = props;
-  const { t } = useTranslation('table');
-  return (
-    <thead className={styles.thead}>
-      <tr>
-        {columns
-          .filter((col) => col.visible)
-          .map((col) => {
-            const colIndex = columns.findIndex((c) => c.key === col.key);
-            const isSorted = sortKey === col.key;
-            const isSticky = colIndex < stickyColumnCount;
-            const isFiltered = Boolean(filters[String(col.key)]);
-            return (
-              <th
-                key={String(col.key)}
-                className={classNames(styles.th, { [styles.sticky]: isSticky, [styles.stickyHeader]: isSticky })}
-                style={{
-                  width: `${col.width}px`,
-                  left: isSticky ? `${getLeftOffset(colIndex)}px` : undefined,
-                }}
-              >
-                <div className={styles.thContent}>
-                  <span>{col.header}</span>
-                  <div className={styles.thActions}>
-                    {col.sortable && (
-                    <Tooltip
-                      content={
-                      isSorted && sortDirection === 'asc' ? t('asc_sort')
-                        : isSorted && sortDirection === 'desc' ? t('desc_sort')
-                          : t('default_sort')
-                    } preferredPlacement="bottom"
-                    >
-                      <Button theme="ghostIcon" onClick={() => col.sortable && handleSort(col.key)}>
-                        {isSorted && sortDirection === 'asc' ? (
-                          <ArrowAsc className={styles.activeFilter} width={15} />
-                        ) : isSorted && sortDirection === 'desc' ? (
-                          <ArrowDesc className={styles.activeFilter} width={15} />
-                        ) : (
-                          <ArrowDownUp width={15} />
-                        )}
-                      </Button>
-                    </Tooltip>
-                    )}
-                    {col.filterable && (
-                    <FilterDropdown
-                      isFiltered={isFiltered}
-                      columnKey={String(col.key)}
-                      onChange={(val) => {
-                        handleFilterChange(col.key, val);
-                      }}
-                      value={filters[String(col.key)] ?? ''}
-                    />
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={styles.resizeHandle}
-                  onMouseDown={(e) => handleMouseDown(e, colIndex)}
-                />
-              </th>
-            );
-          })}
-      </tr>
-    </thead>
-  );
+function TableHeaderComponent<T extends Record<string, any>>(
+    props: TableHeaderProps<T>,
+) {
+    const {
+        columns,
+        filters,
+        sortKey,
+        sortDirection,
+        stickyColumnCount,
+        getLeftOffset,
+        handleSort,
+        handleFilterChange,
+        handleMouseDown,
+    } = props;
+    const { t } = useTranslation('table');
+    return (
+        <thead className={styles.thead}>
+            <tr>
+                {columns
+                    .filter((col) => col.visible)
+                    .map((col) => {
+                        const colIndex = columns.findIndex(
+                            (c) => c.key === col.key,
+                        );
+                        const isSorted = sortKey === col.key;
+                        const isSticky = colIndex < stickyColumnCount;
+                        const isFiltered = Boolean(filters[String(col.key)]);
+                        return (
+                            <th
+                                key={String(col.key)}
+                                className={classNames(styles.th, {
+                                    [styles.sticky]: isSticky,
+                                    [styles.stickyHeader]: isSticky,
+                                })}
+                                style={{
+                                    width: `${col.width}px`,
+                                    left: isSticky
+                                        ? `${getLeftOffset(colIndex)}px`
+                                        : undefined,
+                                }}
+                            >
+                                <div className={styles.thContent}>
+                                    <span>{col.header}</span>
+                                    <div className={styles.thActions}>
+                                        {col.sortable && (
+                                            <Tooltip
+                                                content={
+                                                    isSorted &&
+                                                    sortDirection === 'asc'
+                                                        ? t('asc_sort')
+                                                        : isSorted &&
+                                                          sortDirection ===
+                                                              'desc'
+                                                        ? t('desc_sort')
+                                                        : t('default_sort')
+                                                }
+                                                preferredPlacement="bottom"
+                                            >
+                                                <Button
+                                                    theme="ghostIcon"
+                                                    onClick={() =>
+                                                        col.sortable &&
+                                                        handleSort(col.key)
+                                                    }
+                                                >
+                                                    {isSorted &&
+                                                    sortDirection === 'asc' ? (
+                                                        <ArrowAsc
+                                                            className={
+                                                                styles.activeFilter
+                                                            }
+                                                            width={15}
+                                                        />
+                                                    ) : isSorted &&
+                                                      sortDirection ===
+                                                          'desc' ? (
+                                                        <ArrowDesc
+                                                            className={
+                                                                styles.activeFilter
+                                                            }
+                                                            width={15}
+                                                        />
+                                                    ) : (
+                                                        <ArrowDownUp
+                                                            width={15}
+                                                        />
+                                                    )}
+                                                </Button>
+                                            </Tooltip>
+                                        )}
+                                        {col.filterable && (
+                                            <FilterDropdown
+                                                isFiltered={isFiltered}
+                                                columnKey={String(col.key)}
+                                                onChange={(val) => {
+                                                    handleFilterChange(
+                                                        col.key,
+                                                        val,
+                                                    );
+                                                }}
+                                                value={
+                                                    filters[String(col.key)] ??
+                                                    ''
+                                                }
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                                <div
+                                    className={styles.resizeHandle}
+                                    onMouseDown={(e) =>
+                                        handleMouseDown(e, colIndex)
+                                    }
+                                />
+                            </th>
+                        );
+                    })}
+            </tr>
+        </thead>
+    );
 }
 
-export const TableHeader = memo(TableHeaderComponent) as typeof TableHeaderComponent;
+export const TableHeader = memo(
+    TableHeaderComponent,
+) as typeof TableHeaderComponent;

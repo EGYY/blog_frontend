@@ -3,7 +3,10 @@ export { getLoadingUpdateProfile } from './model/selectors/getLoading/getLoading
 
 export { updateProfileData } from './model/services/updateProfileData/updateProfileData';
 
-export { updateProfileActions, updateProfileReducer } from './model/slice/updateProfileSlice';
+export {
+    updateProfileActions,
+    updateProfileReducer,
+} from './model/slice/updateProfileSlice';
 
 export { EditableProfileCard } from './ui/EditableProfileCard';
 export type { UpdateProfileSchema } from './model/types/UpdateProfileSchema';

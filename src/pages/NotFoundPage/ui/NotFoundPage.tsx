@@ -9,21 +9,21 @@ import { PageWrapper } from '@/widgets/PageWrapper';
 import cls from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
-    className?: string
+    className?: string;
 }
 
 export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-  return (
-    <PageWrapper data-testid="not-found-page">
-      <div className={classNames(cls.notFoundPage, {}, [className])}>
-        <h1>
-          {t('not_found_page')}
-        </h1>
-        <p>{t('not_found_page_description')}</p>
-        <Button onClick={() => navigate('/')}>{t('not_found_page_button')}</Button>
-      </div>
-    </PageWrapper>
-  );
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    return (
+        <PageWrapper data-testid="not-found-page">
+            <div className={classNames(cls.notFoundPage, {}, [className])}>
+                <h1>{t('not_found_page')}</h1>
+                <p>{t('not_found_page_description')}</p>
+                <Button onClick={() => navigate('/')}>
+                    {t('not_found_page_button')}
+                </Button>
+            </div>
+        </PageWrapper>
+    );
 };

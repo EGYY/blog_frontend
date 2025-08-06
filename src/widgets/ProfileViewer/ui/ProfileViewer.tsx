@@ -1,6 +1,4 @@
-import {
-  memo, useCallback, useEffect,
-} from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,18 +7,24 @@ import { getErrorProfileDetail } from '../model/selectors/getErrorProfileDetail/
 import { getLoadingProfileDetail } from '../model/selectors/getLoadingProfileDetail/getLoadingProfileDetail';
 import { getProfileDetail } from '../model/selectors/getProfileDetail/getProfileDetail';
 import { getProfileById } from '../model/services/getProfileById';
-import { profileDetailActions, profileDetailReducer } from '../model/slice/profileDetailSlice';
+import {
+    profileDetailActions,
+    profileDetailReducer,
+} from '../model/slice/profileDetailSlice';
 
 import {
-  ProfileArticles,
-  ProfileMainInfo,
-  ProfileStatList,
-  useSubscribe,
+    ProfileArticles,
+    ProfileMainInfo,
+    ProfileStatList,
+    useSubscribe,
 } from '@/entities/Profile';
 import { useCanUserSubscribe } from '@/entities/User';
 import PenIcon from '@/shared/assets/square-pen.svg';
 import { getRouteProfileEdit } from '@/shared/config/routes/routes';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
@@ -28,72 +32,80 @@ import { Card } from '@/shared/ui/Card/Card';
 import cls from './ProfileViewer.module.scss';
 
 const initialReducers: ReducersList = {
-  profile_detail: profileDetailReducer,
+    profile_detail: profileDetailReducer,
 };
 
 interface ProfileViewerProps {
-  id?: string
+    id?: string;
 }
 
 export const ProfileViewer = memo((props: ProfileViewerProps) => {
-  const { id } = props;
-  const { t } = useTranslation('profile');
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const profile = useSelector(getProfileDetail);
-  const loading = useSelector(getLoadingProfileDetail);
-  const error = useSelector(getErrorProfileDetail);
+    const { id } = props;
+    const { t } = useTranslation('profile');
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const profile = useSelector(getProfileDetail);
+    const loading = useSelector(getLoadingProfileDetail);
+    const error = useSelector(getErrorProfileDetail);
 
-  const { error: errorSubscribe, handleSubscribe, loading: loadingSubscribe } = useSubscribe({
-    subscribed: Boolean(profile?.subscribed),
-    changeSubscribe: (val) => dispatch(profileDetailActions.changeSubscribe(val)),
-  });
+    const {
+        error: errorSubscribe,
+        handleSubscribe,
+        loading: loadingSubscribe,
+    } = useSubscribe({
+        subscribed: Boolean(profile?.subscribed),
+        changeSubscribe: (val) =>
+            dispatch(profileDetailActions.changeSubscribe(val)),
+    });
 
-  const { canSubscribe, isAuthUserProfile } = useCanUserSubscribe(id);
+    const { canSubscribe, isAuthUserProfile } = useCanUserSubscribe(id);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(getProfileById(id));
-    }
-  }, [id, dispatch]);
+    useEffect(() => {
+        if (id) {
+            dispatch(getProfileById(id));
+        }
+    }, [id, dispatch]);
 
-  const handleGoEditProfile = useCallback(() => {
-    navigate(getRouteProfileEdit());
-  }, [navigate]);
+    const handleGoEditProfile = useCallback(() => {
+        navigate(getRouteProfileEdit());
+    }, [navigate]);
 
-  return (
-    <DynamicModuleLoader reducers={initialReducers}>
-      <div className={cls.profileDetailPageWrapper}>
-        <div className={cls.profileDetailPageHeader}>
-          <h1>{t('profile')}</h1>
-          {isAuthUserProfile && (
-            <div className={cls.profileActions}>
-              <Button theme="outline" onClick={handleGoEditProfile}>
-                <PenIcon width={20} />
-                {t('edit')}
-              </Button>
+    return (
+        <DynamicModuleLoader reducers={initialReducers}>
+            <div className={cls.profileDetailPageWrapper}>
+                <div className={cls.profileDetailPageHeader}>
+                    <h1>{t('profile')}</h1>
+                    {isAuthUserProfile && (
+                        <div className={cls.profileActions}>
+                            <Button
+                                theme="outline"
+                                onClick={handleGoEditProfile}
+                            >
+                                <PenIcon width={20} />
+                                {t('edit')}
+                            </Button>
+                        </div>
+                    )}
+                </div>
+                <div className={cls.profileDetailPageContent}>
+                    <Card>
+                        <ProfileMainInfo
+                            canSubscribe={canSubscribe}
+                            profile={profile}
+                            subscribed={profile?.subscribed}
+                            handleSubscribe={handleSubscribe}
+                            loadingSubscribe={loadingSubscribe}
+                            errorSubscribe={errorSubscribe}
+                        />
+                    </Card>
+                    <div>
+                        <ProfileStatList profile={profile} />
+                        {profile?.articles && profile?.articles.length > 0 && (
+                            <ProfileArticles articles={profile?.articles} />
+                        )}
+                    </div>
+                </div>
             </div>
-          )}
-        </div>
-        <div className={cls.profileDetailPageContent}>
-          <Card>
-            <ProfileMainInfo
-              canSubscribe={canSubscribe}
-              profile={profile}
-              subscribed={profile?.subscribed}
-              handleSubscribe={handleSubscribe}
-              loadingSubscribe={loadingSubscribe}
-              errorSubscribe={errorSubscribe}
-            />
-          </Card>
-          <div>
-            <ProfileStatList profile={profile} />
-            {profile?.articles && profile?.articles.length > 0 && (
-              <ProfileArticles articles={profile?.articles} />
-            )}
-          </div>
-        </div>
-      </div>
-    </DynamicModuleLoader>
-  );
+        </DynamicModuleLoader>
+    );
 });

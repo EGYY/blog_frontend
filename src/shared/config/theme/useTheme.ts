@@ -8,17 +8,17 @@ interface UseThemeResult {
 }
 
 export const useTheme = (): UseThemeResult => {
-  const { theme, setTheme } = useContext(ThemeContext);
+    const { theme, setTheme } = useContext(ThemeContext);
 
-  const switchTheme = () => {
-    const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
-    localStorage.setItem(STORAGE_THEME_KEY, newTheme);
-    document.body.className = newTheme;
-    setTheme?.(newTheme);
-  };
+    const switchTheme = () => {
+        const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
+        localStorage.setItem(STORAGE_THEME_KEY, newTheme);
+        document.body.className = newTheme;
+        setTheme?.(newTheme);
+    };
 
-  return {
-    theme: theme || Theme.LIGHT,
-    switchTheme,
-  };
+    return {
+        theme: theme || Theme.LIGHT,
+        switchTheme,
+    };
 };

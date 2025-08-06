@@ -1,6 +1,4 @@
-import {
-  FC, memo, useCallback, useState,
-} from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -21,77 +19,80 @@ import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
-  className?: string
+    className?: string;
 }
 
 export const Navbar: FC<NavbarProps> = memo(({ className }) => {
-  const { t } = useTranslation(['navbar', 'notifications']);
-  const [openAuthModal, setOpenAuthModal] = useState(false);
-  const user = useSelector(getUser);
-  const loading = useSelector(getLoadingUser);
+    const { t } = useTranslation(['navbar', 'notifications']);
+    const [openAuthModal, setOpenAuthModal] = useState(false);
+    const user = useSelector(getUser);
+    const loading = useSelector(getLoadingUser);
 
-  const breadcrumbs = useBreadcrumbs();
+    const breadcrumbs = useBreadcrumbs();
 
-  const onShowModal = useCallback(() => {
-    setOpenAuthModal(true);
-  }, []);
+    const onShowModal = useCallback(() => {
+        setOpenAuthModal(true);
+    }, []);
 
-  const onCloseModal = useCallback(() => {
-    setOpenAuthModal(false);
-  }, []);
+    const onCloseModal = useCallback(() => {
+        setOpenAuthModal(false);
+    }, []);
 
-  if (loading) {
+    if (loading) {
+        return (
+            <header className={classNames(cls.navbar, {}, [className])}>
+                <div className={cls.actionBtns}>
+                    <div className={cls.loadingProfile}>
+                        <Skeleton circle height={40} />
+                        <div className={cls.loadingProfileInfo}>
+                            <Skeleton height={15} width={70} />
+                            <Skeleton height={15} width={100} />
+                        </div>
+                    </div>
+                </div>
+            </header>
+        );
+    }
+
+    if (user) {
+        return (
+            <header className={classNames(cls.navbar, {}, [className])}>
+                <Breadcrumb items={breadcrumbs} />
+                <div className={cls.actionBtns}>
+                    <Dropdown
+                        trigger={
+                            <Tooltip content={t('notifications:notifications')}>
+                                <Button theme="ghostIcon">
+                                    <BellIcon width={20} />
+                                </Button>
+                            </Tooltip>
+                        }
+                    >
+                        <NotificationList />
+                    </Dropdown>
+                    <Dropdown trigger={<AccountMenuTrigger />}>
+                        <AccountMenu />
+                    </Dropdown>
+                </div>
+            </header>
+        );
+    }
+
     return (
-      <header className={classNames(cls.navbar, {}, [className])}>
-        <div className={cls.actionBtns}>
-          <div className={cls.loadingProfile}>
-            <Skeleton circle height={40} />
-            <div className={cls.loadingProfileInfo}>
-              <Skeleton height={15} width={70} />
-              <Skeleton height={15} width={100} />
+        <header className={classNames(cls.navbar, {}, [className])}>
+            <Breadcrumb items={breadcrumbs} />
+            <div className={cls.actionBtns}>
+                <Tooltip
+                    content={t('navbar:authorization')}
+                    preferredPlacement="left"
+                >
+                    <Button theme="ghostIcon" onClick={onShowModal}>
+                        <UserCircleIcon width={24} />
+                        {t('navbar:login')}
+                    </Button>
+                </Tooltip>
             </div>
-          </div>
-        </div>
-      </header>
+            <LoginModal open={openAuthModal} onClose={onCloseModal} />
+        </header>
     );
-  }
-
-  if (user) {
-    return (
-      <header className={classNames(cls.navbar, {}, [className])}>
-        <Breadcrumb items={breadcrumbs} />
-        <div className={cls.actionBtns}>
-          <Dropdown
-            trigger={(
-              <Tooltip content={t('notifications:notifications')}>
-                <Button theme="ghostIcon">
-                  <BellIcon width={20} />
-                </Button>
-              </Tooltip>
-        )}
-          >
-            <NotificationList />
-          </Dropdown>
-          <Dropdown trigger={<AccountMenuTrigger />}>
-            <AccountMenu />
-          </Dropdown>
-        </div>
-      </header>
-    );
-  }
-
-  return (
-    <header className={classNames(cls.navbar, {}, [className])}>
-      <Breadcrumb items={breadcrumbs} />
-      <div className={cls.actionBtns}>
-        <Tooltip content={t('navbar:authorization')} preferredPlacement="left">
-          <Button theme="ghostIcon" onClick={onShowModal}>
-            <UserCircleIcon width={24} />
-            {t('navbar:login')}
-          </Button>
-        </Tooltip>
-      </div>
-      <LoginModal open={openAuthModal} onClose={onCloseModal} />
-    </header>
-  );
 });
