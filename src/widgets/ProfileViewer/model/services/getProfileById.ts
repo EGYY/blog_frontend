@@ -11,6 +11,11 @@ export const getProfileById = createAsyncThunk<
     try {
         const response = await axiosWithAuth.get<Profile>(
             `/users/profile/${id}`,
+            {
+                headers: {
+                    'x-public': true,
+                },
+            },
         );
         return response.data;
     } catch (e: any) {
