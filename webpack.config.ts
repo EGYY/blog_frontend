@@ -24,6 +24,8 @@ export default (env: BuildEnv) => {
     const analyze = env.analyze || false;
     const serverUrl =
         env.serverUrl || process.env.SERVER_URL || 'http://localhost:5000';
+    const apiUrl =
+        env.apiUrl || process.env.API_URL || 'http://localhost:5000/api';
 
     const config: webpack.Configuration = webpackConfig({
         mode,
@@ -31,6 +33,7 @@ export default (env: BuildEnv) => {
         isDev,
         port,
         analyze,
+        apiUrl,
         serverUrl,
         project: 'frontend',
     });

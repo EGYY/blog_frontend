@@ -14,7 +14,7 @@ export default {
     parameters: {
         mockData: [
             {
-                url: `${__SERVER_URL__}/notifications`,
+                url: `${__API_URL__}/notifications`,
                 method: 'GET',
                 status: 200,
                 response: [

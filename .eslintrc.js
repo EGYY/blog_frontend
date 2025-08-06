@@ -144,6 +144,7 @@ module.exports = {
         __IS_DEV__: true,
         __PROJECT__: true,
         __SERVER_URL__: true,
+        __API_URL__: true,
     },
     overrides: [
         {

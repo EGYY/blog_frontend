@@ -14,6 +14,7 @@ export interface BuildEnv {
     port: number,
     analyze: boolean,
     serverUrl: string
+    apiUrl: string
 }
 
 export interface BuildOptions {
@@ -23,5 +24,6 @@ export interface BuildOptions {
     port: number,
     analyze: boolean,
     serverUrl: string,
+    apiUrl: string,
     project: string,
 }

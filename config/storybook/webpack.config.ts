@@ -37,6 +37,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
             __IS_DEV__: JSON.stringify(true),
             __SERVER_URL__: JSON.stringify('https://test.ru'),
             __PROJECT__: JSON.stringify('storybook'),
+            __API_URL__: JSON.stringify('https://test.ru/api'),
         }),
     );
 

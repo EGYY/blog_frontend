@@ -6,7 +6,7 @@ import { UserServerResponse } from '@/entities/User';
 import { errorCatch } from '@/shared/lib/api/helper';
 
 const options: CreateAxiosDefaults = {
-    baseURL: __SERVER_URL__,
+    baseURL: __API_URL__,
     withCredentials: true,
 };
 

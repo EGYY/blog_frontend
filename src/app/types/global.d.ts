@@ -8,6 +8,7 @@ declare module '*.jpeg';
 declare module '*.gif';
 declare const __IS_DEV__: boolean;
 declare const __SERVER_URL__: string;
+declare const __API_URL__: string;
 declare const __PROJECT__: 'storybook' | 'frontend' | 'jest';
 
 type DeepPartial<T> = T extends object

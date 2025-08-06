@@ -11,6 +11,7 @@ export default {
         __IS_DEV__: true,
         __SERVER_URL__: '',
         __PROJECT__: 'jest',
+        __API_URL__: '',
     },
     // All imported modules in your tests should be mocked automatically
     // automock: false,
