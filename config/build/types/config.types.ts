@@ -13,7 +13,7 @@ export interface BuildEnv {
     mode: BuildMode,
     port: number,
     analyze: boolean,
-    sereverUrl: string
+    serverUrl: string
 }
 
 export interface BuildOptions {

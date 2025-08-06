@@ -1,11 +1,15 @@
 import path from 'path';
 
+import dotenv from 'dotenv';
 import webpack from 'webpack';
 
 import { BuildEnv, BuildPaths } from './config/build/types/config.types';
 import { webpackConfig } from './config/build/webpackConfig';
 
 export default (env: BuildEnv) => {
+    const mode = env.mode || 'development';
+    dotenv.config({ path: `.env.${mode}` });
+
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         build: path.resolve(__dirname, 'build'),
@@ -15,11 +19,11 @@ export default (env: BuildEnv) => {
         buildLocales: path.resolve(__dirname, 'build', 'locales'),
     };
 
-    const mode = env.mode || 'development';
     const isDev = mode === 'development';
-    const port = env.port || 3000;
+    const port = env.port || Number(process.env.APP_PORT) || 3000;
     const analyze = env.analyze || false;
-    const serverUrl = env.sereverUrl || 'http://localhost:5000';
+    const serverUrl =
+        env.serverUrl || process.env.SERVER_URL || 'http://localhost:5000';
 
     const config: webpack.Configuration = webpackConfig({
         mode,

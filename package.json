@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "npx webpack serve --env port=3000",
+        "start:dev": "npx webpack serve --env mode=development",
+        "start:prod": "npx webpack serve --env mode=production",
         "build:dev": "npx webpack --env mode=development",
         "build:prod": "npx webpack --env mode=production",
         "analyze:prod": "npm run build:prod --env analyze=true",
@@ -72,6 +73,7 @@
         "copy-webpack-plugin": "^10.2.4",
         "css-loader": "^6.6.0",
         "cypress": "^11.0.0",
+        "dotenv": "^16.0.0",
         "eslint": "^8.10.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-config-prettier": "^8.5.0",
