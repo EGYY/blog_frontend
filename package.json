@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start:dev": "npx webpack serve --env mode=development",
-        "start:prod": "npx webpack serve --env mode=production",
+        "start:prod": "npx serve -s build -l 3000",
         "build:dev": "npx webpack --env mode=development",
         "build:prod": "npx webpack --env mode=production",
         "analyze:prod": "npm run build:prod --env analyze=true",
@@ -100,6 +100,7 @@
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.49.9",
         "sass-loader": "^12.6.0",
+        "serve": "^13.0.2",
         "storybook-addon-mock": "^3.2.0",
         "style-loader": "^3.3.1",
         "stylelint": "^14.5.3",
