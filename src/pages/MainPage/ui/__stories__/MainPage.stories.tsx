@@ -17,13 +17,13 @@ export default {
     parameters: {
         mockData: [
             {
-                url: `${__SERVER_URL__}/article-categories`,
+                url: `${__API_URL__}/article-categories`,
                 method: 'GET',
                 status: 200,
                 response: testCategories,
             },
             {
-                url: `${__SERVER_URL__}/articles?limit=50`,
+                url: `${__API_URL__}/articles?limit=50`,
                 method: 'GET',
                 status: 200,
                 response: {

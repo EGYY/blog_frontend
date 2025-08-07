@@ -12,7 +12,7 @@ const CookiesTest = jest.mocked(Cookies, true);
 
 describe('loginByEmail.test.ts', () => {
     beforeEach(() => {
-        jest.resetAllMocks(); // Полный сброс моков
+        jest.resetAllMocks();
     });
     test('success login', async () => {
         const thunk = new TestAsyncThunk(loginByEmail);
@@ -25,8 +25,7 @@ describe('loginByEmail.test.ts', () => {
             'accessToken',
             testUserAfterAuth.accessToken,
             {
-                domain: 'localhost',
-                sameSite: 'strict',
+                sameSite: 'lax',
                 expires: 1,
             },
         );

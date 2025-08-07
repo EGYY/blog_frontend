@@ -10,6 +10,7 @@ import BellIcon from '@/shared/assets/bell.svg';
 import UserCircleIcon from '@/shared/assets/user-circle.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useBreadcrumbs } from '@/shared/lib/hooks/useBreadcrumbs/useBreadcrumbs';
+import { useMobile } from '@/shared/lib/hooks/useMobile/useMobile';
 import Breadcrumb from '@/shared/ui/Breadcrumb/Breadcrumb';
 import { Button } from '@/shared/ui/Button/Button';
 import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
@@ -27,6 +28,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     const [openAuthModal, setOpenAuthModal] = useState(false);
     const user = useSelector(getUser);
     const loading = useSelector(getLoadingUser);
+    const isMobile = useMobile();
 
     const breadcrumbs = useBreadcrumbs();
 
@@ -57,7 +59,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
     if (user) {
         return (
             <header className={classNames(cls.navbar, {}, [className])}>
-                <Breadcrumb items={breadcrumbs} />
+                {!isMobile && <Breadcrumb items={breadcrumbs} />}
                 <div className={cls.actionBtns}>
                     <Dropdown
                         trigger={

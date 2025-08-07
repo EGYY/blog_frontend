@@ -14,8 +14,8 @@ const breadcrumbMap: RouteBreadcrumbMap = {
     '/': 'Главная',
     '/articles': 'Статьи',
     '/articles/create': 'Создание статьи',
-    '/articles/:id': (params) => `Статья #${params.id}`,
-    '/articles/:id/edit': (params) => `Редактирование статьи #${params.id}`,
+    '/articles/:id': (params) => `Просмотр статьи`,
+    '/articles/:id/edit': (params) => `Редактирование статьи`,
     '/profile/:id': 'Профиль',
     '/profile/edit': 'Редактирование профиля',
 };

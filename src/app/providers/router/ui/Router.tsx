@@ -5,12 +5,14 @@ import { routeConfig } from '../config/routeConfig';
 
 import { ProtectedRoute } from './ProtectedRoute';
 
+import { useMobile } from '@/shared/lib/hooks/useMobile/useMobile';
 import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';
 
 export const Router = () => {
+    const mobile = useMobile();
     return (
-        <main>
+        <main style={{ marginLeft: mobile ? '10px' : '0' }}>
             <Navbar />
             <Suspense fallback={<PageLoader />}>
                 <Routes>

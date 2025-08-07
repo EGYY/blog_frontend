@@ -170,11 +170,11 @@ export const Article: FC<ArticleProps> = memo(
                     >
                         <Button theme="outline" onClick={handlePrint}>
                             <DownloadIcon width={15} />
-                            {t('download_pdf')}
+                            <span>{t('download_pdf')}</span>
                         </Button>
                         <Button theme="outline" onClick={handleShare}>
                             <ShareIcon width={15} />
-                            {t('share')}
+                            <span>{t('share')}</span>
                         </Button>
                         {isAuthUserArticle && article?.id && (
                             <Button
@@ -182,7 +182,7 @@ export const Article: FC<ArticleProps> = memo(
                                 to={getRouteArticleUpdate(article?.id)}
                             >
                                 <PenIcon width={15} />
-                                {t('edit')}
+                                <span>{t('edit')}</span>
                             </Button>
                         )}
                     </div>

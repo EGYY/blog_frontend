@@ -35,6 +35,17 @@
     background-color: var(--tag-default-bg);
     cursor: pointer;
   }
+
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+
+    &::after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background-color: var(--input-border);
+    }
+  }
 }
 
 .lastArticleItemInfo {

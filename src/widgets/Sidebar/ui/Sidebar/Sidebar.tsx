@@ -1,14 +1,16 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SidebarLinks } from '../../model/const/sidebar';
 
+import { MobileSidebar } from './MobileSidebar.async';
 import { SidebarItem } from './SidebarItem';
 
 import { LanguageSwitcher } from '@/features/LanguageSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import SidebarIcon from '@/shared/assets/sidebar.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { useMobile } from '@/shared/lib/hooks/useMobile/useMobile';
 import { Button } from '@/shared/ui/Button/Button';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
 
@@ -20,6 +22,7 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
     const { t } = useTranslation('sidebar');
+    const isMobile = useMobile();
     const [collapsed, setCollapsed] = useState(
         Boolean(JSON.parse(localStorage.getItem('sidebar') || 'false')),
     );
@@ -30,6 +33,14 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
             return !prev;
         });
     };
+
+    if (isMobile) {
+        return (
+            <Suspense fallback="">
+                <MobileSidebar />
+            </Suspense>
+        );
+    }
 
     return (
         <aside
