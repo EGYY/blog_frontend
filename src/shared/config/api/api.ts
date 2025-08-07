@@ -21,8 +21,7 @@ export const getNewTokens = async () => {
 
     if (response.data.accessToken) {
         Cookies.set('accessToken', response.data.accessToken, {
-            domain: 'localhost',
-            sameSite: 'strict',
+            sameSite: 'lax',
             expires: 1,
         });
     }

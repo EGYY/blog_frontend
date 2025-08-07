@@ -20,8 +20,7 @@ export const registrateByEmail = createAsyncThunk<
                 return rejectWithValue('Некорректный ответ сервера');
             }
             Cookies.set('accessToken', response.data.accessToken, {
-                domain: 'localhost',
-                sameSite: 'strict',
+                sameSite: 'lax',
                 expires: 1,
             });
             dispatch(userActions.setAuthData(response.data));
