@@ -2,5 +2,6 @@
     "authorization": "Авторизация/Регистрация",
     "login": "Войти",
     "logout": "Выйти",
-    "profile": "Профиль"
+    "profile": "Профиль",
+    "admin_panel": "Админка"
 }

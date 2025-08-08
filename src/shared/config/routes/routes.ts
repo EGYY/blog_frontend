@@ -6,6 +6,8 @@ export enum Routes {
     ARTICLE_UPDATE = 'article_update',
     PROFILE_EDIT = 'profile_edit',
     PROFILE_DETAIL = 'profile_detail',
+    ADMIN_DASHBOARD = 'admin_dashboard',
+    FORBIDDEN = 'forbidden',
     NOT_FOUND = 'not_found',
 }
 
@@ -16,3 +18,5 @@ export const getRouteArticleCreate = () => '/articles/create';
 export const getRouteArticleUpdate = (id: string) => `/articles/${id}/edit`;
 export const getRouteProfileEdit = () => '/profile/edit';
 export const getRouteProfileDetail = (id: string) => `/profile/${id}`;
+export const getRouteAdminDashboard = () => '/admin/dashboard';
+export const getRouteForbidden = () => '/forbidden';

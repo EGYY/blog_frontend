@@ -1,12 +1,18 @@
 {
     "i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"],
+    "i18n-ally.keystyle": "nested",
     "css.validate": false,
     "less.validate": false,
     "scss.validate": false,
     "stylelint.enable": true,
     "stylelint.validate": ["css", "scss"],
-    "i18n-ally.keystyle": "nested",
-    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
     "editor.codeActionsOnSave": {
         "source.fixAll": "explicit",
         "source.fixAll.eslint": "explicit"

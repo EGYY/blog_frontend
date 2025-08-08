@@ -1,11 +1,10 @@
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 
 import { getArticleData, getArticle, articleReducer } from '@/entities/Article';
 import { getUser } from '@/entities/User';
-import { getRouteArticles } from '@/shared/config/routes/routes';
+import { getRouteForbidden } from '@/shared/config/routes/routes';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -16,7 +15,6 @@ import {
     ArticleCreateUpdate,
     articleCreateUpdateReducer,
 } from '@/widgets/ArticleCreateUpdate';
-import { PageError } from '@/widgets/PageError';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 const initialReducers: ReducersList = {
@@ -25,10 +23,9 @@ const initialReducers: ReducersList = {
 };
 
 const ArticleCreateUpdatePage = () => {
-    const { t } = useTranslation('article');
     const { id } = useParams();
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+    const location = useLocation();
 
     const article = useSelector(getArticle);
     const user = useSelector(getUser);
@@ -51,16 +48,11 @@ const ArticleCreateUpdatePage = () => {
 
     if (!canUserEditArticle && id) {
         return (
-            <DynamicModuleLoader reducers={initialReducers} removeAfterAnmount>
-                <PageWrapper>
-                    <PageError
-                        errorTitle={t('access_denied')}
-                        errorDescription={t('access_denied_description')}
-                        actionText={t('access_denied_action_text')}
-                        actionHandler={() => navigate(getRouteArticles())}
-                    />
-                </PageWrapper>
-            </DynamicModuleLoader>
+            <Navigate
+                to={getRouteForbidden()}
+                state={{ from: location }}
+                replace
+            />
         );
     }
 

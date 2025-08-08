@@ -18,6 +18,7 @@ const breadcrumbMap: RouteBreadcrumbMap = {
     '/articles/:id/edit': (params) => `Редактирование статьи`,
     '/profile/:id': 'Профиль',
     '/profile/edit': 'Редактирование профиля',
+    '/admin/dashboard': 'Админ панель',
 };
 
 export const useBreadcrumbs = (): BreadcrumbItem[] => {

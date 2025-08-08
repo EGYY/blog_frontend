@@ -254,7 +254,7 @@ export const ArticleCreateUpdate = memo((props: ArticleCreateUpdateProps) => {
             <b>{t('article:content')}</b>
             <HtmlEditor html={html} onChangeContent={onChangeHtml} />
             <Button type="button" onClick={submit} loading={loading}>
-                {type === 'create' && !article
+                {type === 'create' || !article
                     ? t('article:create_article')
                     : t('article:update_article')}
             </Button>

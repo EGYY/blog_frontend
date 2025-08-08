@@ -82,7 +82,7 @@ export const Navbar: FC<NavbarProps> = memo(({ className }) => {
 
     return (
         <header className={classNames(cls.navbar, {}, [className])}>
-            <Breadcrumb items={breadcrumbs} />
+            {!isMobile && <Breadcrumb items={breadcrumbs} />}
             <div className={cls.actionBtns}>
                 <Tooltip
                     content={t('navbar:authorization')}

@@ -2,5 +2,6 @@
     "authorization": "Authorization/Registration",
     "login": "Login",
     "logout": "Log out",
-    "profile": "Profile"
+    "profile": "Profile",
+    "admin_panel": "Admin panel"
 }

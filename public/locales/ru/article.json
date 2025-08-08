@@ -24,8 +24,5 @@
     "share": "Поделиться",
     "download_pdf": "Скачать PDF",
     "edit": "Редактировать",
-    "filters": "Фильтры",
-    "access_denied": "Доступ ограничен",
-    "access_denied_description": "У вас нет прав для редактирования этой статьи.",
-    "access_denied_action_text": "К списку статей"
+    "filters": "Фильтры"
 }

@@ -17,13 +17,13 @@ export const Router = () => {
             <Suspense fallback={<PageLoader />}>
                 <Routes>
                     {Object.values(routeConfig).map(
-                        ({ element, path, authOnly }) => (
+                        ({ element, path, authOnly, roles }) => (
                             <Route
                                 key={path}
                                 path={path}
                                 element={
                                     authOnly ? (
-                                        <ProtectedRoute>
+                                        <ProtectedRoute roles={roles}>
                                             {element as JSX.Element}
                                         </ProtectedRoute>
                                     ) : (

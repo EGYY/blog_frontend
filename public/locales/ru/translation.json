@@ -26,5 +26,8 @@
     "comment_block_empty": "Список комментариев пока пуст",
     "comment_form_send": "Отправить",
     "comment_form_placeholder": "Напишите ваш комментарий...",
-    "empty_list": "Список пуст"
+    "empty_list": "Список пуст",
+    "access_denied": "Доступ ограничен",
+    "access_denied_description": "У вас нет прав для просмотра этой страницы.",
+    "access_denied_action_text": "Вернуться назад"
 }

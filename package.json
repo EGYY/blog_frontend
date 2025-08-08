@@ -18,6 +18,7 @@
         "unit:test:staged": "jest --config ./config/jest/jest.config.ts --findRelatedTests --coverage",
         "test:ui": "npx loki test",
         "test:e2e": "cypress open",
+        "test:ui:update": "npx loki update",
         "test:ui:ok": "npx loki test approve",
         "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
