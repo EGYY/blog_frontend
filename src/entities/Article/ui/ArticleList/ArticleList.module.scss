@@ -34,3 +34,7 @@
     }
   }
 }
+
+.articlesEmpty {
+  height: calc(100vh - var(--navbar-height) - 220px);
+}

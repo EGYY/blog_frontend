@@ -28,6 +28,8 @@ import {
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
+import { DisplayError } from '@/shared/ui/DisplayError/DisplayError';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 import cls from './ProfileViewer.module.scss';
 
@@ -69,6 +71,24 @@ export const ProfileViewer = memo((props: ProfileViewerProps) => {
     const handleGoEditProfile = useCallback(() => {
         navigate(getRouteProfileEdit());
     }, [navigate]);
+
+    if (loading) {
+        return (
+            <div className={cls.profileDetailPageWrapper}>
+                <div className={cls.profileDetailPageHeader}>
+                    <Skeleton height={34} />
+                </div>
+                <div className={cls.profileDetailPageContent}>
+                    <Skeleton height={200} />
+                    <Skeleton height={500} />
+                </div>
+            </div>
+        );
+    }
+
+    if (!loading && error) {
+        return <DisplayError />;
+    }
 
     return (
         <DynamicModuleLoader reducers={initialReducers}>

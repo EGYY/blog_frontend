@@ -59,6 +59,13 @@ export const articlesFiltersSlice = createSlice({
         setFiltersReady: (state, { payload }: PayloadAction<boolean>) => {
             state.__filters_ready = payload;
         },
+        resetFilters: (state) => {
+            state.currentFilters = {};
+            state.search = '';
+            state.tags = [];
+            state.categories = [];
+            state.sort = undefined;
+        },
     },
 });
 

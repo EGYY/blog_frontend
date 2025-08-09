@@ -132,6 +132,14 @@ const ArticlesPage = memo(() => {
         }
     }, [dispatch, loading, total, articles.length, page]);
 
+    const onRefetchArticles = useCallback(() => {
+        dispatch(getArticlesList({ replace: true }));
+    }, [dispatch]);
+
+    const onResetFilters = useCallback(() => {
+        dispatch(articlesFiltersActions.resetFilters());
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader
             reducers={initialReducers}
@@ -148,6 +156,8 @@ const ArticlesPage = memo(() => {
                     articles={articles}
                     error={error}
                     view={view}
+                    refetchArticles={onRefetchArticles}
+                    resetFilters={onResetFilters}
                 />
             </PageWrapper>
         </DynamicModuleLoader>

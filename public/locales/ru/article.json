@@ -13,7 +13,9 @@
     "old": "Старые",
     "popular": "Самые популярные",
     "related_articles": "Похожие статьи",
+    "data_empty_title": "Список статей пуст",
     "data_empty": "Список статей пуст. Попробуйте другие фильтры для поиска",
+    "reset_filters": "Сбросить фильтры",
     "title": "Заголовок",
     "subtitle": "Подзаголовок",
     "content": "Текст статьи",
@@ -24,5 +26,8 @@
     "share": "Поделиться",
     "download_pdf": "Скачать PDF",
     "edit": "Редактировать",
-    "filters": "Фильтры"
+    "filters": "Фильтры",
+    "error_articles_title": "Ошибка загрузки статей",
+    "error_articles_description": "Похоже произошла какая-то ошибка при загрузке статей",
+    "error_articles_action_text": "Попробовать снова"
 }

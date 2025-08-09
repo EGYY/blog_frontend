@@ -21,9 +21,15 @@ const initialReducers: ReducersList = {
 
 const MainPage = memo(() => {
     const dispatch = useAppDispatch();
-    const { data: categories } = useArticleCategoriesQuery();
+    const { data: categories, isLoading: categoriesIsLoading } =
+        useArticleCategoriesQuery();
     const selectedCategory = useSelector(getMainPageSelectedCategory);
-    const { data: articles } = useArticlesQuery(selectedCategory?.id);
+    const {
+        data: articles,
+        isFetching: articlesIsLoading,
+        isError: articlesError,
+        refetch: refetchArticles,
+    } = useArticlesQuery(selectedCategory?.id);
 
     const onChangeCategory = useCallback(
         (category: Category) => {
@@ -45,6 +51,10 @@ const MainPage = memo(() => {
                 <ArticleListByCategory
                     articles={articles?.data || []}
                     categories={categories}
+                    loadingArticles={articlesIsLoading}
+                    loadingCategories={categoriesIsLoading}
+                    errorArticles={articlesError}
+                    refetchArticles={refetchArticles}
                     selectedCategory={selectedCategory}
                     onChangeCategory={onChangeCategory}
                 />

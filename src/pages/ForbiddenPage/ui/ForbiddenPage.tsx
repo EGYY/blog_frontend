@@ -1,8 +1,7 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { PageError } from '@/widgets/PageError';
+import { DisplayError } from '@/shared/ui/DisplayError/DisplayError';
 import { PageWrapper } from '@/widgets/PageWrapper';
 
 function Forbidden() {
@@ -10,7 +9,7 @@ function Forbidden() {
     const navigate = useNavigate();
     return (
         <PageWrapper>
-            <PageError
+            <DisplayError
                 errorTitle={t('access_denied')}
                 errorDescription={t('access_denied_description')}
                 actionText={t('access_denied_action_text')}

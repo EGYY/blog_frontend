@@ -18,8 +18,10 @@ import { useAppEffect } from '@/shared/lib/hooks/useAppEffect/useAppEffect';
 import { AvatarUpload } from '@/shared/ui/Avatar/AvatarUpload';
 import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
+import { DisplayError } from '@/shared/ui/DisplayError/DisplayError';
 import { Input } from '@/shared/ui/Input/Input';
 import Pagination from '@/shared/ui/Pagination/Pagination';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import Tabs, { Tab } from '@/shared/ui/Tabs/Tabs';
 import { Textarea } from '@/shared/ui/Textarea/Textarea';
 import { Tooltip } from '@/shared/ui/Tooltip/Tooltip';
@@ -124,9 +126,6 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                                     data-testid="profile-card.bio"
                                 />
                             </div>
-                            {error && (
-                                <p style={{ color: '#e7000b' }}>{error}</p>
-                            )}
                             <div className={styles.profileCardFormSubmit}>
                                 <Button
                                     loading={loading}
@@ -168,7 +167,6 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [
             articles,
             email,
-            error,
             loadingArticles,
             pageArticles,
             onDeleteArticle,
@@ -183,6 +181,21 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
             totalArticles,
         ],
     );
+
+    if (loading || loadingArticles) {
+        return (
+            <div className={styles.profileCardContainer}>
+                <div className={styles.profileCardInfo}>
+                    <Skeleton width={150} height={50} />
+                </div>
+                <Skeleton height={400} />
+            </div>
+        );
+    }
+
+    if (error) {
+        return <DisplayError />;
+    }
 
     return (
         <div className={styles.profileCardContainer}>

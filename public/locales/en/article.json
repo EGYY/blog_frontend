@@ -13,7 +13,9 @@
     "old": "New",
     "popular": "Most popular",
     "related_articles": "Related articles",
+    "data_empty_title": "The list of articles is empty",
     "data_empty": "The list of articles is empty. Try other search filters",
+    "reset_filters": "Reset filters",
     "title": "Article title",
     "subtitle": "Subtitle",
     "content": "Article content",
@@ -27,5 +29,8 @@
     "filters": "Filters",
     "access_denied": "Access denied",
     "access_denied_description": "You don't have permission to edit this article.",
-    "access_denied_action_text": "Go to the articles list"
+    "access_denied_action_text": "Go to the articles list",
+    "error_articles_title": "Error uploading articles",
+    "error_articles_description": "It looks like there was some kind of error when uploading articles.",
+    "error_articles_action_text": "Try again"
 }

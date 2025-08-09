@@ -6,7 +6,7 @@ import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Tag } from '@/shared/ui/Tag/Tag';
+import { DisplayError } from '@/shared/ui/DisplayError/DisplayError';
 
 import cls from './ArticleList.module.scss';
 
@@ -15,10 +15,19 @@ interface ArticleListProps {
     loading: boolean;
     view?: ArticleView;
     error?: string;
+    refetchArticles?: () => void;
+    resetFilters?: () => void;
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
-    const { articles, loading, error, view = ArticleView.GRID } = props;
+    const {
+        articles,
+        loading,
+        error,
+        view = ArticleView.GRID,
+        refetchArticles,
+        resetFilters,
+    } = props;
 
     const { t } = useTranslation('article');
 
@@ -40,9 +49,23 @@ export const ArticleList = memo((props: ArticleListProps) => {
                     />
                 );
             })}
-            {error && <Tag variant="error">{error}</Tag>}
+            {error && (
+                <DisplayError
+                    errorTitle={t('error_articles_title')}
+                    errorDescription={t('error_articles_description')}
+                    actionText={t('error_articles_action_text')}
+                    actionHandler={refetchArticles}
+                    className={cls.articlesError}
+                />
+            )}
             {!articles.length && !loading && (
-                <Tag variant="info">{t('data_empty')}</Tag>
+                <DisplayError
+                    errorTitle={t('data_empty_title')}
+                    errorDescription={t('data_empty')}
+                    actionText={t('reset_filters')}
+                    actionHandler={resetFilters}
+                    className={cls.articlesEmpty}
+                />
             )}
             {loading && getSkeletons()}
         </div>
